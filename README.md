@@ -12,7 +12,7 @@ settings, live picks, and notes. Built to be readable on the go (phone via
 | League | Platform | Type | Status | File |
 |---|---|---|---|---|
 | Bada Bing | Sleeper | Dynasty, 1QB, full PPR | Drafting | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
-| League `602581801` | ESPN | Keeper | Drafting (private — need settings paste) | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
+| Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft today 5:45 PM PDT | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links
 - [Dynasty draft board / BPA notes](draft-board.md)

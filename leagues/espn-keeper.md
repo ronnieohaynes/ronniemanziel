@@ -1,32 +1,99 @@
-# ESPN Keeper League
+# Why So Serious — ESPN Keeper League
 
 - **Platform:** ESPN
 - **League ID:** `602581801`
-- **Link:** https://fantasy.espn.com/football/league?leagueId=602581801
-- **Type:** Keeper league
 - **Season:** 2026
-- **Access:** Private (API returns `AUTH_LEAGUE_NOT_VISIBLE` without ESPN cookies)
+- **Link:** https://fantasy.espn.com/football/league?leagueId=602581801
+- **Settings:** https://fantasy.espn.com/football/league/settings?leagueId=602581801&seasonId=2026
+- **Type:** Head-to-Head Points, **full PPR**
+- **Teams:** 12 (private, League Manager format)
 
-## Status
-Drafting today — settings/rosters/keepers **not yet readable** from this agent.
+## Draft (today)
+- **Type:** Snake
+- **Date:** Aug 16, 2026 @ **5:45 PM PDT**
+- **Pick clock:** 45 seconds
+- **Order:** Randomized **1 hour before** draft
 
-## To fill in (paste or screenshot)
-- [ ] Number of teams
-- [ ] Scoring (PPR? half-PPR? pass TD = 4 or 6?)
-- [ ] Starting lineup / roster slots
-- [ ] Keeper rules (how many keepers, round cost / escalation)
-- [ ] Who each team is keeping (or at least my keepers + notable others)
-- [ ] My team name / draft slot
-- [ ] Draft order / current pick if live
+## Keepers — critical
+| Rule | Value |
+|---|---|
+| Keepers for **2026** | **No** (this draft is a full redraft) |
+| Keepers for **2027** | **Yes** |
+| Keepers per team (2027) | **2** |
+| 2027 lock | 1 hour before draft |
 
-## Notes
-Keeper leagues differ from dynasty: value the **keeper round cost** vs player's
-ADP. A player kept later than his ADP = strong keeper value. Draft strategy
-adjusts around which players others are keeping (inflates ADP of non-kept
-players).
+**Strategy implication:** Draft like a **1-year redraft to win 2026**, but lightly prefer players you’d happily keep into 2027 (younger / ascending) when BPA is close. No keeper-cost / round-penalty rules shown in settings — only “2 keepers for 2027.”
 
-## Auth options for live pull
-To let this agent read ESPN directly, provide either:
-1. Screenshots / paste of Settings → Scoring, Roster, Keepers, and Draft, or
-2. ESPN cookies `espn_s2` + `SWID` as secrets (never paste them in chat if you
-   can add them as environment secrets instead)
+## Starting lineup (9 starters)
+| Slot | Starters | Max |
+|---|---|---|
+| QB | 1 | 4 |
+| RB | 2 | 8 |
+| WR | 2 | 8 |
+| TE | 1 | 3 |
+| FLEX (RB/WR/TE) | 1 | — |
+| D/ST | 1 | 3 |
+| K | 1 | 3 |
+| Bench | 7 | — |
+| IR | 1 | — |
+
+**Roster size:** 16 total (9 + 7 bench; IR separate slot)
+
+Unlike Bada Bing dynasty: **you start K and D/ST** here — draft them late (last 2 rounds is fine with 45s clock).
+
+## Scoring (full PPR, 4-pt pass TD)
+### Passing
+- Pass yd: **0.04** (1 / 25)
+- Pass TD: **4**
+- INT: **−2** (harsher than Bada Bing’s −1)
+- 2PT: **+2**
+
+### Rushing / Receiving
+- Rush/rec yd: **0.1**
+- Rec: **1.0** (full PPR)
+- Rush/rec TD: **6**
+- 2PT: **+2**
+- Fumble lost: **−2**
+
+### Kicker
+- PAT: 1 · Missed FG: −1
+- FG 0–39: 3 · 40–49: 4 · 50–59: 5 · 60+: 6
+
+### D/ST
+- Sack 1 · INT/FR/Safety/Block 2 · Return TDs 6
+- Points-allowed + yards-allowed brackets (standard-ish ESPN)
+
+## Format takeaways vs Bada Bing
+- Same core offense scoring: **full PPR, 4pt pass TD** → WR volume still great; QB still not elite-early.
+- Only **1 FLEX** (not 2) → slightly less WR-stacking; RB scarcity matters more early.
+- **K + D/ST required** → plan late-round slots.
+- **−2 INT** → slightly prefer safer QBs / lower-INT profiles when choosing between equals.
+- **2026 = no keepers** → don’t pay dynasty premiums for age alone; win-now + good 2027 keep candidates when tied.
+
+## Teams (12)
+1. MOSSED GRIDDY
+2. Iceman
+3. Aarons BIRDGANG BEANS
+4. Head of the Table
+5. You just got Riced
+6. Incubators and Intubators
+7. Cassandra wins with grace
+8. The Neonatal Blitzers
+9. Texas B
+10. G'ville Cane
+11. Chris's Competitive Team
+12. All Them TDʼs
+13. T's No Mercy Ruffians
+
+_(Settings page listed 13 names under “Teams And Divisions” — confirm which is yours / if one is a ghost.)_
+
+## Other rules
+- Waivers: 1-day, reset weekly to inverse standings
+- Trade deadline: Dec 2, 2026 @ 9:00 AM PST · review 1 day · 4 veto votes
+- Season: 14 regular-season weeks · **6 playoff teams** · 1-week rounds · consolation ladder on
+- Undroppable list: Yes (ESPN)
+
+## Still need from you
+- [ ] Which team name is yours?
+- [ ] Draft slot once order posts (~4:45 PM PDT)
+- [ ] Soft preferences (same Raiders avoid? any other teams?)
