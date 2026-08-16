@@ -7,6 +7,7 @@
 - **Settings:** https://fantasy.espn.com/football/league/settings?leagueId=602581801&seasonId=2026
 - **Type:** Head-to-Head Points, **full PPR**
 - **Teams:** 12 (private, League Manager format)
+- **My team:** **You just got Riced**
 
 ## Draft (today)
 - **Type:** Snake
@@ -75,7 +76,7 @@ Unlike Bada Bing dynasty: **you start K and D/ST** here — draft them late (las
 2. Iceman
 3. Aarons BIRDGANG BEANS
 4. Head of the Table
-5. You just got Riced
+5. **You just got Riced (ME)**
 6. Incubators and Intubators
 7. Cassandra wins with grace
 8. The Neonatal Blitzers
@@ -94,6 +95,6 @@ _(Settings page listed 13 names under “Teams And Divisions” — confirm whic
 - Undroppable list: Yes (ESPN)
 
 ## Still need from you
-- [ ] Which team name is yours?
+- [x] Which team name is yours? → **You just got Riced**
 - [ ] Draft slot once order posts (~4:45 PM PDT)
 - [ ] Soft preferences (same Raiders avoid? any other teams?)
