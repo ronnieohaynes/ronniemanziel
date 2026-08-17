@@ -13,7 +13,23 @@
 - **Type:** Snake
 - **Date:** Aug 16, 2026 @ **5:45 PM PDT**
 - **Pick clock:** 45 seconds
-- **Order:** Randomized **1 hour before** draft
+- **Order:** Locked — **You just got Riced = draft slot 2** (pick 1.02)
+- **My overall picks:** 2, 23, 26, 47, 50, 71, 74, 95, 98, 119, 122, 143, 146, 167, 170, 191
+- Autopick: **OFF** (keep it off)
+
+### Pre-draft queue for 1.02 (full PPR, 1 FLEX, win-now 2026)
+**Take the best RB left from Gibbs / Bijan.** If both somehow gone, take Chase (then Puka).
+
+| Priority | Player | Notes |
+|---|---|---|
+| 1 | Jahmyr Gibbs | Ideal 1.02 in full PPR if available |
+| 2 | Bijan Robinson | Equal tier — take if Gibbs gone at 1.01 |
+| 3 | Ja'Marr Chase | Only if both elite RBs gone |
+| 4 | Puka Nacua | Next WR |
+
+Skip at 1.02: CMC (age/injury for a 1.02 price), JT, Lamb, Achane.
+
+**Turn plan (2.11 / 3.02 = #23/#26):** Come back for RB2 + WR1 or WR1 + WR2 depending on run. Ping with screenshot ~3 picks before 23.
 
 ## Keepers — critical
 | Rule | Value |
@@ -96,5 +112,5 @@ _(Settings page listed 13 names under “Teams And Divisions” — confirm whic
 
 ## Still need from you
 - [x] Which team name is yours? → **You just got Riced**
-- [ ] Draft slot once order posts (~4:45 PM PDT)
+- [x] Draft slot → **2** (picks 2 / 23 / 26 …)
 - [ ] Soft preferences (same Raiders avoid? any other teams?)
