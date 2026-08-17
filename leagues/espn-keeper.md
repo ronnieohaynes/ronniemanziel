@@ -31,6 +31,14 @@ Skip at 1.02: CMC (age/injury for a 1.02 price), JT, Lamb, Achane.
 
 **Turn plan (2.11 / 3.02 = #23/#26):** Come back for RB2 + WR1 or WR1 + WR2 depending on run. Ping with screenshot ~3 picks before 23.
 
+
+## My picks
+| Overall | Player | Pos | Team |
+|---|---|---|---|
+| 2 | **Jahmyr Gibbs** | RB | DET |
+| 23 | _upcoming_ | | |
+| 26 | _upcoming_ | | |
+
 ## Keepers — critical
 | Rule | Value |
 |---|---|
