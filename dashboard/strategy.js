@@ -16,18 +16,19 @@ window.STRATEGY = {
 
   /** Live pick call — update this whenever we change strategy. */
   advice: {
-    pick: 114,
-    take: "Courtland Sutton",
-    pos: "WR",
-    why: "This room ADP 110 — on time at 114. Defined Broncos WR2 with Waddle. BPA on this board's ADP, not a crowded 3-way committee.",
-    updated: "2026-08-18 114 on the clock",
+    pick: 127,
+    take: "Braelon Allen",
+    pos: "RB",
+    why: "Sutton is already yours. RB3 + Breece handcuff. Defined Jets RB2 — not a committee. Do not stack another injured back while Breece is dinged.",
+    updated: "2026-08-18 after Sutton at 114",
   },
 
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
-    { name: "Courtland Sutton", pos: "WR", note: "This room ADP 110. Take at 114." },
-    { name: "Josh Downs", pos: "WR", note: "This room ADP 117. Next BPA if Sutton is gone." },
-    { name: "Braelon Allen", pos: "RB", note: "RB3 / Breece handcuff — later ADP than 114; only if you force the running back." },
+    { name: "Braelon Allen", pos: "RB", note: "RB3 / Breece handcuff. Defined Jets RB2. Take at 127." },
+    { name: "Tyjae Spears", pos: "RB", note: "Pollard is on a foot. Defined Titans RB2 if Allen is gone." },
+    { name: "Woody Marks", pos: "RB", note: "Texans RB2 if Allen and Spears are gone." },
+    { name: "Josh Downs", pos: "WR", note: "This room ADP 117. WR BPA only if the healthy RB3s are gone." },
   ],
 
   skip: [
