@@ -70,10 +70,20 @@
 | Round | Overall | Player | Pos | Team |
 |---|---|---|---|---|
 | 1 | 7 | **Justin Jefferson** | WR | MIN |
-| 2 | 18 | _on the clock next_ | | |
-| 3 | 31 | | | |
-| 4 | 42 | | | |
-| 5 | 55 | | | |
+| 2 | 18 | **Drake London** | WR | ATL |
+| 3 | 31 | **Breece Hall** | RB | NYJ |
+| 4 | 42 | **Kyren Williams** | RB | LAR |
+| 5 | 55 | **Tee Higgins** | WR | CIN |
+| 6 | 66 | **Patrick Mahomes** | QB | KC |
+| 7 | 79 | **Kyle Pitts** | TE | ATL |
+| 8 | 90 | **Dalton Kincaid** | TE | BUF |
+| 9 | 103 | **Brock Purdy** | QB | SF |
+| 10 | 114 | | | |
+
+### Health on this roster (Aug 18, 2026)
+- **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. Purdy is the QB2.
+- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren — **RB3 is the 114 need.**
+- JJ / London / Higgins / Pitts: practicing / usable.
 
 ### Pick notes
 - **1.07 Justin Jefferson (WR, MIN):** BPA for format. Chase/JSN/Puka/ARSB
@@ -81,6 +91,33 @@
   over Josh Allen (1QB, too early). Kyler Murray now Vikings starter — upgrade
   vs 2025 QB mess; Murray fed DeAndre Hopkins 115/1407 in 2020. Passed on
   Jeanty/Bowers (Raiders soft-avoid).
+- **8.07 Dalton Kincaid (TE, BUF):** On-time ADP (~86.7). Can start with Pitts
+  (TE + FLEX). Passed on Purdy (ADP 100) and Gadsden (Kolar OR Gadsden OR Njoku).
+- **9.07 pick 103 — take Brock Purdy (QB, SF).** This room ADP **100**, so he
+  is on time. Zero QBs went 91–102. Slot 10 still has no QB and picks **106**.
+  Slot 5 still has no QB (took Brooks/Dowdle). Do not wait for 114. Backups:
+  Dart, then Nix. Healthy RB3 is 114.
+- **10.07 pick 114 queue (healthy RB3):** Braelon Allen (Breece handcuff while
+  the groin is real) → Tyjae Spears (Pollard foot; independent backfield) →
+  Woody Marks. Skip Pollard/Dobbins/Charbonnet (hurt). Skip Aaron Jones /
+  Jordan Mason (Vikings chart is Jones OR Mason — same problem as Gadsden).
+  Skip BRob / Gainwell / Allgeier (clear backups). Sutton is on-time ADP ~110
+  but we still have no RB3.
+
+### Crowded rooms to discount (until usage is clear)
+| Player | Why the role is muddy |
+|---|---|
+| Oronde Gadsden | LAC TE: Kolar OR Gadsden OR Njoku |
+| Jakobi Meyers | JAX WR: BTJ, Meyers, Parker Washington, Hunter |
+| Travis Hunter | Listed backup WR / starting CB; offense share unknown |
+| Quentin Johnston | LAC WR2 behind Ladd; volume not locked |
+| Blake Corum | Split with Kyren — we already have the lead back |
+| Brian Robinson | Behind Bijan in Atlanta |
+| Aaron Jones / Jordan Mason | MIN RB: Jones OR Mason |
+
+Kincaid is not a clean island (Knox / Hawes still rotate in 12 personnel), but
+he is the **listed receiving TE1**, not one of three “OR” co-starters. In a
+2-FLEX PPR league he can actually play; Pitts remains the starter.
 
 ## Round 1 board (as drafted)
 1. Jahmyr Gibbs (RB, DET)
