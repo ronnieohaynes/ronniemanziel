@@ -14,11 +14,20 @@ window.STRATEGY = {
     "Do not stack more injured RBs while Breece is dinged.",
   ],
 
+  /** Live pick call — update this whenever we change strategy. */
+  advice: {
+    pick: 114,
+    take: "Courtland Sutton",
+    pos: "WR",
+    why: "This room ADP 110 — on time at 114. Defined Broncos WR2 with Waddle. BPA on this board's ADP, not a crowded 3-way committee.",
+    updated: "2026-08-18 114 on the clock",
+  },
+
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
-    { name: "Braelon Allen", pos: "RB", note: "Jets RB2. Breece groin is real — Week 1 insurance." },
-    { name: "Tyjae Spears", pos: "RB", note: "Independent backfield. Pollard has missed practice (foot)." },
-    { name: "Woody Marks", pos: "RB", note: "Houston RB2 behind Montgomery. Younger dynasty." },
+    { name: "Courtland Sutton", pos: "WR", note: "This room ADP 110. Take at 114." },
+    { name: "Josh Downs", pos: "WR", note: "This room ADP 117. Next BPA if Sutton is gone." },
+    { name: "Braelon Allen", pos: "RB", note: "RB3 / Breece handcuff — later ADP than 114; only if you force the running back." },
   ],
 
   skip: [
@@ -31,6 +40,7 @@ window.STRATEGY = {
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
     { name: "George Kittle", reason: "Achilles / PUP" },
     { name: "Alec Pierce", reason: "PUP" },
+    { name: "Brenton Strange", reason: "TE3 — we already have Pitts + Kincaid" },
   ],
 
   crowded: [
@@ -46,12 +56,28 @@ window.STRATEGY = {
     { name: "Tyler Allgeier", reason: "Behind Jeremiyah Love" },
   ],
 
-  /** This room's ADP when you screenshot the Sleeper board. */
+  /** This room's ADP from Sleeper board recording Aug 18, 2026. */
   roomAdp: {
+    "Kyle Pitts": 67.3,
+    "Jaxson Dart": 71.4,
+    "Patrick Mahomes": 79.2,
     "Dalton Kincaid": 86.7,
     "Oronde Gadsden": 85.5,
     "Brock Purdy": 100,
-    "Courtland Sutton": 110,
+    "Rhamondre Stevenson": 108.4,
+    "Travis Hunter": 109.7,
+    "Courtland Sutton": 110.0,
+    "Jonathon Brooks": 111.6,
+    "Fernando Mendoza": 112.0,
+    "Jacory Croskey-Merritt": 113.4,
+    "Brenton Strange": 114.9,
+    "Zach Charbonnet": 115.9,
+    "Xavier Worthy": 116.0,
+    "Josh Downs": 117.0,
+    "J.K. Dobbins": 118.5,
+    "Tyler Allgeier": 119.1,
+    "Jayden Reed": 119.7,
+    "Jonah Coleman": 121.1,
     "Kyle Monangai": 81.0,
     "Jordyn Tyson": 55.4,
   },
