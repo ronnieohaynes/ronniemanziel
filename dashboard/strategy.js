@@ -38,6 +38,7 @@ window.STRATEGY = {
     { name: "George Kittle", reason: "Achilles / PUP — already multi-week" },
     { name: "Alec Pierce", reason: "PUP — already multi-week" },
     { name: "Brenton Strange", reason: "TE3 — we already have Pitts + Kincaid" },
+    { name: "Travis Kelce", reason: "TE3 + age 36 in dynasty, no TE premium. One-year deal, maybe last season." },
   ],
 
   crowded: [
@@ -63,6 +64,6 @@ window.STRATEGY = {
   notes: {
     Mahomes: "ACL+LCL Dec 2025. Week 1 is the goal, not locked. Purdy is the QB2.",
     "Breece Hall": "Right groin Aug 17 — weeks not months. Week 1 not locked.",
-    "Tony Pollard": "Sore foot; Saleh called it minor. Not a multi-week skip.",
+    "Travis Kelce": "36, turning 37 in Oct. One-year deal. Fine 2026 TE for a team with none. We already have Pitts + Kincaid.",
   },
 };
