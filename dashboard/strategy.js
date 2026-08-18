@@ -19,16 +19,15 @@ window.STRATEGY = {
     pick: 127,
     take: "Tony Pollard",
     pos: "RB",
-    why: "Sleeper ADP 123.0 — on time at 127. Titans lead back. Saleh: sore foot / minor aches, not believed serious. Dynasty does not skip that. Marks (126.0) if Pollard is gone.",
-    updated: "2026-08-18 injury bar: skip only if serious + multi-week",
+    why: "Sleeper ADP 123.0 — on time at 127. Titans lead back. Saleh: sore foot / minor aches, not believed serious. Marks is crowded (Montgomery OR Marks / big signing). Downs is gone. Doubs (127.7) if Pollard is gone.",
+    updated: "2026-08-18 Marks flagged crowded",
   },
 
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
     { name: "Tony Pollard", pos: "RB", note: "ADP 123.0. On time. Sore foot is minor/not long-term. Take at 127." },
-    { name: "Woody Marks", pos: "RB", note: "ADP 126.0. Next on-time RB3 if Pollard is gone." },
-    { name: "Josh Downs", pos: "WR", note: "ADP 117.0 — already past ADP. The steal if you take WR over the RB hole." },
-    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time BPA if the RBs and Downs are gone." },
+    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time BPA. Downs is gone. Marks is crowded." },
+    { name: "Jalen Coker", pos: "WR", note: "ADP 129.3. Next on-time WR if Doubs is gone." },
     { name: "Braelon Allen", pos: "RB", note: "ADP 154.5 — Breece handcuff. Prefer 138." },
     { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0. Pollard handcuff later, not the 127 pick." },
   ],
@@ -53,6 +52,8 @@ window.STRATEGY = {
     { name: "Jordan Mason", reason: "MIN: Jones OR Mason" },
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
     { name: "Tyler Allgeier", reason: "Behind Jeremiyah Love" },
+    { name: "Woody Marks", reason: "HOU: Montgomery OR Marks — split lead reps; Montgomery is a big new signing" },
+    { name: "David Montgomery", reason: "HOU: Montgomery OR Marks — split lead reps; big new signing into Marks' room" },
   ],
 
   /** ADP lives in adp.js (Sleeper dump). Do not keep a second list here. */

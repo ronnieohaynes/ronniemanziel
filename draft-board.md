@@ -48,16 +48,15 @@ Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need RB3
 
 Sleeper ADP dump is the ADP source:
 
-Queue if they survive 117–126:
+Queue if they survive 119–126:
 1. **Tony Pollard** — ADP **123.0**, on time. Sore foot; Saleh said minor /
    not believed serious. Titans lead back. Take him.
-2. **Woody Marks** — ADP **126.0** if Pollard is gone.
-3. **Josh Downs** — ADP **117.0**, already past ADP; the steal if you take WR.
-4. **Romeo Doubs** — ADP **127.7**, on-time BPA WR.
-5. **Braelon Allen** — ADP **154.5**, Breece handcuff; wait for **138**.
+2. **Romeo Doubs** — ADP **127.7**, on-time BPA. Downs gone at 118. Marks is crowded.
+3. **Jalen Coker** — ADP **129.3**.
+4. **Braelon Allen** — ADP **154.5**, Breece handcuff; wait for **138**.
 
-Skip: Charbonnet / Pearsall / PUP-out names (already multi-week). Jones OR
-Mason (crowded). BRob / Gainwell / Allgeier (backups). Gadsden / Jakobi
-(crowded).
+Skip: **Woody Marks** (HOU: Montgomery OR Marks — split lead reps; Montgomery
+is a big new signing). Charbonnet / Pearsall / PUP-out names. Jones OR Mason.
+BRob / Gainwell / Allgeier. Gadsden / Jakobi.
 
 Ping when 2–3 picks out.
