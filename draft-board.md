@@ -49,10 +49,9 @@ Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need RB3
 Sleeper ADP dump is the ADP source:
 
 Queue if they survive 120–126 (slot 1 has the turn and still needs a TE):
-1. **Tony Pollard** — RB3. ADP 123, TEN RB1. Take him.
-2. **Braelon Allen** — if Pollard is gone, still take the RB3. Jets RB2 + Breece cuff.
-3. **Tyjae Spears** — if Pollard and Allen are gone.
-4. Worthy / Doubs — only after we have an RB3.
+1. **Tony Pollard** — the on-time RB3. ADP 123, TEN RB1. Take him at 127.
+2. **Xavier Worthy / Romeo Doubs** — if Pollard is gone. Do not reach Allen.
+3. **Braelon Allen** — ADP 154.5. That's the **138** pick (still 16 picks before ADP).
 
 Skip crowded: Marks (Montgomery OR Marks), Coleman (Dobbins OR Harvey OR
 Coleman), Jones OR Mason, Gainwell, Allgeier, Gadsden / Jakobi.

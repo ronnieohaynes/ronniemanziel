@@ -8,7 +8,7 @@ window.STRATEGY = {
 
   rules: [
     "Recommend from the full picture: this Sleeper ADP dump, injury news (skip only if already serious + multi-week), scoring (full PPR, 1QB, 2 FLEX, no TE premium), 23 rounds / 28 roster spots (9 + 12 bench + 3 taxi + 4 IR), what other teams are doing, age, who is actually left, and our holes. ADP is one input, not the pick by itself.",
-    "At 127 the hole is RB3. Do not pivot to WR5 while we have two running backs and Breece is dinged.",
+    "Fill the RB3 hole with an on-time back. Do not reach ~25 picks for Allen/Spears — those are 138 picks in a 23-round draft.",
     "Soft-avoid Raiders unless clearly BPA.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
@@ -18,17 +18,17 @@ window.STRATEGY = {
     pick: 127,
     take: "Tony Pollard",
     pos: "RB",
-    why: "RB3 is the hole — only Breece/Kyren, Breece groin, 4 WR already start. Take Pollard (ADP 123, TEN RB1). If Pollard is gone, still take an RB: Allen (defined Jets RB2 + Breece cuff), not a WR5.",
-    updated: "2026-08-18 RB3 is the 127 priority",
+    why: "RB3 hole is real, but Allen (ADP 154.5) is a 27-pick reach at 127. Pollard (ADP 123, TEN RB1) is the on-time RB3. If Pollard is gone, take Worthy/Doubs now and Allen at 138 — 11 picks later, still 16 before his ADP.",
+    updated: "2026-08-18 Allen is the 138 pick, not 127",
   },
 
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
-    { name: "Tony Pollard", pos: "RB", note: "RB3 at 127. ADP 123, TEN RB1. Foot is minor. Take him." },
-    { name: "Braelon Allen", pos: "RB", note: "If Pollard is gone, still take the RB3. Defined Jets RB2 + Breece cuff. Age 22." },
-    { name: "Tyjae Spears", pos: "RB", note: "If Pollard and Allen are gone. Defined Titans RB2 / PPR back." },
-    { name: "Xavier Worthy", pos: "WR", note: "ADP 116, age 23, KC WR2. Only after we have an RB3." },
-    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. Only after we have an RB3." },
+    { name: "Tony Pollard", pos: "RB", note: "The 127 pick. ADP 123, TEN RB1, fills RB3 on time. Foot is minor." },
+    { name: "Xavier Worthy", pos: "WR", note: "If Pollard is gone. ADP 116, age 23. Do not reach Allen here." },
+    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time if Pollard and Worthy are gone." },
+    { name: "Braelon Allen", pos: "RB", note: "ADP 154.5 — 138 pick, not 127. Jets RB2 + Breece cuff." },
+    { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0. Later than Allen." },
   ],
 
   skip: [
