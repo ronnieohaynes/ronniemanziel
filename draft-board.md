@@ -46,13 +46,16 @@ Consensus of SI/DraftSharks/DynastyNerds/Yates, mid-Aug 2026.
 Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need a
 **healthy RB3** (Breece groin). Do not stack another injured back.
 
-Queue if they survive 115–126:
-1. **Braelon Allen** — Jets RB2, 22, Breece handcuff, defined job.
-2. **Tyjae Spears** — independent backfield; Pollard has missed practice with a foot.
-3. **Woody Marks** — Houston RB2 behind Montgomery, younger dynasty.
-4. **Josh Downs** — this room ADP 117; WR BPA only if the RB3s are gone.
+Sleeper ADP dump is the ADP source:
 
-Skip: Pollard / Dobbins / Charbonnet (hurt). Jones OR Mason (crowded). BRob /
-Gainwell / Allgeier (backups). Gadsden / Jakobi (still crowded).
+Queue if they survive 115–126:
+1. **Woody Marks** — ADP **126.0**, on time, healthy RB3.
+2. **Josh Downs** — ADP **117.0**, already past ADP; the steal if you take WR.
+3. **Romeo Doubs** — ADP **127.7**, on-time BPA WR.
+4. **Braelon Allen** — ADP **154.5**, Breece handcuff; wait for **138**.
+5. **Tyjae Spears** — ADP **156.0**; later than Allen.
+
+Skip: Pollard (ADP 123, foot) / Dobbins / Charbonnet (hurt). Jones OR Mason
+(crowded). BRob / Gainwell / Allgeier (backups). Gadsden / Jakobi (crowded).
 
 Ping when 2–3 picks out.

@@ -92,20 +92,18 @@
   over Josh Allen (1QB, too early). Kyler Murray now Vikings starter — upgrade
   vs 2025 QB mess; Murray fed DeAndre Hopkins 115/1407 in 2020. Passed on
   Jeanty/Bowers (Raiders soft-avoid).
-- **8.07 Dalton Kincaid (TE, BUF):** On-time ADP (~86.7). Can start with Pitts
-  (TE + FLEX). Passed on Purdy (ADP 100) and Gadsden (Kolar OR Gadsden OR Njoku).
-- **9.07 pick 103 — take Brock Purdy (QB, SF).** This room ADP **100**, so he
-  is on time. Zero QBs went 91–102. Slot 10 still has no QB and picks **106**.
-  Slot 5 still has no QB (took Brooks/Dowdle). Do not wait for 114. Backups:
-  Dart, then Nix. Healthy RB3 is 114.
-- **10.07 pick 114 — Courtland Sutton (WR, DEN).** This room ADP **110**, on
-  time. Defined Broncos WR2 with Waddle, not a 3-way committee. Healthy RB3
-  slipped to 127 (Allen / Spears / Marks still later ADP).
-- **11.07 pick 127 queue (healthy RB3):** Braelon Allen (Breece handcuff;
-  defined Jets RB2) → Tyjae Spears (Pollard foot) → Woody Marks. Skip
-  Pollard/Dobbins/Charbonnet (hurt). Skip Aaron Jones / Jordan Mason (Jones
-  OR Mason). Skip BRob / Gainwell / Allgeier (clear backups). Downs only if
-  the healthy RB3s are gone.
+- **8.07 Dalton Kincaid (TE, BUF):** On-time ADP (**85.7**). Can start with Pitts
+  (TE + FLEX). Passed on Purdy (ADP 103.2) and Gadsden (Kolar OR Gadsden OR Njoku).
+- **9.07 pick 103 — Brock Purdy (QB, SF).** Sleeper ADP **103.2**, on time.
+  Zero QBs went 91–102. Slot 10 still had no QB and picked **106**.
+- **10.07 pick 114 — Courtland Sutton (WR, DEN).** Sleeper ADP **110.0**, on
+  time. Defined Broncos WR2 with Waddle, not a 3-way committee.
+- **11.07 pick 127 queue:** **Woody Marks** (ADP **126.0**, on time, healthy
+  RB3) → Josh Downs (ADP 117.0, the steal if you take WR) → Romeo Doubs
+  (ADP 127.7). Braelon Allen is ADP **154.5** and Tyjae Spears **156.0** —
+  those are 138 picks, not 127. Skip Pollard (ADP 123, foot) /
+  Dobbins / Charbonnet (hurt). Skip Jones / Mason (OR). Skip BRob /
+  Gainwell / Allgeier (clear backups).
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |
