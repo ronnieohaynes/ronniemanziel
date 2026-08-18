@@ -116,6 +116,7 @@
 | Blake Corum | Split with Kyren — we already have the lead back |
 | Brian Robinson | Behind Bijan in Atlanta |
 | Woody Marks / David Montgomery | HOU RB: Montgomery OR Marks (split lead reps; Montgomery is a big new signing) |
+| Jonah Coleman | DEN RB: Dobbins OR Harvey OR Coleman (3-way, usage not named) |
 
 Kincaid is not a clean island (Knox / Hawes still rotate in 12 personnel), but
 he is the **listed receiving TE1**, not one of three “OR” co-starters. In a

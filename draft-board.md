@@ -48,15 +48,14 @@ Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need RB3
 
 Sleeper ADP dump is the ADP source:
 
-Queue if they survive 119–126:
-1. **Tony Pollard** — ADP **123.0**, on time. Sore foot; Saleh said minor /
-   not believed serious. Titans lead back. Take him.
-2. **Romeo Doubs** — ADP **127.7**, on-time BPA. Downs gone at 118. Marks is crowded.
-3. **Jalen Coker** — ADP **129.3**.
-4. **Braelon Allen** — ADP **154.5**, Breece handcuff; wait for **138**.
+Queue if they survive 120–126 (slot 1 has the turn and still needs a TE):
+1. **Tony Pollard** — ADP **123.0**, TEN RB1, fills RB3. Age 29 is a 2026
+   tax, not a skip. Foot is minor. Take him.
+2. **Xavier Worthy** — ADP **116**, age 23, KC WR2, Mahomes stack. If Pollard gone.
+3. **Romeo Doubs** — ADP **127.7**, healthy, 26.
+4. **Braelon Allen** — ADP **154.5**, age 22; wait for **138** (12 picks after 127).
 
-Skip: **Woody Marks** (HOU: Montgomery OR Marks — split lead reps; Montgomery
-is a big new signing). Charbonnet / Pearsall / PUP-out names. Jones OR Mason.
-BRob / Gainwell / Allgeier. Gadsden / Jakobi.
+Skip crowded: Marks (Montgomery OR Marks), Coleman (Dobbins OR Harvey OR
+Coleman), Jones OR Mason, Gainwell, Allgeier, Gadsden / Jakobi.
 
 Ping when 2–3 picks out.

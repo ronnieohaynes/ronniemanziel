@@ -7,11 +7,9 @@ window.STRATEGY = {
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
   rules: [
-    "Use the Sleeper ADP dump (adp.js) when ADP is the reason. Not redraft ADP.",
-    "Full PPR, 2 FLEX (RB/WR/TE), 1QB, no TE premium.",
+    "Recommend from the full picture: this Sleeper ADP dump, injury news (skip only if already serious + multi-week), scoring (full PPR, 1QB, 2 FLEX, no TE premium), 23 rounds / 28 roster spots (9 + 12 bench + 3 taxi + 4 IR), what other teams are doing, age, who is actually left, and our holes. ADP is one input, not the pick by itself.",
     "Soft-avoid Raiders unless clearly BPA.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
-    "Injury skip only if it is already called serious and the player will miss multiple weeks. A sore/day-to-day ding on a clearly good player is still a dynasty pick — we cannot wait and see during the draft.",
   ],
 
   /** Live pick call — update this whenever we change strategy. */
@@ -19,17 +17,17 @@ window.STRATEGY = {
     pick: 127,
     take: "Tony Pollard",
     pos: "RB",
-    why: "Sleeper ADP 123.0 — on time at 127. Titans lead back. Saleh: sore foot / minor aches, not believed serious. Marks is crowded (Montgomery OR Marks / big signing). Downs is gone. Doubs (127.7) if Pollard is gone.",
-    updated: "2026-08-18 Marks flagged crowded",
+    why: "Need RB3 (only Breece/Kyren; Breece groin). 4 WR already start in this PPR 2-FLEX. Pollard is the last on-time ADP lead back left (123.0, TEN RB1, 29). Foot is minor, not multi-week. Age is a 2026 tax, not a skip — 12 picks after this to take youth (Allen ~138). Marks/Coleman crowded. If Pollard is gone: Worthy (23, ADP 116, KC WR2) then Doubs (127.7).",
+    updated: "2026-08-18 full-factor rec (not ADP-only)",
   },
 
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
-    { name: "Tony Pollard", pos: "RB", note: "ADP 123.0. On time. Sore foot is minor/not long-term. Take at 127." },
-    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time BPA. Downs is gone. Marks is crowded." },
-    { name: "Jalen Coker", pos: "WR", note: "ADP 129.3. Next on-time WR if Doubs is gone." },
-    { name: "Braelon Allen", pos: "RB", note: "ADP 154.5 — Breece handcuff. Prefer 138." },
-    { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0. Pollard handcuff later, not the 127 pick." },
+    { name: "Tony Pollard", pos: "RB", note: "Take at 127. ADP 123, TEN RB1, fills the RB3 hole. 29yo is a 2026 pick, not a 5-year hold." },
+    { name: "Xavier Worthy", pos: "WR", note: "ADP 116, age 23, KC WR2, Mahomes stack. QUES but not called multi-week. If Pollard is gone." },
+    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7, healthy, 26. On-time PPR WR if Pollard and Worthy are gone." },
+    { name: "Braelon Allen", pos: "RB", note: "ADP 154.5, age 22, defined Jets RB2 + Breece cuff. Wait for 138 — 12 picks left after 127." },
+    { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0, age 25. Pollard cuff / PPR back. Later." },
   ],
 
   skip: [
@@ -54,6 +52,7 @@ window.STRATEGY = {
     { name: "Tyler Allgeier", reason: "Behind Jeremiyah Love" },
     { name: "Woody Marks", reason: "HOU: Montgomery OR Marks — split lead reps; Montgomery is a big new signing" },
     { name: "David Montgomery", reason: "HOU: Montgomery OR Marks — split lead reps; big new signing into Marks' room" },
+    { name: "Jonah Coleman", reason: "DEN: Dobbins OR Harvey OR Coleman — 3-way, usage not named" },
   ],
 
   /** ADP lives in adp.js (Sleeper dump). Do not keep a second list here. */
