@@ -10,7 +10,7 @@ window.STRATEGY = {
     "Use THIS Sleeper draft's ADP column, not redraft ADP.",
     "Full PPR, 2 FLEX (RB/WR/TE), 1QB, no TE premium.",
     "Soft-avoid Raiders unless clearly BPA.",
-    "Discount crowded rooms until usage is clear.",
+    "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
     "Do not stack more injured RBs while Breece is dinged.",
   ],
 
