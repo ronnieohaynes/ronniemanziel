@@ -70,10 +70,20 @@
 | Round | Overall | Player | Pos | Team |
 |---|---|---|---|---|
 | 1 | 7 | **Justin Jefferson** | WR | MIN |
-| 2 | 18 | _on the clock next_ | | |
-| 3 | 31 | | | |
-| 4 | 42 | | | |
-| 5 | 55 | | | |
+| 2 | 18 | **Drake London** | WR | ATL |
+| 3 | 31 | **Breece Hall** | RB | NYJ |
+| 4 | 42 | **Kyren Williams** | RB | LAR |
+| 5 | 55 | **Tee Higgins** | WR | CIN |
+| 6 | 66 | **Patrick Mahomes** | QB | KC |
+| 7 | 79 | **Kyle Pitts** | TE | ATL |
+| 8 | 90 | **on the clock** | | |
+| 9 | 103 | | | |
+| 10 | 114 | | | |
+
+### Health on this roster (Aug 18, 2026)
+- **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. No QB2 yet.
+- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren.
+- JJ / London / Higgins / Pitts: practicing / usable.
 
 ### Pick notes
 - **1.07 Justin Jefferson (WR, MIN):** BPA for format. Chase/JSN/Puka/ARSB
@@ -81,6 +91,30 @@
   over Josh Allen (1QB, too early). Kyler Murray now Vikings starter — upgrade
   vs 2025 QB mess; Murray fed DeAndre Hopkins 115/1407 in 2020. Passed on
   Jeanty/Bowers (Raiders soft-avoid).
+- **8.07 pick 90 — take Dalton Kincaid (TE, BUF).** This room’s ADP ~86.7, so
+  he is on time. Do **not** take Brock Purdy (this room ADP **100**; only
+  NickPuccinelli / slot 5 and professoryee / slot 10 still need a QB1). Do
+  **not** take Oronde Gadsden: Chargers unofficial chart is
+  **Charlie Kolar OR Gadsden OR David Njoku** — talent is real, usage is not.
+  Same crowding test knocks Jakobi Meyers (Jax: BTJ + Meyers + Parker
+  Washington, Hunter still in the mix) and Blake Corum (committee with Kyren,
+  who we already own). Skip injured ADP-fits: Jordyn Tyson, Kyle Monangai,
+  Tony Pollard, Chuba Hubbard.
+
+### Crowded rooms to discount (until usage is clear)
+| Player | Why the role is muddy |
+|---|---|
+| Oronde Gadsden | LAC TE: Kolar OR Gadsden OR Njoku |
+| Jakobi Meyers | JAX WR: BTJ, Meyers, Parker Washington, Hunter |
+| Travis Hunter | Listed backup WR / starting CB; offense share unknown |
+| Quentin Johnston | LAC WR2 behind Ladd; volume not locked |
+| Blake Corum | Split with Kyren — we already have the lead back |
+| Brian Robinson | Behind Bijan in Atlanta |
+| Jacory Croskey-Merritt | Commanders RB1 on paper, but Rachaad White is a real split |
+
+Kincaid is not a clean island (Knox / Hawes still rotate in 12 personnel), but
+he is the **listed receiving TE1**, not one of three “OR” co-starters. In a
+2-FLEX PPR league he can actually play; Pitts remains the starter.
 
 ## Round 1 board (as drafted)
 1. Jahmyr Gibbs (RB, DET)

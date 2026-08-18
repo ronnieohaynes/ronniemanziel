@@ -41,7 +41,29 @@ Consensus of SI/DraftSharks/DynastyNerds/Yates, mid-Aug 2026.
 - Young franchise: Drake Maye, Caleb Williams, Jaxson Dart
 - Target window: rounds ~4–6, don't reach.
 
-## Next pick plan — 2.06 (overall 18)
-Likely available BPA (non-Raiders): **Malik Nabers, CeeDee Lamb, Jeremiyah Love,
-De'Von Achane, Drake London, Tetairoa McMillan**. Take best young WR or
-pass-catching RB. Reassess live off the board.
+## Live pick plan — 8.07 (overall 90) — ON THE CLOCK
+
+Starters are filled (JJ, London, Higgins, Breece, Kyren, Mahomes, Pitts).
+Use **this Sleeper draft’s ADP column**, not redraft ADP.
+
+**Take: Dalton Kincaid (TE, BUF)** — this room ADP ~86.7.
+
+Do not take at 90:
+- **Brock Purdy** — this room ADP **100**. Only two teams still need a QB1
+  (slot 5 NickPuccinelli picks 92 and 101; slot 10 professoryee does not pick
+  again until 106). Plan Purdy / Nix / Dart at **103**.
+- **Oronde Gadsden** — Chargers TE room is Kolar OR Gadsden OR Njoku.
+- **Jordyn Tyson / Kyle Monangai / Tony Pollard / Chuba Hubbard** — injured.
+- **Jakobi Meyers / Travis Hunter** — crowded Jaguars pass-catchers.
+- **Blake Corum** — crowded with Kyren, who is already on this roster.
+
+If Kincaid is gone: still skip Purdy/Gadsden/injured/crowded. Next-best
+defined-role names are later-ADP (Godwin, Sutton ~110, JCM). Do not reach 20
+picks for them; take the best remaining **clear-role** skill player on the
+board and get the QB2 at 103.
+
+### After 90
+- **103:** Purdy if slot 5 took someone else; else Nix or Dart (Mahomes
+  insurance). Soft-avoid Raiders QB Fernando Mendoza.
+- **114+:** healthy RB3 (Breece groin). Prefer a lead/defined role over a
+  committee.
