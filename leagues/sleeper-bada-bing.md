@@ -76,7 +76,7 @@
 | 5 | 55 | **Tee Higgins** | WR | CIN |
 | 6 | 66 | **Patrick Mahomes** | QB | KC |
 | 7 | 79 | **Kyle Pitts** | TE | ATL |
-| 8 | 90 | **on the clock** | | |
+| 8 | 90 | **Dalton Kincaid** | TE | BUF |
 | 9 | 103 | | | |
 | 10 | 114 | | | |
 
@@ -91,15 +91,8 @@
   over Josh Allen (1QB, too early). Kyler Murray now Vikings starter — upgrade
   vs 2025 QB mess; Murray fed DeAndre Hopkins 115/1407 in 2020. Passed on
   Jeanty/Bowers (Raiders soft-avoid).
-- **8.07 pick 90 — take Dalton Kincaid (TE, BUF).** This room’s ADP ~86.7, so
-  he is on time. Do **not** take Brock Purdy (this room ADP **100**; only
-  NickPuccinelli / slot 5 and professoryee / slot 10 still need a QB1). Do
-  **not** take Oronde Gadsden: Chargers unofficial chart is
-  **Charlie Kolar OR Gadsden OR David Njoku** — talent is real, usage is not.
-  Same crowding test knocks Jakobi Meyers (Jax: BTJ + Meyers + Parker
-  Washington, Hunter still in the mix) and Blake Corum (committee with Kyren,
-  who we already own). Skip injured ADP-fits: Jordyn Tyson, Kyle Monangai,
-  Tony Pollard, Chuba Hubbard.
+- **8.07 Dalton Kincaid (TE, BUF):** On-time ADP (~86.7). Can start with Pitts
+  (TE + FLEX). Passed on Purdy (ADP 100) and Gadsden (Kolar OR Gadsden OR Njoku).
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |
