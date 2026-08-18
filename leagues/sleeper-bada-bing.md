@@ -77,7 +77,7 @@
 | 6 | 66 | **Patrick Mahomes** | QB | KC |
 | 7 | 79 | **Kyle Pitts** | TE | ATL |
 | 8 | 90 | **Dalton Kincaid** | TE | BUF |
-| 9 | 103 | | | |
+| 9 | 103 | **on the clock — Brock Purdy** | QB | SF |
 | 10 | 114 | | | |
 
 ### Health on this roster (Aug 18, 2026)
@@ -93,6 +93,11 @@
   Jeanty/Bowers (Raiders soft-avoid).
 - **8.07 Dalton Kincaid (TE, BUF):** On-time ADP (~86.7). Can start with Pitts
   (TE + FLEX). Passed on Purdy (ADP 100) and Gadsden (Kolar OR Gadsden OR Njoku).
+- **9.07 pick 103 — take Brock Purdy (QB, SF).** This room ADP **100**, so he
+  is on time. Zero QBs went 91–102. Slot 10 still has no QB and picks **106**.
+  Slot 5 still has no QB (took Brooks/Dowdle). Do not wait for 114. Backups:
+  Dart, then Nix. Healthy RB3 is 114 (avoid Pollard/Dobbins injured; BRob /
+  Allgeier / Gainwell are committees).
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |

@@ -11,7 +11,7 @@ settings, live picks, and notes. Built to be readable on the go (phone via
 
 | League | Platform | Type | Status | File |
 |---|---|---|---|---|
-| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Kincaid at 90; next 103** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
+| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **On the clock at 103 — Purdy** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
 | Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft complete | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links

@@ -41,10 +41,13 @@ Consensus of SI/DraftSharks/DynastyNerds/Yates, mid-Aug 2026.
 - Young franchise: Drake Maye, Caleb Williams, Jaxson Dart
 - Target window: rounds ~4–6, don't reach.
 
-## Live pick plan — next is 9.07 (overall 103)
+## Live pick plan — 9.07 (overall 103) — ON THE CLOCK
 
-Kincaid is in at 90. Starters filled. Remaining construction:
-- **103:** QB2 — Purdy (this room ADP 100) if Nick at slot 5 did not take him
-  at 92/101; else Nix or Dart. Soft-avoid Mendoza.
-- **114+:** healthy RB3 (Breece groin). Avoid committees/handcuffs of players
-  already on this roster (Corum). Prefer a defined role over a timeshare.
+**Take Brock Purdy.** This room ADP 100. No QBs went 91–102. Slot 10 (no QB)
+picks 106; if you wait, Purdy is gone. Backups: Jaxson Dart, then Bo Nix.
+
+Do not take at 103: Gadsden (crowded), Jakobi (crowded), Pollard/Dobbins
+(injured), Brian Robinson / Allgeier / Gainwell (committees), Sutton (ADP ~110
+and you still have no QB2). Soft-avoid Mendoza.
+
+**114:** healthy RB3. Corum is gone (and was Kyren’s committee anyway).
