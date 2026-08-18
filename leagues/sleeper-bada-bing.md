@@ -101,10 +101,10 @@
   time. Defined Broncos WR2 with Waddle, not a 3-way committee.
 - **11.07 pick 127 queue:** **Tony Pollard** (ADP **123.0**, on time). Saleh
   called the foot minor / not believed serious — dynasty does not skip that.
-  Then Woody Marks (ADP 126.0) → Josh Downs (ADP 117.0, WR steal) → Romeo
-  Doubs (ADP 127.7). Braelon Allen is ADP **154.5** (138 pick). Skip only
-  confirmed multi-week (Charbonnet PUP, Pearsall PCL, etc.). Skip Jones /
-  Mason (OR). Skip BRob / Gainwell / Allgeier (clear backups).
+  **Woody Marks is crowded** (HOU: Montgomery OR Marks — split lead reps;
+  Montgomery was a big new signing). Downs gone at 118. Then Romeo Doubs
+  (ADP 127.7) → Jalen Coker (129.3). Braelon Allen is ADP **154.5** (138
+  pick). Skip Jones / Mason (OR). Skip BRob / Gainwell / Allgeier.
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |
@@ -115,7 +115,7 @@
 | Quentin Johnston | LAC WR2 behind Ladd; volume not locked |
 | Blake Corum | Split with Kyren — we already have the lead back |
 | Brian Robinson | Behind Bijan in Atlanta |
-| Aaron Jones / Jordan Mason | MIN RB: Jones OR Mason |
+| Woody Marks / David Montgomery | HOU RB: Montgomery OR Marks (split lead reps; Montgomery is a big new signing) |
 
 Kincaid is not a clean island (Knox / Hawes still rotate in 12 personnel), but
 he is the **listed receiving TE1**, not one of three “OR” co-starters. In a
