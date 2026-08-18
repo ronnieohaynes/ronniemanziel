@@ -41,17 +41,18 @@ Consensus of SI/DraftSharks/DynastyNerds/Yates, mid-Aug 2026.
 - Young franchise: Drake Maye, Caleb Williams, Jaxson Dart
 - Target window: rounds ~4–6, don't reach.
 
-## Live pick plan — next is 10.07 (overall 114)
+## Live pick plan — next is 11.07 (overall 127)
 
-Purdy is in. QB2 hole is filled. Need a **healthy RB3** (Breece groin).
+Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need a
+**healthy RB3** (Breece groin). Do not stack another injured back.
 
-Queue if they survive 104–113:
-1. **Braelon Allen** — Jets RB2, 22, and Breece is actually dinged.
+Queue if they survive 115–126:
+1. **Braelon Allen** — Jets RB2, 22, Breece handcuff, defined job.
 2. **Tyjae Spears** — independent backfield; Pollard has missed practice with a foot.
 3. **Woody Marks** — Houston RB2 behind Montgomery, younger dynasty.
+4. **Josh Downs** — this room ADP 117; WR BPA only if the RB3s are gone.
 
 Skip: Pollard / Dobbins / Charbonnet (hurt). Jones OR Mason (crowded). BRob /
-Gainwell / Allgeier (backups). Gadsden / Jakobi (still crowded). Sutton is
-this room ~110 but do not take a WR4 before an RB3.
+Gainwell / Allgeier (backups). Gadsden / Jakobi (still crowded).
 
 Ping when 2–3 picks out.
