@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bada Bing — Live Draft HQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <h1>Bada Bing HQ</h1>
+        <p id="subtitle">Sleeper dynasty · slot 7</p>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="autoBtn" type="button">Auto: on</button>
+        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </header>
+
+    <div id="clock" class="clock waiting">
+      <h2 id="clockTitle">Loading draft…</h2>
+      <div class="small" id="clockSub"></div>
+    </div>
+
+    <div class="meta" id="meta"></div>
+
+    <div class="grid main">
+      <section class="card">
+        <h3>My roster</h3>
+        <div id="roster"></div>
+        <div class="status-line" id="starterLine"></div>
+      </section>
+
+      <section class="card">
+        <h3>Next pick queue</h3>
+        <div id="queue"></div>
+      </section>
+    </div>
+
+    <div class="grid main" style="margin-top:14px">
+      <section class="card">
+        <h3>Roster holes</h3>
+        <div class="holes" id="holes"></div>
+        <div class="small" style="margin-top:10px" id="needQb"></div>
+      </section>
+      <section class="card">
+        <h3>Skip / crowded (if still on the board)</h3>
+        <div id="flags"></div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <h3>Best remaining</h3>
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-pos="RB" type="button">RB</button>
+        <button class="tab" data-pos="WR" type="button">WR</button>
+        <button class="tab" data-pos="TE" type="button">TE</button>
+        <button class="tab" data-pos="QB" type="button">QB</button>
+      </div>
+      <div class="list" id="board"></div>
+    </section>
+
+    <div class="grid main" style="margin-top:14px">
+      <section class="card">
+        <h3>Recent picks</h3>
+        <div class="recent" id="recent"></div>
+      </section>
+      <section class="card">
+        <h3>How we draft</h3>
+        <ol class="rules" id="rules"></ol>
+        <p class="small"><a id="sleeperLink" href="#" target="_blank" rel="noopener">Open in Sleeper</a></p>
+      </section>
+    </div>
+
+    <p class="status-line" id="status"></p>
+  </div>
+  <script src="strategy.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

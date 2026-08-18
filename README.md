@@ -15,9 +15,24 @@ settings, live picks, and notes. Built to be readable on the go (phone via
 | Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft complete | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links
+- **[Live draft dashboard](dashboard/index.html)** — refresh pulls latest Sleeper picks
 - [Dynasty draft board / BPA notes](draft-board.md)
 - [Sleeper: Bada Bing](leagues/sleeper-bada-bing.md)
 - [ESPN keeper league](leagues/espn-keeper.md)
+
+## Live dashboard
+Open `dashboard/index.html` from a local server (the Refresh button hits Sleeper live):
+
+```bash
+python3 dashboard/serve.py
+```
+
+Then go to http://127.0.0.1:8080
+
+- **Refresh** — latest picks, who’s on the clock, your roster, remaining board
+- **Auto: on** — re-pulls every 20 seconds while you keep the tab open
+- Player directory is cached in the browser for 12 hours so refresh stays fast
+- Edit `dashboard/strategy.js` to change the pick queue, skip list, and crowded-room flags
 
 ## My draft rules of thumb (dynasty, this scoring)
 - **Best player available** for the format, not raw 2026 projected points.
