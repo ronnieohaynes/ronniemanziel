@@ -77,12 +77,12 @@
 | 6 | 66 | **Patrick Mahomes** | QB | KC |
 | 7 | 79 | **Kyle Pitts** | TE | ATL |
 | 8 | 90 | **Dalton Kincaid** | TE | BUF |
-| 9 | 103 | **on the clock — Brock Purdy** | QB | SF |
+| 9 | 103 | **Brock Purdy** | QB | SF |
 | 10 | 114 | | | |
 
 ### Health on this roster (Aug 18, 2026)
-- **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. No QB2 yet.
-- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren.
+- **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. Purdy is the QB2.
+- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren — **RB3 is the 114 need.**
 - JJ / London / Higgins / Pitts: practicing / usable.
 
 ### Pick notes
@@ -96,8 +96,13 @@
 - **9.07 pick 103 — take Brock Purdy (QB, SF).** This room ADP **100**, so he
   is on time. Zero QBs went 91–102. Slot 10 still has no QB and picks **106**.
   Slot 5 still has no QB (took Brooks/Dowdle). Do not wait for 114. Backups:
-  Dart, then Nix. Healthy RB3 is 114 (avoid Pollard/Dobbins injured; BRob /
-  Allgeier / Gainwell are committees).
+  Dart, then Nix. Healthy RB3 is 114.
+- **10.07 pick 114 queue (healthy RB3):** Braelon Allen (Breece handcuff while
+  the groin is real) → Tyjae Spears (Pollard foot; independent backfield) →
+  Woody Marks. Skip Pollard/Dobbins/Charbonnet (hurt). Skip Aaron Jones /
+  Jordan Mason (Vikings chart is Jones OR Mason — same problem as Gadsden).
+  Skip BRob / Gainwell / Allgeier (clear backups). Sutton is on-time ADP ~110
+  but we still have no RB3.
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |
@@ -108,7 +113,7 @@
 | Quentin Johnston | LAC WR2 behind Ladd; volume not locked |
 | Blake Corum | Split with Kyren — we already have the lead back |
 | Brian Robinson | Behind Bijan in Atlanta |
-| Jacory Croskey-Merritt | Commanders RB1 on paper, but Rachaad White is a real split |
+| Aaron Jones / Jordan Mason | MIN RB: Jones OR Mason |
 
 Kincaid is not a clean island (Knox / Hawes still rotate in 12 personnel), but
 he is the **listed receiving TE1**, not one of three “OR” co-starters. In a
