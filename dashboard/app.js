@@ -135,6 +135,20 @@ function render() {
   $("subtitle").textContent = `${draft.metadata?.name || "Bada Bing"} · ${draft.status} · slot ${S.slot}`;
   $("sleeperLink").href = S.sleeperLeague;
 
+  const advice = S.advice;
+  const adviceEl = $("advice");
+  if (advice && advice.take) {
+    const draftedTake = picks.find((p) => norm(metaName(p.metadata)) === norm(advice.take));
+    const gone = draftedTake && draftedTake.draft_slot !== S.slot;
+    adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
+    adviceEl.innerHTML = `<h2>Take ${advice.take}</h2>
+      <div class="small">${advice.pos || ""} · pick ${advice.pick || nextNo} · ${advice.why || ""}${gone ? " · GONE — use the queue" : ""}</div>
+      <div class="small">${advice.updated ? "Updated " + advice.updated : ""}</div>`;
+  } else {
+    adviceEl.className = "clock waiting hidden";
+    adviceEl.innerHTML = "";
+  }
+
   const myNext = [];
   for (let r = 1; r <= rounds; r++) {
     const n = pickFor(S.slot, r, teams);

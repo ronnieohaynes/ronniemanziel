@@ -14,11 +14,20 @@ window.STRATEGY = {
     "Do not stack more injured RBs while Breece is dinged.",
   ],
 
+  /** Live pick call — update this whenever we change strategy. */
+  advice: {
+    pick: 114,
+    take: "Courtland Sutton",
+    pos: "WR",
+    why: "This room ADP 110 — on time at 114. Defined Broncos WR2 with Waddle. BPA on this board's ADP, not a crowded 3-way committee.",
+    updated: "2026-08-18 114 on the clock",
+  },
+
   /** Shown in order. Names must match Sleeper full_name. */
   queue: [
-    { name: "Braelon Allen", pos: "RB", note: "Jets RB2. Breece groin is real — Week 1 insurance." },
-    { name: "Tyjae Spears", pos: "RB", note: "Independent backfield. Pollard has missed practice (foot)." },
-    { name: "Woody Marks", pos: "RB", note: "Houston RB2 behind Montgomery. Younger dynasty." },
+    { name: "Courtland Sutton", pos: "WR", note: "This room ADP 110. Take at 114." },
+    { name: "Josh Downs", pos: "WR", note: "This room ADP 117. Next BPA if Sutton is gone." },
+    { name: "Braelon Allen", pos: "RB", note: "RB3 / Breece handcuff — later ADP than 114; only if you force the running back." },
   ],
 
   skip: [
@@ -31,6 +40,7 @@ window.STRATEGY = {
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
     { name: "George Kittle", reason: "Achilles / PUP" },
     { name: "Alec Pierce", reason: "PUP" },
+    { name: "Brenton Strange", reason: "TE3 — we already have Pitts + Kincaid" },
   ],
 
   crowded: [
