@@ -84,6 +84,7 @@
 ### Health on this roster (Aug 18, 2026)
 - **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. Purdy is the QB2.
 - **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren — **RB3 is the 127 need.**
+- **Injury bar:** skip only if already called serious and multi-week. A sore/day-to-day on a clearly good player is still a pick.
 - JJ / London / Higgins / Sutton / Pitts: practicing / usable.
 
 ### Pick notes
@@ -98,12 +99,12 @@
   Zero QBs went 91–102. Slot 10 still had no QB and picked **106**.
 - **10.07 pick 114 — Courtland Sutton (WR, DEN).** Sleeper ADP **110.0**, on
   time. Defined Broncos WR2 with Waddle, not a 3-way committee.
-- **11.07 pick 127 queue:** **Woody Marks** (ADP **126.0**, on time, healthy
-  RB3) → Josh Downs (ADP 117.0, the steal if you take WR) → Romeo Doubs
-  (ADP 127.7). Braelon Allen is ADP **154.5** and Tyjae Spears **156.0** —
-  those are 138 picks, not 127. Skip Pollard (ADP 123, foot) /
-  Dobbins / Charbonnet (hurt). Skip Jones / Mason (OR). Skip BRob /
-  Gainwell / Allgeier (clear backups).
+- **11.07 pick 127 queue:** **Tony Pollard** (ADP **123.0**, on time). Saleh
+  called the foot minor / not believed serious — dynasty does not skip that.
+  Then Woody Marks (ADP 126.0) → Josh Downs (ADP 117.0, WR steal) → Romeo
+  Doubs (ADP 127.7). Braelon Allen is ADP **154.5** (138 pick). Skip only
+  confirmed multi-week (Charbonnet PUP, Pearsall PCL, etc.). Skip Jones /
+  Mason (OR). Skip BRob / Gainwell / Allgeier (clear backups).
 
 ### Crowded rooms to discount (until usage is clear)
 | Player | Why the role is muddy |

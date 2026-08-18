@@ -11,7 +11,7 @@ settings, live picks, and notes. Built to be readable on the go (phone via
 
 | League | Platform | Type | Status | File |
 |---|---|---|---|---|
-| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Sutton in; next 127 Marks (ADP 126)** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
+| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Sutton in; next 127 Pollard (ADP 123)** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
 | Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft complete | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links
@@ -48,3 +48,4 @@ ADP numbers come from `dashboard/adp.js` (the Sleeper dump). Rebuild with `pytho
 - **No TE premium** — don't reach for TE on scoring alone.
 - **No K/DST** starting slots — never draft them.
 - Soft **avoid Raiders** players unless clearly the best available by a wide margin.
+- **Injury:** skip only if it is already called serious **and** the player will miss multiple weeks. Do not skip a clearly good dynasty player for a sore/day-to-day ding.
