@@ -11,7 +11,7 @@ settings, live picks, and notes. Built to be readable on the go (phone via
 
 | League | Platform | Type | Status | File |
 |---|---|---|---|---|
-| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Sutton in; next 127 RB3 (Allen)** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
+| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Sutton in; next 127 Marks (ADP 126)** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
 | Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft complete | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links
@@ -39,6 +39,7 @@ python3 dashboard/serve.py
 http://127.0.0.1:8080
 
 Edit `dashboard/strategy.js` to change the pick queue, skip list, and crowded-room flags.
+ADP numbers come from `dashboard/adp.js` (the Sleeper dump). Rebuild with `python3 scripts/generate_sleeper_adp.py`.
 
 ## My draft rules of thumb (dynasty, this scoring)
 - **Best player available** for the format, not raw 2026 projected points.

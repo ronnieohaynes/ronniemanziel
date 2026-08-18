@@ -62,6 +62,15 @@ function injTag(status) {
   return `<span class="tag inj">${status}</span>`;
 }
 
+function lookupAdp(name) {
+  return globalThis.SLEEPER_ADP ? SLEEPER_ADP.lookup(name) : null;
+}
+
+function adpText(name) {
+  const hit = lookupAdp(name);
+  return hit ? ` · Sleeper ADP ${hit.adp} (#${hit.rank})` : "";
+}
+
 async function getJSON(url) {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`${url} ${res.status}`);
@@ -257,7 +266,7 @@ function render() {
     }
     return `<div class="queue-item">
       <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
-      <div class="sub">${q.pos} · ${q.note}</div>
+      <div class="sub">${q.pos}${adpText(q.name)} · ${q.note}</div>
     </div>`;
   }).join("");
 
@@ -307,7 +316,8 @@ function render() {
   }).join("") || `<div class="empty">No picks yet.</div>`;
 
   $("rules").innerHTML = S.rules.map((r) => `<li>${r}</li>`).join("");
-  $("status").textContent = `Updated ${new Date().toLocaleTimeString()} · ${Object.keys(cache.players).length} skill players cached · auto-refresh ${auto ? "on" : "off"}`;
+  const adpN = globalThis.SLEEPER_ADP ? SLEEPER_ADP.rows.length : 0;
+  $("status").textContent = `Updated ${new Date().toLocaleTimeString()} · ${Object.keys(cache.players).length} skill players cached · ${adpN} Sleeper ADP names · auto-refresh ${auto ? "on" : "off"}`;
 }
 
 function chip(text, cls) {
@@ -324,7 +334,7 @@ function playerRow(pos, name, team, sub, inj, extra) {
   const teamTag = S.softAvoidTeams.includes(team) ? `<span class="tag raid">Raiders</span>` : "";
   const crowd = flag?.kind === "crowd" ? `<span class="tag crowd">crowded</span>` : "";
   const skip = flag?.kind === "skip" ? `<span class="tag skip">skip</span>` : "";
-  const adp = S.roomAdp[name] != null ? ` · this room ADP ${S.roomAdp[name]}` : "";
+  const adp = adpText(name);
   const note = extra ? ` · ${extra}` : (flag ? ` · ${flag.text}` : "");
   return `<div class="player">
     <div class="pos ${pos}">${pos}</div>
@@ -381,13 +391,21 @@ function lastName(p) { return p.metadata.last_name; }
 function renderBoard(taken, order) {
   const rows = Object.values(cache.players)
     .filter((p) => p.position === remainingPos && p.team && !taken.has(p.player_id))
-    .sort((a, b) => (a.search_rank || 9999) - (b.search_rank || 9999) || playerName(a).localeCompare(playerName(b)))
+    .sort((a, b) => {
+      const aa = lookupAdp(playerName(a));
+      const ba = lookupAdp(playerName(b));
+      const ar = aa ? aa.adp : 9999;
+      const br = ba ? ba.adp : 9999;
+      return ar - br || (a.search_rank || 9999) - (b.search_rank || 9999) || playerName(a).localeCompare(playerName(b));
+    })
     .slice(0, 40)
     .map((p) => {
       const name = playerName(p);
+      const hit = lookupAdp(name);
       const dc = p.depth_chart_order != null ? `RB/WR rank ${p.depth_chart_order}` : "";
       const sub = `${p.age || "?"} yrs old · ${p.years_exp ?? "?"} exp${p.depth_chart_order ? ` · #${p.depth_chart_order} ${p.depth_chart_position || ""}` : ""}`;
-      return playerRow(p.position, name, p.team, dc || "FA/depth", p.injury_status, sub);
+      const right = hit ? `ADP ${hit.adp}` : (dc || "FA/depth");
+      return playerRow(p.position, name, p.team, right, p.injury_status, sub);
     });
   $("board").innerHTML = rows.join("") || `<div class="empty">Player list still loading…</div>`;
 }
