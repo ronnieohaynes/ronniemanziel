@@ -1,14 +1,12 @@
 # Deploy the live draft dashboard to GitHub Pages.
 # Site: https://ronnieohaynes.github.io/ronniemanziel/
-#
-# One-time: repo Settings → Pages → Source: GitHub Actions
+# Deploys from main only (GitHub Pages blocks feature-branch deploys).
 name: Deploy dashboard
 
 on:
   push:
     branches:
       - main
-      - cursor/dynasty-league-context-0227
     paths:
       - dashboard/**
       - .github/workflows/pages.yml
