@@ -49,11 +49,10 @@ Sutton is in at 114. WR room is JJ / London / Higgins / Sutton. Need RB3
 Sleeper ADP dump is the ADP source:
 
 Queue if they survive 120–126 (slot 1 has the turn and still needs a TE):
-1. **Tony Pollard** — ADP **123.0**, TEN RB1, fills RB3. Age 29 is a 2026
-   tax, not a skip. Foot is minor. Take him.
-2. **Xavier Worthy** — ADP **116**, age 23, KC WR2, Mahomes stack. If Pollard gone.
-3. **Romeo Doubs** — ADP **127.7**, healthy, 26.
-4. **Braelon Allen** — ADP **154.5**, age 22; wait for **138** (12 picks after 127).
+1. **Tony Pollard** — RB3. ADP 123, TEN RB1. Take him.
+2. **Braelon Allen** — if Pollard is gone, still take the RB3. Jets RB2 + Breece cuff.
+3. **Tyjae Spears** — if Pollard and Allen are gone.
+4. Worthy / Doubs — only after we have an RB3.
 
 Skip crowded: Marks (Montgomery OR Marks), Coleman (Dobbins OR Harvey OR
 Coleman), Jones OR Mason, Gainwell, Allgeier, Gadsden / Jakobi.
