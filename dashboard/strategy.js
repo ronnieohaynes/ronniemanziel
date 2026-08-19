@@ -17,21 +17,21 @@ window.STRATEGY = {
     pick: 138,
     take: "Dylan Sampson",
     pos: "RB",
-    why: "Allen is in. Next is a swing, not a sixth WR. Sampson is 21 and CLE's RB2 behind Judkins (22) — a young 1-2, not a four-man committee. If he's gone: Germie Bernard (22, PIT rookie WR3, Metcalf and Pittman both QUES). Coker only if you want 2026 snaps instead of a dart.",
-    updated: "2026-08-19 Allen in — 138 is a swing",
+    why: "Allen is in. 138 is a healthy swing: Sampson (21, CLE RB2) or Bernard (PIT rookie). Charbonnet is still a stash — PUP/ACL, park him on IR later (151+), not this pick. He cannot go on taxi (vet) and he does not play 2026 until he's off PUP.",
+    updated: "2026-08-19 Charbonnet is a later IR stash",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Dylan Sampson", pos: "RB", note: "21, CLE RB2 behind Judkins. Young 1-2. The RB swing." },
-    { name: "Germie Bernard", pos: "WR", note: "22, PIT rookie, WR3. Taxi. Metcalf and Pittman are both QUES." },
-    { name: "Jalen Coker", pos: "WR", note: "24, CAR WR2 behind Tet. Plays now if you want snaps over a dart." },
+    { name: "Dylan Sampson", pos: "RB", note: "138 swing. 21, CLE RB2 behind Judkins. Plays this year." },
+    { name: "Germie Bernard", pos: "WR", note: "138 swing. 22, PIT rookie WR3. Taxi. Metcalf/Pittman both QUES." },
+    { name: "Jalen Coker", pos: "WR", note: "138. 24, CAR WR2 behind Tet. 2026 snaps." },
+    { name: "Zach Charbonnet", pos: "RB", note: "IR stash at 151+. PUP/ACL. KW3 is gone; Price is SEA RB1. Park on IR, not taxi." },
     { name: "Adonai Mitchell", pos: "WR", note: "23, Jets WR2 behind Garrett Wilson. Later swing." },
   ],
 
   skip: [
-    { name: "Zach Charbonnet", reason: "PUP / ACL — already multi-week. Does not cover a Breece absence this year." },
-    { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
+    { name: "Ricky Pearsall", reason: "Out 2026 (PCL) — no 2026, weak stash" },
     { name: "Travis Kelce", reason: "TE3 + age 36 in dynasty, no TE premium. One-year deal, maybe last season." },
   ],
 
@@ -55,6 +55,6 @@ window.STRATEGY = {
   notes: {
     Mahomes: "ACL+LCL Dec 2025. Week 1 is the goal, not locked. Purdy is the QB2.",
     "Breece Hall": "Right groin Aug 17 — weeks not months. Week 1 not locked.",
-    "Travis Kelce": "36, turning 37 in Oct. One-year deal. Fine 2026 TE for a team with none. We already have Pitts + Kincaid.",
+    "Charbonnet": "PUP, ACL surgery. IR stash only (4 IR spots). Not taxi — he's a vet. Price is already SEA RB1.",
   },
 };
