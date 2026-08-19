@@ -210,14 +210,16 @@ function resolveAdvice(picks, pickNo) {
     };
   }
   if (nextTimed) {
+    const adpHit = lookupAdp(nextTimed.name);
+    const onTime = adpHit ? Math.round(adpHit.adp) : nextTimed.afterPick + maxReach;
     return {
       wait: true,
       take: nextTimed.name,
       pos: nextTimed.pos,
-      untilPick: nextTimed.afterPick,
+      untilPick: onTime,
       reasons: [
-        `${nextTimed.name} is on-time near pick ${nextTimed.afterPick + (lookupAdp(nextTimed.name)?.adp ? Math.round(lookupAdp(nextTimed.name).adp - nextTimed.afterPick) : 8)} — taking now would be a reach.`,
-        "At this pick: take best value from the board, or Jauan Jennings if still up (ADP ~171).",
+        `${nextTimed.name} is on-time near pick ${onTime} — taking now would be a reach.`,
+        "Best value at this pick: scroll Best remaining, or take Jauan Jennings if still up (ADP ~171).",
       ],
     };
   }
