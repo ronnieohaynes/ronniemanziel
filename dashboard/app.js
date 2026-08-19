@@ -133,42 +133,12 @@ function draftedByName(picks, name) {
   return picks.find((p) => norm(metaName(p.metadata)) === norm(name));
 }
 
-/** First queue/advice name still on the board. Skips anyone already drafted — including us. */
+/** First available queue name — present board only. */
 function resolveAdvice(picks) {
-  const seen = new Set();
-  const candidates = [];
-  if (S.advice?.take) {
-    candidates.push({
-      take: S.advice.take,
-      pos: S.advice.pos,
-      why: S.advice.why,
-      pick: S.advice.pick,
-      updated: S.advice.updated,
-    });
-  }
   for (const q of S.queue || []) {
-    candidates.push({
-      take: q.name,
-      pos: q.pos,
-      why: q.note,
-      pick: S.advice?.pick,
-      updated: S.advice?.updated,
-    });
-  }
-
-  let skippedOurs = null;
-  let skippedGone = null;
-  for (const c of candidates) {
-    const key = norm(c.take);
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    const drafted = draftedByName(picks, c.take);
-    if (!drafted) return { ...c, skippedOurs, skippedGone };
-    if (drafted.draft_slot === S.slot) {
-      skippedOurs = skippedOurs || c.take;
-      continue;
+    if (!draftedByName(picks, q.name)) {
+      return { take: q.name, pos: q.pos, why: q.note };
     }
-    skippedGone = skippedGone || { name: c.take, pick: drafted.pick_no };
   }
   return null;
 }
@@ -198,15 +168,10 @@ function render() {
   const advice = resolveAdvice(picks);
   const adviceEl = $("advice");
   if (advice && advice.take) {
-    const advanced = !!(advice.skippedOurs || advice.skippedGone);
-    const pickNo = advanced ? (myNext[0] || nextNo) : (advice.pick || nextNo);
-    let extra = "";
-    if (advice.skippedOurs) extra = ` · ${advice.skippedOurs} is already yours`;
-    else if (advice.skippedGone) extra = ` · ${advice.skippedGone.name} GONE @ ${advice.skippedGone.pick}`;
+    const pickNo = myNext[0] || nextNo;
     adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
     adviceEl.innerHTML = `<h2>Take ${advice.take}</h2>
-      <div class="small">${advice.pos || ""} · pick ${pickNo} · ${advice.why || ""}${extra}</div>
-      <div class="small">${advice.updated ? "Updated " + advice.updated : ""}</div>`;
+      <div class="small">${advice.pos || ""} · pick ${pickNo} · ${advice.why || ""}</div>`;
   } else {
     adviceEl.className = "clock waiting hidden";
     adviceEl.innerHTML = "";
