@@ -177,6 +177,20 @@ button {
 .tag.skip { background: var(--danger-dim); color: var(--danger); }
 .tag.crowd { background: #3a2a12; color: var(--gold); }
 .tag.gone { background: #2a2f38; color: var(--muted); }
+.tag.reach { background: rgba(255, 159, 74, 0.18); color: #ffb347; }
+.tag.value { background: var(--ok-dim); color: var(--ok); }
+.tag.on-time { background: #2a3140; color: var(--muted); }
+
+.advice-meta { margin-bottom: 8px; }
+.advice-meta .muted { color: var(--muted); }
+.advice-why, .queue-why {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+  font-size: 14px;
+}
+.advice-why li, .queue-why li { margin: 4px 0; }
+.queue-why { color: var(--muted); font-size: 13px; }
 .tag.avail { background: var(--ok-dim); color: var(--ok); }
 .tag.raid { background: #2a2030; color: #d7a0ff; }
 
