@@ -8,7 +8,7 @@ window.STRATEGY = {
 
   rules: [
     "Recommend from the full picture: this Sleeper ADP dump, injury news (skip only if already serious + multi-week), scoring (full PPR, 1QB, 2 FLEX, no TE premium), 23 rounds / 28 roster spots (9 + 12 bench + 3 taxi + 4 IR), what other teams are doing, age, who is actually left, and our holes. ADP is one input, not the pick by itself.",
-    "Fill the RB3 hole with an on-time back. Do not reach ~25 picks for Allen/Spears — those are 138 picks in a 23-round draft.",
+    "Fill the RB3 hole. After Pollard, Allen is the back we actually want (Breece cuff). A 27-pick ADP reach is the price of locking him while we refuse another WR.",
     "Soft-avoid Raiders unless clearly BPA.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
@@ -16,23 +16,21 @@ window.STRATEGY = {
   /** Live pick call — update this whenever we change strategy. */
   advice: {
     pick: 127,
-    take: "Xavier Worthy",
-    pos: "WR",
-    why: "Pollard gone at 124. Do not reach Allen (ADP 154.5). Worthy is ADP 116, age 23, KC WR2, Mahomes stack. QUES is not multi-week. Doubs if Worthy is gone. Allen at 138.",
-    updated: "2026-08-19 Pollard gone — Worthy at 127",
+    take: "Braelon Allen",
+    pos: "RB",
+    why: "On the clock. Pollard and Worthy gone. Do not take a 5th/6th WR. Allgeier is ARI not ATL — Love/Allgeier/Conner/Benson committee, no Pitts stack. Allen is Jets RB2 + Breece insurance. ADP 154.5 is a reach; take him anyway because he's the one RB we want.",
+    updated: "2026-08-19 on the clock — Allen",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Xavier Worthy", pos: "WR", note: "127 pick. ADP 116, age 23, KC WR2, Mahomes stack. Pollard is gone." },
-    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time if Worthy is gone." },
-    { name: "Jalen Coker", pos: "WR", note: "ADP 129.3. Next on-time WR." },
-    { name: "Braelon Allen", pos: "RB", note: "ADP 154.5 — 138 pick, not 127. Jets RB2 + Breece cuff." },
-    { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0. Later than Allen." },
+    { name: "Braelon Allen", pos: "RB", note: "Take now. Jets RB2 + Breece cuff. ADP reach, but the RB we want." },
+    { name: "Tyjae Spears", pos: "RB", note: "If Allen is gone. Titans RB2. Not a Breece cuff." },
+    { name: "Romeo Doubs", pos: "WR", note: "Only if you flip back to BPA WR. You said you don't want that." },
   ],
 
   skip: [
-    { name: "Zach Charbonnet", reason: "PUP / ACL — already multi-week" },
+    { name: "Zach Charbonnet", reason: "PUP / ACL — already multi-week. Does not cover a Breece absence this year." },
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
     { name: "Travis Kelce", reason: "TE3 + age 36 in dynasty, no TE premium. One-year deal, maybe last season." },
   ],
@@ -44,7 +42,9 @@ window.STRATEGY = {
     { name: "Brian Robinson", reason: "Behind Bijan" },
     { name: "Aaron Jones", reason: "MIN: Jones OR Mason" },
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
-    { name: "Tyler Allgeier", reason: "Behind Jeremiyah Love" },
+    { name: "Tyler Allgeier", reason: "ARI: Love OR Allgeier OR Conner OR Benson — not a Falcons Pitts stack" },
+    { name: "Trey Benson", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
+    { name: "James Conner", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
     { name: "Woody Marks", reason: "HOU: Montgomery OR Marks — split lead reps; Montgomery is a big new signing" },
   ],
 
