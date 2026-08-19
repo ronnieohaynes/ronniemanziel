@@ -101,9 +101,23 @@ function renderAdviceHtml(advice, pickNo) {
   const list = reasons.length
     ? `<ul class="advice-why">${reasons.map((r) => `<li>${r}</li>`).join("")}</ul>`
     : "";
+  const pl = findByName(advice.take);
+  const depthRows = [...(advice.depthCharts || [])];
+  if (pl?.depth_chart_order != null && !depthRows.some((d) => String(d.source).includes("Sleeper"))) {
+    depthRows.unshift({
+      source: "Sleeper (live)",
+      role: `${pl.depth_chart_position || "?"} #${pl.depth_chart_order}`,
+    });
+  }
+  const depthHtml = depthRows.length
+    ? `<div class="advice-dc"><b>Depth charts checked</b><ul>${depthRows.map((d) => `<li><b>${d.source}:</b> ${d.role}</li>`).join("")}</ul></div>`
+    : "";
+  const outlookHtml = advice.outlook
+    ? `<p class="advice-outlook"><b>2026 outlook:</b> ${advice.outlook}</p>`
+    : "";
   return `<h2>Take ${advice.take}</h2>
     <div class="small advice-meta">${advice.pos || ""} · pick ${pickNo}${priceTag ? ` · ${priceTag}` : ""}</div>
-    ${list}`;
+    ${depthHtml}${outlookHtml}${list}`;
 }
 
 async function getJSON(url) {
@@ -172,7 +186,14 @@ function draftedByName(picks, name) {
 function resolveAdvice(picks) {
   for (const q of S.queue || []) {
     if (!draftedByName(picks, q.name)) {
-      return { take: q.name, pos: q.pos, note: q.note, reasons: q.reasons };
+      return {
+        take: q.name,
+        pos: q.pos,
+        note: q.note,
+        reasons: q.reasons,
+        depthCharts: q.depthCharts,
+        outlook: q.outlook,
+      };
     }
   }
   return null;
@@ -260,6 +281,7 @@ function render() {
     return `<div class="queue-item">
       <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
       <div class="sub">${q.pos}${adpText(q.name)}</div>
+      ${q.outlook ? `<div class="sub outlook">${q.outlook}</div>` : ""}
       <ul class="queue-why">${adviceReasons(q).map((r) => `<li>${r}</li>`).join("")}</ul>
     </div>`;
   }).join("")

@@ -181,7 +181,23 @@ button {
 .tag.value { background: var(--ok-dim); color: var(--ok); }
 .tag.on-time { background: #2a3140; color: var(--muted); }
 
-.advice-meta { margin-bottom: 8px; }
+.advice-dc {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.advice-dc ul, .advice-dc b { color: var(--text); }
+.advice-dc ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+.advice-dc li { margin: 3px 0; }
+.advice-outlook {
+  margin: 8px 0;
+  font-size: 14px;
+  color: var(--gold);
+}
+.queue-item .outlook { color: var(--gold); margin-top: 4px; }
 .advice-meta .muted { color: var(--muted); }
 .advice-why, .queue-why {
   margin: 8px 0 0;
