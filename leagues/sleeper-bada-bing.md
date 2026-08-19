@@ -84,7 +84,7 @@
 
 ### Health on this roster (Aug 18, 2026)
 - **Mahomes:** ACL+LCL (Dec 2025). Practicing; Week 1 vs DEN is the goal, not locked. Purdy is the QB2.
-- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. Only other RB is Kyren — **RB3 is the 127 need.**
+- **Breece:** right groin strain Aug 17 — “weeks not months.” Week 1 not locked. **Allen is the cuff.**
 - **Injury bar:** skip only if already called serious and multi-week. A sore/day-to-day on a clearly good player is still a pick.
 - JJ / London / Higgins / Sutton / Pitts: practicing / usable.
 
