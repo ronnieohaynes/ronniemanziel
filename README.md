@@ -49,3 +49,4 @@ ADP numbers come from `dashboard/adp.js` (the Sleeper dump). Rebuild with `pytho
 - **No K/DST** starting slots — never draft them.
 - Soft **avoid Raiders** players unless clearly the best available by a wide margin.
 - **Injury:** skip only if it is already called serious **and** the player will miss multiple weeks. Do not skip a clearly good dynasty player for a sore/day-to-day ding.
+- **ADP is a price tag**, not a reason to draft. Role, holes, scoring, age, and injuries make the pick.

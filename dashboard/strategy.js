@@ -7,9 +7,8 @@ window.STRATEGY = {
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
   rules: [
-    "Recommend from the full picture: this Sleeper ADP dump, injury news (skip only if already serious + multi-week), scoring (full PPR, 1QB, 2 FLEX, no TE premium), 23 rounds / 28 roster spots (9 + 12 bench + 3 taxi + 4 IR), what other teams are doing, age, who is actually left, and our holes. ADP is one input, not the pick by itself.",
-    "Fill the RB3 hole. After Pollard, Allen is the back we actually want (Breece cuff). A 27-pick ADP reach is the price of locking him while we refuse another WR.",
-    "Soft-avoid Raiders unless clearly BPA.",
+    "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
+    "Need an RB3 who actually covers Breece. Four WRs already start. Soft-avoid Raiders unless clearly BPA.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
@@ -18,15 +17,15 @@ window.STRATEGY = {
     pick: 127,
     take: "Braelon Allen",
     pos: "RB",
-    why: "On the clock. Pollard and Worthy gone. Do not take a 5th/6th WR. Allgeier is ARI not ATL — Love/Allgeier/Conner/Benson committee, no Pitts stack. Allen is Jets RB2 + Breece insurance. ADP 154.5 is a reach; take him anyway because he's the one RB we want.",
-    updated: "2026-08-19 on the clock — Allen",
+    why: "Jets RB2 and Breece's handcuff. You have two RBs and Breece may miss weeks. Four WRs already fill FLEX. Allgeier is Arizona (Love/Conner/Benson too), not a Pitts stack. Charbonnet is PUP. Take the back that pays off if Breece sits.",
+    updated: "2026-08-19 on the clock — Allen (role, not ADP)",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Braelon Allen", pos: "RB", note: "Take now. Jets RB2 + Breece cuff. ADP reach, but the RB we want." },
-    { name: "Tyjae Spears", pos: "RB", note: "If Allen is gone. Titans RB2. Not a Breece cuff." },
-    { name: "Romeo Doubs", pos: "WR", note: "Only if you flip back to BPA WR. You said you don't want that." },
+    { name: "Braelon Allen", pos: "RB", note: "Jets RB2. The only remaining back who covers a Breece absence. Take him." },
+    { name: "Tyjae Spears", pos: "RB", note: "Titans RB2 if Allen is gone. Does not cover Breece." },
+    { name: "Romeo Doubs", pos: "WR", note: "PPR WR2 in NE. You already have four WRs — only if you refuse the remaining RBs." },
   ],
 
   skip: [
