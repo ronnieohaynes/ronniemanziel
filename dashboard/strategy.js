@@ -8,27 +8,26 @@ window.STRATEGY = {
 
   rules: [
     "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Starting nine is done (Allen in). 138 is still a 2026 job — WR2/RB2 who plays. Save true darts (taxi rookies, PUP stashes) for 151+.",
+    "Starting nine is done (Allen in). 138 can be a gamble if it parks on IR. Char is the one. Otherwise Spears plays now.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
   /** Live pick call — update this whenever we change strategy. */
   advice: {
     pick: 138,
-    take: "Tyjae Spears",
+    take: "Zach Charbonnet",
     pos: "RB",
-    why: "Too early for a dart. Spears is the Titans RB2 and will play this year (Pollard already went). Coker if you want a WR2 who plays (24, behind Tet). Doubs if you want the safest snaps. Bernard and Charbonnet wait until 151+.",
-    updated: "2026-08-19 138 is a 2026 job, not a swing",
+    why: "Coker and Doubs are gone. Starting nine is done so 138 does not need to start. Char is PUP/ACL — park on IR. Walker is gone; Price is a rookie RB1. That's the gamble: 2027 Seattle backfield, no lineup cost this year. Spears is the 2026 job if you don't want to bet.",
+    updated: "2026-08-19 138 Char gamble — 1 pick out",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Tyjae Spears", pos: "RB", note: "138. Titans RB2. Plays this year. Not a dart." },
-    { name: "Jalen Coker", pos: "WR", note: "138. Panthers WR2 behind Tet, 24. Plays this year." },
-    { name: "Romeo Doubs", pos: "WR", note: "138. Patriots WR2 behind AJ Brown. Safest snaps, 26." },
-    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Has a job; still younger/less proven. Fine if the WR2s are gone." },
-    { name: "Germie Bernard", pos: "WR", note: "151+ dart. PIT rookie WR3. Taxi." },
-    { name: "Zach Charbonnet", pos: "RB", note: "151+ IR stash. PUP/ACL. Not this pick." },
+    { name: "Zach Charbonnet", pos: "RB", note: "Take at 138. PUP/ACL, IR stash. Walker gone, Price is a rookie. The gamble." },
+    { name: "Tyjae Spears", pos: "RB", note: "Titans RB2. The 2026 job if you don't want the Char bet." },
+    { name: "Khalil Shakir", pos: "WR", note: "Bills WR2, PPR. Plays now, 26." },
+    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Job + youth." },
+    { name: "Germie Bernard", pos: "WR", note: "151+ taxi dart if Char is the 138 gamble." },
   ],
 
   skip: [
