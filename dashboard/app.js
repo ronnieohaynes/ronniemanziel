@@ -71,6 +71,41 @@ function adpText(name) {
   return hit ? ` · Sleeper ADP ${hit.adp} (#${hit.rank})` : "";
 }
 
+/** ADP vs your pick — price check only, not the reason to draft. */
+function priceCheck(name, pickNo) {
+  const hit = lookupAdp(name);
+  if (!hit || !pickNo) return null;
+  const delta = pickNo - hit.adp;
+  const rounded = Math.abs(Math.round(delta));
+  if (delta <= -8) {
+    return { kind: "reach", text: `ADP ${hit.adp} (#${hit.rank}) — ~${rounded} picks early` };
+  }
+  if (delta >= 8) {
+    return { kind: "value", text: `ADP ${hit.adp} (#${hit.rank}) — ~${rounded} picks of value` };
+  }
+  return { kind: "on-time", text: `ADP ${hit.adp} (#${hit.rank}) — on time` };
+}
+
+function adviceReasons(entry) {
+  if (Array.isArray(entry.reasons) && entry.reasons.length) return entry.reasons;
+  if (entry.note) return [entry.note];
+  return [];
+}
+
+function renderAdviceHtml(advice, pickNo) {
+  const price = priceCheck(advice.take, pickNo);
+  const reasons = adviceReasons(advice);
+  const priceTag = price
+    ? `<span class="tag ${price.kind}">${price.kind}</span> <span class="muted">${price.text}</span>`
+    : "";
+  const list = reasons.length
+    ? `<ul class="advice-why">${reasons.map((r) => `<li>${r}</li>`).join("")}</ul>`
+    : "";
+  return `<h2>Take ${advice.take}</h2>
+    <div class="small advice-meta">${advice.pos || ""} · pick ${pickNo}${priceTag ? ` · ${priceTag}` : ""}</div>
+    ${list}`;
+}
+
 async function getJSON(url) {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`${url} ${res.status}`);
@@ -137,7 +172,7 @@ function draftedByName(picks, name) {
 function resolveAdvice(picks) {
   for (const q of S.queue || []) {
     if (!draftedByName(picks, q.name)) {
-      return { take: q.name, pos: q.pos, why: q.note };
+      return { take: q.name, pos: q.pos, note: q.note, reasons: q.reasons };
     }
   }
   return null;
@@ -170,8 +205,7 @@ function render() {
   if (advice && advice.take) {
     const pickNo = myNext[0] || nextNo;
     adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
-    adviceEl.innerHTML = `<h2>Take ${advice.take}</h2>
-      <div class="small">${advice.pos || ""} · pick ${pickNo} · ${advice.why || ""}</div>`;
+    adviceEl.innerHTML = renderAdviceHtml(advice, pickNo);
   } else {
     adviceEl.className = "clock waiting hidden";
     adviceEl.innerHTML = "";
@@ -225,7 +259,8 @@ function render() {
     if (inj) status += injTag(inj);
     return `<div class="queue-item">
       <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
-      <div class="sub">${q.pos}${adpText(q.name)} · ${q.note}</div>
+      <div class="sub">${q.pos}${adpText(q.name)}</div>
+      <ul class="queue-why">${adviceReasons(q).map((r) => `<li>${r}</li>`).join("")}</ul>
     </div>`;
   }).join("")
     : `<div class="empty">Queue is empty — everyone on it is off the board.</div>`;
