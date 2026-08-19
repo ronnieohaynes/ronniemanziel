@@ -8,26 +8,25 @@ window.STRATEGY = {
 
   rules: [
     "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Starting nine is done (Allen in). 138 can be a gamble if it parks on IR. Char is the one. Otherwise Spears plays now.",
+    "Starting nine is done (Allen in). Do not reach for Spears. 138 is a 2026 job that is actually on time — Shakir. Darts at 151+.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
   /** Live pick call — update this whenever we change strategy. */
   advice: {
     pick: 138,
-    take: "Zach Charbonnet",
-    pos: "RB",
-    why: "Coker and Doubs are gone. Starting nine is done so 138 does not need to start. Char is PUP/ACL — park on IR. Walker is gone; Price is a rookie RB1. That's the gamble: 2027 Seattle backfield, no lineup cost this year. Spears is the 2026 job if you don't want to bet.",
-    updated: "2026-08-19 138 Char gamble — 1 pick out",
+    take: "Khalil Shakir",
+    pos: "WR",
+    why: "Char is gone. Do not reach Spears. Shakir is the Bills WR2 in full PPR — he plays every week, not a dart, not a reach. Four WRs already start; this is BPA with a job. Sampson/Bernard wait.",
+    updated: "2026-08-19 Char gone — Shakir, not Spears",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Zach Charbonnet", pos: "RB", note: "Take at 138. PUP/ACL, IR stash. Walker gone, Price is a rookie. The gamble." },
-    { name: "Tyjae Spears", pos: "RB", note: "Titans RB2. The 2026 job if you don't want the Char bet." },
-    { name: "Khalil Shakir", pos: "WR", note: "Bills WR2, PPR. Plays now, 26." },
-    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Job + youth." },
-    { name: "Germie Bernard", pos: "WR", note: "151+ taxi dart if Char is the 138 gamble." },
+    { name: "Khalil Shakir", pos: "WR", note: "Take at 138. Bills WR2, PPR. Plays now. Not a reach." },
+    { name: "Tyrone Tracy", pos: "RB", note: "If you want a back instead. Giants RB, closer to on-time than Spears." },
+    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Same reach problem as Spears — wait." },
+    { name: "Germie Bernard", pos: "WR", note: "151+ taxi dart." },
   ],
 
   skip: [
