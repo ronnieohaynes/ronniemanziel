@@ -7,31 +7,29 @@ window.STRATEGY = {
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
   rules: [
-    "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Starting nine is done (Allen in). Do not reach for Spears. 138 is a 2026 job that is actually on time — Shakir. Darts at 151+.",
-    "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
+    "The banner only names players still on the board and why they fit right now.",
+    "The pick reason is role, our holes, scoring, age, injuries, and who is left. ADP is only a price check.",
+    "Starting nine is done. 162+ is youth, taxi rookies, and upside — skip TE3, QB3, and crowded rooms.",
+    "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage).",
   ],
 
-  /** Live pick call — update this whenever we change strategy. */
-  advice: {
-    pick: 138,
-    take: "Khalil Shakir",
-    pos: "WR",
-    why: "Char is gone. Do not reach Spears. Shakir is the Bills WR2 in full PPR — he plays every week, not a dart, not a reach. Four WRs already start; this is BPA with a job. Sampson/Bernard wait.",
-    updated: "2026-08-19 Char gone — Shakir, not Spears",
-  },
+  /** Optional headline pick # — banner uses the first available queue name. */
+  advice: { pick: 162 },
 
-  /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
+  /** Present-tense only. Names must match Sleeper full_name. Drafted names drop off automatically. */
   queue: [
-    { name: "Khalil Shakir", pos: "WR", note: "Take at 138. Bills WR2, PPR. Plays now. Not a reach." },
-    { name: "Tyrone Tracy", pos: "RB", note: "If you want a back instead. Giants RB, closer to on-time than Spears." },
-    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Same reach problem as Spears — wait." },
-    { name: "Germie Bernard", pos: "WR", note: "151+ taxi dart." },
+    { name: "Dylan Sampson", pos: "RB", note: "21, Browns RB2 behind Judkins. Young back with a defined job — dynasty stash." },
+    { name: "Adonai Mitchell", pos: "WR", note: "23, Jets WR2 behind Garrett Wilson. Upside dart; you already have Hunter." },
+    { name: "Antonio Williams", pos: "WR", note: "22, Commanders rookie WR3. Taxi-eligible dart." },
+    { name: "Malachi Fields", pos: "WR", note: "22, Giants rookie. Pure taxi dart." },
+    { name: "Kaytron Allen", pos: "RB", note: "23, Commanders rookie RB4. Taxi dart only." },
   ],
 
   skip: [
-    { name: "Ricky Pearsall", reason: "Out 2026 (PCL) — no 2026, weak stash" },
-    { name: "Travis Kelce", reason: "TE3 + age 36 in dynasty, no TE premium. One-year deal, maybe last season." },
+    { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
+    { name: "Travis Kelce", reason: "TE3 + age 36, no TE premium" },
+    { name: "Mason Taylor", reason: "TE3 — Pitts and Kincaid already start" },
+    { name: "C.J. Stroud", reason: "QB3 — Mahomes and Purdy already rostered" },
   ],
 
   crowded: [
@@ -41,19 +39,17 @@ window.STRATEGY = {
     { name: "Brian Robinson", reason: "Behind Bijan" },
     { name: "Aaron Jones", reason: "MIN: Jones OR Mason" },
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
-    { name: "Tyler Allgeier", reason: "ARI: Love OR Allgeier OR Conner OR Benson — not a Falcons Pitts stack" },
+    { name: "Tyler Allgeier", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
     { name: "Trey Benson", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
     { name: "James Conner", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
-    { name: "Woody Marks", reason: "HOU: Montgomery OR Marks — split lead reps; Montgomery is a big new signing" },
+    { name: "Woody Marks", reason: "HOU: Montgomery OR Marks" },
   ],
-
-  /** ADP lives in adp.js (Sleeper dump). Do not keep a second list here. */
 
   softAvoidTeams: ["LV"],
 
   notes: {
     Mahomes: "ACL+LCL Dec 2025. Week 1 is the goal, not locked. Purdy is the QB2.",
     "Breece Hall": "Right groin Aug 17 — weeks not months. Week 1 not locked.",
-    "Charbonnet": "PUP, ACL surgery. IR stash only (4 IR spots). Not taxi — he's a vet. Price is already SEA RB1.",
+    "Braelon Allen": "Jets RB2. Breece handcuff.",
   },
 };
