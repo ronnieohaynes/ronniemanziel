@@ -8,24 +8,25 @@ window.STRATEGY = {
 
   rules: [
     "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Need an RB3 who actually covers Breece. Four WRs already start. After Allen, 138+ is BPA / taxi — don't chase holes that are already filled.",
+    "Starting nine is done (Allen in). From 138 on: swings — young players with a path to the job. Taxi rookies. Skip crowded rooms, PUP, Raiders, TE3/QB3.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
   /** Live pick call — update this whenever we change strategy. */
   advice: {
-    pick: 127,
-    take: "Braelon Allen",
+    pick: 138,
+    take: "Dylan Sampson",
     pos: "RB",
-    why: "Jets RB2 and Breece's handcuff. Four WRs already start. After this, the starting nine is done — 138+ is BPA youth, defined roles, taxi rookies. Not another chase of a sixth WR or a TE3.",
-    updated: "2026-08-19 Allen then BPA/fillers",
+    why: "Allen is in. Next is a swing, not a sixth WR. Sampson is 21 and CLE's RB2 behind Judkins (22) — a young 1-2, not a four-man committee. If he's gone: Germie Bernard (22, PIT rookie WR3, Metcalf and Pittman both QUES). Coker only if you want 2026 snaps instead of a dart.",
+    updated: "2026-08-19 Allen in — 138 is a swing",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Braelon Allen", pos: "RB", note: "Take now. Jets RB2. Covers Breece. Starting nine is then done." },
-    { name: "Tyjae Spears", pos: "RB", note: "138 BPA if still there. Titans RB2. Not a Breece cuff." },
-    { name: "Romeo Doubs", pos: "WR", note: "138 BPA if you want a PPR WR with a job. You don't need him." },
+    { name: "Dylan Sampson", pos: "RB", note: "21, CLE RB2 behind Judkins. Young 1-2. The RB swing." },
+    { name: "Germie Bernard", pos: "WR", note: "22, PIT rookie, WR3. Taxi. Metcalf and Pittman are both QUES." },
+    { name: "Jalen Coker", pos: "WR", note: "24, CAR WR2 behind Tet. Plays now if you want snaps over a dart." },
+    { name: "Adonai Mitchell", pos: "WR", note: "23, Jets WR2 behind Garrett Wilson. Later swing." },
   ],
 
   skip: [
