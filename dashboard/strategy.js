@@ -8,7 +8,7 @@ window.STRATEGY = {
 
   rules: [
     "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Need an RB3 who actually covers Breece. Four WRs already start. Soft-avoid Raiders unless clearly BPA.",
+    "Need an RB3 who actually covers Breece. Four WRs already start. After Allen, 138+ is BPA / taxi — don't chase holes that are already filled.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
@@ -17,15 +17,15 @@ window.STRATEGY = {
     pick: 127,
     take: "Braelon Allen",
     pos: "RB",
-    why: "Jets RB2 and Breece's handcuff. You have two RBs and Breece may miss weeks. Four WRs already fill FLEX. Allgeier is Arizona (Love/Conner/Benson too), not a Pitts stack. Charbonnet is PUP. Take the back that pays off if Breece sits.",
-    updated: "2026-08-19 on the clock — Allen (role, not ADP)",
+    why: "Jets RB2 and Breece's handcuff. Four WRs already start. After this, the starting nine is done — 138+ is BPA youth, defined roles, taxi rookies. Not another chase of a sixth WR or a TE3.",
+    updated: "2026-08-19 Allen then BPA/fillers",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Braelon Allen", pos: "RB", note: "Jets RB2. The only remaining back who covers a Breece absence. Take him." },
-    { name: "Tyjae Spears", pos: "RB", note: "Titans RB2 if Allen is gone. Does not cover Breece." },
-    { name: "Romeo Doubs", pos: "WR", note: "PPR WR2 in NE. You already have four WRs — only if you refuse the remaining RBs." },
+    { name: "Braelon Allen", pos: "RB", note: "Take now. Jets RB2. Covers Breece. Starting nine is then done." },
+    { name: "Tyjae Spears", pos: "RB", note: "138 BPA if still there. Titans RB2. Not a Breece cuff." },
+    { name: "Romeo Doubs", pos: "WR", note: "138 BPA if you want a PPR WR with a job. You don't need him." },
   ],
 
   skip: [
