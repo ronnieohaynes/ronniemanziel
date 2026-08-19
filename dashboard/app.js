@@ -228,8 +228,11 @@ function render() {
     adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
     adviceEl.innerHTML = renderAdviceHtml(advice, pickNo);
   } else {
-    adviceEl.className = "clock waiting hidden";
-    adviceEl.innerHTML = "";
+    const pickNo = myNext[0] || nextNo;
+    adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
+    adviceEl.innerHTML = `<h2>Queue empty</h2>
+      <div class="small advice-meta">pick ${pickNo} · everyone on the queue is drafted</div>
+      <ul class="advice-why"><li>Check <b>Best remaining</b> below for taxi rookies (exp 0).</li><li>Update <code>strategy.js</code> if the board changed.</li></ul>`;
   }
 
   const clock = $("clock");

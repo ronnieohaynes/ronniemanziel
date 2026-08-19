@@ -8,91 +8,79 @@ window.STRATEGY = {
 
   rules: [
     "Before recommending: compare Sleeper depth chart, RotoWire role/outlook, and team reports.",
-    "If depth charts disagree or the 2026 outlook is poor, skip — even when ADP is cheap.",
-    "Starting nine is done. 175+ is BPA bench/taxi — skip TE3, QB3, and crowded rooms.",
-    "ADP is a price check only. Reaches need a named role across sources, not camp hype alone.",
+    "Taxi = rookies only (3 slots). Hurst/Bell/Claiborne are gone — fill taxi at 186+.",
+    "Starting nine is done. Late rounds = taxi darts and bench; skip TE3, QB3, injured-out rookies.",
+    "ADP is a price check only.",
   ],
 
-  advice: { pick: 175 },
+  advice: { pick: 186 },
 
   /** Present-tense only. Names must match Sleeper full_name. Drafted names drop off automatically. */
   queue: [
     {
-      name: "Isiah Pacheco",
+      name: "Adam Randall",
       pos: "RB",
       depthCharts: [
-        { source: "RotoWire roles", role: "Change-of-pace RB2 behind Jahmyr Gibbs — role security Very High" },
-        { source: "Lions / SI", role: "Clear #2 back, David Montgomery replacement" },
-        { source: "Sleeper", role: "RB #2" },
+        { source: "Sleeper", role: "RB #3 BAL" },
+        { source: "Role", role: "Rookie taxi dart — no clear 2026 job, pure dynasty stash" },
       ],
       outlook:
-        "Rotowire & team: complementary RB2 in a Gibbs-led backfield with standalone touches (Montgomery role). Injury history (fibula/MCL) is the main knock; age 27 is short-term dynasty value.",
+        "Undrafted rookie RB in Baltimore. Taxi-eligible only; do not expect 2026 starts. Stash and see if the backfield thins out.",
       reasons: [
-        "Only pick left near ADP (~165) with a unanimous named RB2 role across Sleeper, RotoWire, and team reports.",
-        "Full PPR: Montgomery's old passing-down/schange role still exists — not a dead roster spot.",
-        "You already roster four RBs, so this is BPA insurance, not a starter push. Trade or cut bait if the role shrinks.",
-        "On-time/value at pick 175 — no reach tax unlike the WR tier left on the board.",
+        "Taxi slot #1 — rookie RB (age 22). Hurst/Bell/Claiborne all drafted.",
+        "You still have 3 open taxi spots (rookies only). Fill them before the draft ends.",
+        "ADP ~234 — on-time or slight reach at 186; paying to secure a taxi body.",
+        "Not a 2026 starter; roster as taxi, not bench flex.",
       ],
     },
     {
-      name: "Ted Hurst",
+      name: "Brenen Thompson",
       pos: "WR",
       depthCharts: [
-        { source: "Buccaneers chart", role: "2nd unit behind McMillan / Godwin / Egbuka" },
-        { source: "RotoWire / camp", role: "WR4 in target tree; red-zone and vertical upside" },
-        { source: "Sleeper", role: "LWR #4" },
+        { source: "Sleeper", role: "WR #4 LAC" },
+        { source: "Outlook", role: "Crowded LAC room behind Ladd — taxi dart only" },
       ],
-      outlook:
-        "Rotowire/camp: 3rd-round rookie with Mayfield chemistry and contested-catch skill — developmental WR4, not a locked starter. Taxi-eligible; best at pick 186 on ADP (~207), not a 175 reach.",
+      outlook: "Rookie WR depth piece in Los Angeles. Taxi stash, not a weekly play in 2026.",
       reasons: [
-        "Taxi slot dart — rookie WR with real camp buzz (Bowles/Mayfield) in a passing offense.",
-        "Take at 186 when ADP is on time; do not reach at 175.",
-        "McMillan is ahead of him on the depth chart — already flagged crowded if you want a TB pass-catcher.",
+        "Taxi slot #2 at pick 199 if Randall is gone.",
+        "Same logic: rookie-only taxi, dynasty lottery ticket.",
       ],
     },
     {
-      name: "Skyler Bell",
-      pos: "WR",
-      depthCharts: [
-        { source: "Sleeper", role: "SWR #5 — Bills WR depth" },
-        { source: "Outlook", role: "Rookie taxi dart only; Shakir is already rostered" },
-      ],
-      outlook: "Pure taxi stash behind Buffalo's established WR room.",
-      reasons: [
-        "Taxi-eligible rookie — only if Hurst is gone and you have an open taxi slot.",
-      ],
-    },
-    {
-      name: "Demond Claiborne",
+      name: "J'Mari Taylor",
       pos: "RB",
       depthCharts: [
-        { source: "Sleeper", role: "RB #3 MIN" },
+        { source: "Sleeper", role: "RB #4 JAX" },
       ],
-      outlook: "Rookie RB4 profile — taxi dart only.",
+      outlook: "Jaguars rookie RB4 — taxi dart only.",
       reasons: [
-        "Back-end taxi if WR darts are gone.",
+        "Taxi slot #3 at pick 210.",
+        "Take if Randall and Thompson are gone.",
+      ],
+    },
+    {
+      name: "Zavion Thomas",
+      pos: "WR",
+      depthCharts: [
+        { source: "Sleeper", role: "WR #5 CHI" },
+      ],
+      outlook: "Bears rookie WR depth — back-end taxi if you still need a third rookie.",
+      reasons: [
+        "Pick 223 filler taxi only if top three are off the board.",
       ],
     },
   ],
 
   skip: [
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
+    { name: "Chris Brazzell", reason: "Out 2026 (torn LCL — IR all year)" },
     { name: "Travis Kelce", reason: "TE3 + age 36, no TE premium" },
     { name: "Mason Taylor", reason: "TE3 — Pitts and Kincaid already start" },
     { name: "C.J. Stroud", reason: "QB3 — Mahomes and Purdy already rostered" },
-    { name: "Jauan Jennings", reason: "Age 29 — win-now flex, wrong phase for bench youth" },
-    {
-      name: "Adonai Mitchell",
-      reason: "Sleeper lists RWR #2 but unofficial NYJ chart had Cooper ahead; Rotowire WR216 outlook says replace him (41% catch rate, Cooper/Sadiq drafted). No clear job.",
-    },
-    {
-      name: "Kayshon Boutte",
-      reason: "Rotowire WR3; Boston Globe has him odd man out in a 7-WR room (Brown/Doubs/Douglas). Roster bubble + trade rumors.",
-    },
-    {
-      name: "Troy Franklin",
-      reason: "DEN: Waddle added; Mims/Bryant ahead on charts. Rotowire/SI have him WR4–5. You already roster Sutton.",
-    },
+    { name: "Carson Beck", reason: "QB dart — you have Mahomes and Purdy" },
+    { name: "Adonai Mitchell", reason: "Disputed WR2/3 + poor Rotowire outlook — skip" },
+    { name: "Kayshon Boutte", reason: "NE WR roster bubble / trade rumors" },
+    { name: "Troy Franklin", reason: "DEN WR4–5 behind Waddle/Sutton — you roster Sutton" },
   ],
 
   crowded: [
@@ -102,11 +90,9 @@ window.STRATEGY = {
     { name: "Brian Robinson", reason: "Behind Bijan" },
     { name: "Aaron Jones", reason: "MIN: Jones OR Mason" },
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
-    { name: "Tyler Allgeier", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
-    { name: "Trey Benson", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
-    { name: "James Conner", reason: "ARI: Love OR Allgeier OR Conner OR Benson" },
     { name: "Woody Marks", reason: "HOU: Montgomery OR Marks" },
-    { name: "Jalen McMillan", reason: "TB WR3 behind Godwin/Egbuka starters — crowded, not a defined #2" },
+    { name: "Jalen McMillan", reason: "TB WR3 behind Godwin/Egbuka" },
+    { name: "Brenen Thompson", reason: "LAC WR4 — taxi only, not a 2026 role" },
   ],
 
   softAvoidTeams: ["LV"],
@@ -116,5 +102,7 @@ window.STRATEGY = {
     "Breece Hall": "Right groin Aug 17 — weeks not months. Week 1 not locked.",
     "Braelon Allen": "Jets RB2. Breece handcuff.",
     "Dylan Sampson": "CLE RB2 behind Judkins. Dynasty bench RB.",
+    "Isiah Pacheco": "DET RB2 behind Gibbs. Bench RB insurance.",
+    "Justin Jefferson": "MIN WR1. Kyler Murray starter.",
   },
 };
