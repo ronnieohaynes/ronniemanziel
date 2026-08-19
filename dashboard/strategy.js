@@ -8,26 +8,27 @@ window.STRATEGY = {
 
   rules: [
     "The pick reason is role, our holes, scoring, age, injuries, and who is left. Sleeper ADP is only a price check — never the reason to take someone.",
-    "Starting nine is done (Allen in). From 138 on: swings — young players with a path to the job. Taxi rookies. Skip crowded rooms, PUP, Raiders, TE3/QB3.",
+    "Starting nine is done (Allen in). 138 is still a 2026 job — WR2/RB2 who plays. Save true darts (taxi rookies, PUP stashes) for 151+.",
     "Discount a room only when the team itself will not name the job (official OR co-starters, a big new signing into the same room, or TBD usage). A defined 1-2 is not the same thing as Gadsden/Kolar/Njoku.",
   ],
 
   /** Live pick call — update this whenever we change strategy. */
   advice: {
     pick: 138,
-    take: "Dylan Sampson",
+    take: "Tyjae Spears",
     pos: "RB",
-    why: "Allen is in. 138 is a healthy swing: Sampson (21, CLE RB2) or Bernard (PIT rookie). Charbonnet is still a stash — PUP/ACL, park him on IR later (151+), not this pick. He cannot go on taxi (vet) and he does not play 2026 until he's off PUP.",
-    updated: "2026-08-19 Charbonnet is a later IR stash",
+    why: "Too early for a dart. Spears is the Titans RB2 and will play this year (Pollard already went). Coker if you want a WR2 who plays (24, behind Tet). Doubs if you want the safest snaps. Bernard and Charbonnet wait until 151+.",
+    updated: "2026-08-19 138 is a 2026 job, not a swing",
   },
 
   /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Dylan Sampson", pos: "RB", note: "138 swing. 21, CLE RB2 behind Judkins. Plays this year." },
-    { name: "Germie Bernard", pos: "WR", note: "138 swing. 22, PIT rookie WR3. Taxi. Metcalf/Pittman both QUES." },
-    { name: "Jalen Coker", pos: "WR", note: "138. 24, CAR WR2 behind Tet. 2026 snaps." },
-    { name: "Zach Charbonnet", pos: "RB", note: "IR stash at 151+. PUP/ACL. KW3 is gone; Price is SEA RB1. Park on IR, not taxi." },
-    { name: "Adonai Mitchell", pos: "WR", note: "23, Jets WR2 behind Garrett Wilson. Later swing." },
+    { name: "Tyjae Spears", pos: "RB", note: "138. Titans RB2. Plays this year. Not a dart." },
+    { name: "Jalen Coker", pos: "WR", note: "138. Panthers WR2 behind Tet, 24. Plays this year." },
+    { name: "Romeo Doubs", pos: "WR", note: "138. Patriots WR2 behind AJ Brown. Safest snaps, 26." },
+    { name: "Dylan Sampson", pos: "RB", note: "CLE RB2, 21. Has a job; still younger/less proven. Fine if the WR2s are gone." },
+    { name: "Germie Bernard", pos: "WR", note: "151+ dart. PIT rookie WR3. Taxi." },
+    { name: "Zach Charbonnet", pos: "RB", note: "151+ IR stash. PUP/ACL. Not this pick." },
   ],
 
   skip: [
