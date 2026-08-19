@@ -16,28 +16,24 @@ window.STRATEGY = {
   /** Live pick call — update this whenever we change strategy. */
   advice: {
     pick: 127,
-    take: "Tony Pollard",
-    pos: "RB",
-    why: "RB3 hole is real, but Allen (ADP 154.5) is a 27-pick reach at 127. Pollard (ADP 123, TEN RB1) is the on-time RB3. If Pollard is gone, take Worthy/Doubs now and Allen at 138 — 11 picks later, still 16 before his ADP.",
-    updated: "2026-08-18 Allen is the 138 pick, not 127",
+    take: "Xavier Worthy",
+    pos: "WR",
+    why: "Pollard gone at 124. Do not reach Allen (ADP 154.5). Worthy is ADP 116, age 23, KC WR2, Mahomes stack. QUES is not multi-week. Doubs if Worthy is gone. Allen at 138.",
+    updated: "2026-08-19 Pollard gone — Worthy at 127",
   },
 
-  /** Shown in order. Names must match Sleeper full_name. */
+  /** Shown in order. Names must match Sleeper full_name. Only names still on the board. */
   queue: [
-    { name: "Tony Pollard", pos: "RB", note: "The 127 pick. ADP 123, TEN RB1, fills RB3 on time. Foot is minor." },
-    { name: "Xavier Worthy", pos: "WR", note: "If Pollard is gone. ADP 116, age 23. Do not reach Allen here." },
-    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time if Pollard and Worthy are gone." },
+    { name: "Xavier Worthy", pos: "WR", note: "127 pick. ADP 116, age 23, KC WR2, Mahomes stack. Pollard is gone." },
+    { name: "Romeo Doubs", pos: "WR", note: "ADP 127.7. On-time if Worthy is gone." },
+    { name: "Jalen Coker", pos: "WR", note: "ADP 129.3. Next on-time WR." },
     { name: "Braelon Allen", pos: "RB", note: "ADP 154.5 — 138 pick, not 127. Jets RB2 + Breece cuff." },
     { name: "Tyjae Spears", pos: "RB", note: "ADP 156.0. Later than Allen." },
   ],
 
   skip: [
     { name: "Zach Charbonnet", reason: "PUP / ACL — already multi-week" },
-    { name: "Jordyn Tyson", reason: "Hamstring, lengthy absence — already called multi-week" },
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
-    { name: "George Kittle", reason: "Achilles / PUP — already multi-week" },
-    { name: "Alec Pierce", reason: "PUP — already multi-week" },
-    { name: "Brenton Strange", reason: "TE3 — we already have Pitts + Kincaid" },
     { name: "Travis Kelce", reason: "TE3 + age 36 in dynasty, no TE premium. One-year deal, maybe last season." },
   ],
 
@@ -45,16 +41,11 @@ window.STRATEGY = {
     { name: "Oronde Gadsden", reason: "LAC TE: Kolar OR Gadsden OR Njoku" },
     { name: "Jakobi Meyers", reason: "JAX: BTJ, Meyers, Parker Washington, Hunter" },
     { name: "Travis Hunter", reason: "Backup WR / starting CB — offense share unknown" },
-    { name: "Quentin Johnston", reason: "LAC WR2 behind Ladd" },
-    { name: "Blake Corum", reason: "Split with Kyren (already rostered)" },
     { name: "Brian Robinson", reason: "Behind Bijan" },
     { name: "Aaron Jones", reason: "MIN: Jones OR Mason" },
-    { name: "Jordan Mason", reason: "MIN: Jones OR Mason" },
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
     { name: "Tyler Allgeier", reason: "Behind Jeremiyah Love" },
     { name: "Woody Marks", reason: "HOU: Montgomery OR Marks — split lead reps; Montgomery is a big new signing" },
-    { name: "David Montgomery", reason: "HOU: Montgomery OR Marks — split lead reps; big new signing into Marks' room" },
-    { name: "Jonah Coleman", reason: "DEN: Dobbins OR Harvey OR Coleman — 3-way, usage not named" },
   ],
 
   /** ADP lives in adp.js (Sleeper dump). Do not keep a second list here. */

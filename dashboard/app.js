@@ -251,24 +251,19 @@ function render() {
     ? `Likely 9: ${starters}`
     : "Need a full starting nine (QB, 2RB, 2WR, TE, 2 FLEX).";
 
-  $("queue").innerHTML = S.queue.map((q, i) => {
-    const drafted = picks.find((p) => norm(metaName(p.metadata)) === norm(q.name));
+  const liveQueue = (S.queue || []).filter((q) => !draftedByName(picks, q.name));
+  $("queue").innerHTML = liveQueue.length
+    ? liveQueue.map((q, i) => {
     const pl = findByName(q.name);
     const inj = pl?.injury_status;
     let status = `<span class="tag avail">available</span>`;
-    if (drafted) {
-      const who = nameForSlot(drafted.draft_slot, order);
-      status = drafted.draft_slot === S.slot
-        ? `<span class="tag avail">yours</span>`
-        : `<span class="tag gone">gone · ${who} @ ${drafted.pick_no}</span>`;
-    } else if (inj) {
-      status += injTag(inj);
-    }
+    if (inj) status += injTag(inj);
     return `<div class="queue-item">
       <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
       <div class="sub">${q.pos}${adpText(q.name)} · ${q.note}</div>
     </div>`;
-  }).join("");
+  }).join("")
+    : `<div class="empty">Queue is empty — everyone on it is off the board.</div>`;
 
   const counts = countPos(mine);
   $("holes").innerHTML = [
@@ -298,16 +293,13 @@ function render() {
     ? `Still no QB: ${needQb.join(" · ")}`
     : "Every team has a QB1.";
 
-  const flagRows = [...S.skip, ...S.crowded].map((x) => {
-    const drafted = picks.find((p) => norm(metaName(p.metadata)) === norm(x.name));
+  const flagRows = [...S.skip, ...S.crowded]
+    .filter((x) => !draftedByName(picks, x.name))
+    .map((x) => {
     const kind = S.skip.some((s) => s.name === x.name) ? "skip" : "crowd";
-    const state = drafted ? `<span class="tag gone">gone @ ${drafted.pick_no}</span>` : `<span class="tag ${kind}">${kind}</span>`;
-    if (drafted && drafted.draft_slot !== S.slot) {
-      return `<div class="player"><div class="pos">—</div><div><div class="name">${x.name} ${state}</div><div class="sub">${x.reason}</div></div><div class="right">off board</div></div>`;
-    }
-    return `<div class="player"><div class="pos">—</div><div><div class="name">${x.name} ${state}</div><div class="sub">${x.reason}</div></div><div class="right">${drafted ? "taken" : "still up"}</div></div>`;
+    return `<div class="player"><div class="pos">—</div><div><div class="name">${x.name} <span class="tag ${kind}">${kind}</span></div><div class="sub">${x.reason}</div></div><div class="right">still up</div></div>`;
   });
-  $("flags").innerHTML = flagRows.join("");
+  $("flags").innerHTML = flagRows.join("") || `<div class="empty">No skip/crowded names left on the board.</div>`;
 
   renderBoard(taken, order);
   $("recent").innerHTML = picks.slice(-12).reverse().map((p) => {
