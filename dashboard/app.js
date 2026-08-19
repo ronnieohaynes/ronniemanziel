@@ -122,7 +122,7 @@ function renderAdviceHtml(advice, pickNo) {
     ? `<p class="advice-outlook"><b>2026 outlook:</b> ${advice.outlook}</p>`
     : "";
   return `<h2>Take ${advice.take}</h2>
-    <div class="small advice-meta">${advice.pos || ""} · pick ${pickNo}${priceTag ? ` · ${priceTag}` : ""}</div>
+    <div class="small advice-meta">${advice.pos || ""}${advice.slot ? ` · ${advice.slot}` : ""} · pick ${pickNo}${priceTag ? ` · ${priceTag}` : ""}</div>
     ${depthHtml}${outlookHtml}${list}`;
 }
 
@@ -200,26 +200,28 @@ function resolveAdvice(picks, pickNo) {
     }
     const hit = lookupAdp(q.name);
     if (hit && pickNo - hit.adp < -maxReach) continue;
-    return {
-      take: q.name,
-      pos: q.pos,
-      note: q.note,
-      reasons: q.reasons,
-      depthCharts: q.depthCharts,
-      outlook: q.outlook,
-    };
+      return {
+        take: q.name,
+        pos: q.pos,
+        slot: q.slot,
+        note: q.note,
+        reasons: q.reasons,
+        depthCharts: q.depthCharts,
+        outlook: q.outlook,
+      };
   }
   if (nextTimed) {
     const adpHit = lookupAdp(nextTimed.name);
     const onTime = adpHit ? Math.round(adpHit.adp) : nextTimed.afterPick + maxReach;
+    const kind = nextTimed.slot === "taxi" ? "taxi" : "bench";
     return {
       wait: true,
       take: nextTimed.name,
       pos: nextTimed.pos,
       untilPick: onTime,
       reasons: [
-        `${nextTimed.name} is on-time near pick ${onTime} — taking now would be a reach.`,
-        "Best value at this pick: scroll Best remaining, or take Jauan Jennings if still up (ADP ~171).",
+        `${nextTimed.name} (${kind}) is on-time near pick ${onTime} — reaching now wastes value.`,
+        "Use this pick for best **bench** value on the board (WR/RB on-time or value).",
       ],
     };
   }
@@ -310,7 +312,7 @@ function render() {
     if (inj) status += injTag(inj);
     return `<div class="queue-item">
       <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
-      <div class="sub">${q.pos}${adpText(q.name)}</div>
+      <div class="sub">${q.pos}${q.slot ? ` · ${q.slot}` : ""}${adpText(q.name)}</div>
       ${q.outlook ? `<div class="sub outlook">${q.outlook}</div>` : ""}
       <ul class="queue-why">${adviceReasons(q).map((r) => `<li>${r}</li>`).join("")}</ul>
     </div>`;
