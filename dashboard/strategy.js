@@ -6,11 +6,13 @@ window.STRATEGY = {
   slot: 7,
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
+  maxReach: 8,
+
   rules: [
-    "Before recommending: compare Sleeper depth chart, RotoWire role/outlook, and team reports.",
-    "Taxi = rookies only (3 slots). Hurst/Bell/Claiborne are gone — fill taxi at 186+.",
-    "Starting nine is done. Late rounds = taxi darts and bench; skip TE3, QB3, injured-out rookies.",
-    "ADP is a price check only.",
+    "No reach: do not take anyone more than ~8 picks before ADP unless a clear starter role.",
+    "Taxi rookies wait for on-time picks — Randall ~234, Thompson ~247, not at 186.",
+    "Late round default: best value on the board, not need-based reaching.",
+    "Role and outlook still matter — ADP is the price check that stops stupid reaches.",
   ],
 
   advice: { pick: 186 },
@@ -18,55 +20,58 @@ window.STRATEGY = {
   /** Present-tense only. Names must match Sleeper full_name. Drafted names drop off automatically. */
   queue: [
     {
-      name: "Adam Randall",
-      pos: "RB",
+      name: "Jauan Jennings",
+      pos: "WR",
+      afterPick: 178,
       depthCharts: [
-        { source: "Sleeper", role: "RB #3 BAL" },
-        { source: "Role", role: "Rookie taxi dart — no clear 2026 job, pure dynasty stash" },
+        { source: "Sleeper", role: "MIN SWR #3 behind JJ / Addison" },
+        { source: "Team", role: "Signed as WR3 — not a handcuff, but same offense as JJ" },
       ],
       outlook:
-        "Undrafted rookie RB in Baltimore. Taxi-eligible only; do not expect 2026 starts. Stash and see if the backfield thins out.",
+        "Age 29, 1-year deal. WR3 in Minnesota — JJ insurance is partial (Addison bumps first). Value at this pick, not a reach.",
       reasons: [
-        "Taxi slot #1 — rookie RB (age 22). Hurst/Bell/Claiborne all drafted.",
-        "You still have 3 open taxi spots (rookies only). Fill them before the draft ends.",
-        "ADP ~234 — on-time or slight reach at 186; paying to secure a taxi body.",
-        "Not a 2026 starter; roster as taxi, not bench flex.",
+        "ADP ~171 — **value** at pick 186 (~15 picks late), not a reach.",
+        "If JJ misses time, Jennings sees more targets; Addison still ahead on the tree.",
+        "Bench stash only — not taxi (veteran). Taxi rookies wait for picks 234+.",
+        "Skip if you would rather leave 186 open and take pure value from the board.",
+      ],
+    },
+    {
+      name: "Adam Randall",
+      pos: "RB",
+      afterPick: 226,
+      depthCharts: [
+        { source: "Sleeper", role: "RB #3 BAL" },
+      ],
+      outlook: "Rookie taxi dart. On-time near pick 234 — do not take at 186.",
+      reasons: [
+        "Taxi slot #1 — rookie only. ADP ~234 matches your pick **234**, not 186.",
+        "Taking him at 186 is a ~48-pick reach; wait.",
       ],
     },
     {
       name: "Brenen Thompson",
       pos: "WR",
+      afterPick: 239,
       depthCharts: [
         { source: "Sleeper", role: "WR #4 LAC" },
-        { source: "Outlook", role: "Crowded LAC room behind Ladd — taxi dart only" },
       ],
-      outlook: "Rookie WR depth piece in Los Angeles. Taxi stash, not a weekly play in 2026.",
+      outlook: "Rookie taxi dart. On-time near pick 247.",
       reasons: [
-        "Taxi slot #2 at pick 199 if Randall is gone.",
-        "Same logic: rookie-only taxi, dynasty lottery ticket.",
+        "Taxi slot #2 at pick **247** — on-time, not a reach.",
+        "Crowded LAC WR room — taxi stash only.",
       ],
     },
     {
-      name: "J'Mari Taylor",
-      pos: "RB",
+      name: "Eli Raridon",
+      pos: "TE",
+      afterPick: 250,
       depthCharts: [
-        { source: "Sleeper", role: "RB #4 JAX" },
+        { source: "Sleeper", role: "TE #2 NE" },
       ],
-      outlook: "Jaguars rookie RB4 — taxi dart only.",
+      outlook: "Rookie TE — taxi at pick ~258 if you want a third taxi body.",
       reasons: [
-        "Taxi slot #3 at pick 210.",
-        "Take if Randall and Thompson are gone.",
-      ],
-    },
-    {
-      name: "Zavion Thomas",
-      pos: "WR",
-      depthCharts: [
-        { source: "Sleeper", role: "WR #5 CHI" },
-      ],
-      outlook: "Bears rookie WR depth — back-end taxi if you still need a third rookie.",
-      reasons: [
-        "Pick 223 filler taxi only if top three are off the board.",
+        "On-time near pick 258. You already start Pitts + Kincaid — only for taxi fill.",
       ],
     },
   ],

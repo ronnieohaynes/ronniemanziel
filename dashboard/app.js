@@ -93,6 +93,12 @@ function adviceReasons(entry) {
 }
 
 function renderAdviceHtml(advice, pickNo) {
+  if (advice.wait) {
+    const list = adviceReasons(advice);
+    return `<h2>Wait — don't reach</h2>
+      <div class="small advice-meta">pick ${pickNo} · next queued: ${advice.take} (${advice.pos || ""})</div>
+      <ul class="advice-why">${list.map((r) => `<li>${r}</li>`).join("")}</ul>`;
+  }
   const price = priceCheck(advice.take, pickNo);
   const reasons = adviceReasons(advice);
   const priceTag = price
@@ -182,19 +188,38 @@ function draftedByName(picks, name) {
   return picks.find((p) => norm(metaName(p.metadata)) === norm(name));
 }
 
-/** First available queue name — present board only. */
-function resolveAdvice(picks) {
+/** First available queue name — skips reaches and not-yet picks. */
+function resolveAdvice(picks, pickNo) {
+  const maxReach = S.maxReach ?? 8;
+  let nextTimed = null;
   for (const q of S.queue || []) {
-    if (!draftedByName(picks, q.name)) {
-      return {
-        take: q.name,
-        pos: q.pos,
-        note: q.note,
-        reasons: q.reasons,
-        depthCharts: q.depthCharts,
-        outlook: q.outlook,
-      };
+    if (draftedByName(picks, q.name)) continue;
+    if (q.afterPick && pickNo < q.afterPick) {
+      if (!nextTimed || q.afterPick < nextTimed.afterPick) nextTimed = q;
+      continue;
     }
+    const hit = lookupAdp(q.name);
+    if (hit && pickNo - hit.adp < -maxReach) continue;
+    return {
+      take: q.name,
+      pos: q.pos,
+      note: q.note,
+      reasons: q.reasons,
+      depthCharts: q.depthCharts,
+      outlook: q.outlook,
+    };
+  }
+  if (nextTimed) {
+    return {
+      wait: true,
+      take: nextTimed.name,
+      pos: nextTimed.pos,
+      untilPick: nextTimed.afterPick,
+      reasons: [
+        `${nextTimed.name} is on-time near pick ${nextTimed.afterPick + (lookupAdp(nextTimed.name)?.adp ? Math.round(lookupAdp(nextTimed.name).adp - nextTimed.afterPick) : 8)} — taking now would be a reach.`,
+        "At this pick: take best value from the board, or Jauan Jennings if still up (ADP ~171).",
+      ],
+    };
   }
   return null;
 }
@@ -221,7 +246,7 @@ function render() {
     if (myNext.length >= 4) break;
   }
 
-  const advice = resolveAdvice(picks);
+  const advice = resolveAdvice(picks, myNext[0] || nextNo);
   const adviceEl = $("advice");
   if (advice && advice.take) {
     const pickNo = myNext[0] || nextNo;
