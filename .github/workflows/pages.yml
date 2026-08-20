@@ -1,4 +1,4 @@
-# Deploy the live draft dashboard to GitHub Pages.
+# Deploy Team Intel dashboard to GitHub Pages.
 # Site: https://ronnieohaynes.github.io/ronniemanziel/
 # Deploys from main only (GitHub Pages blocks feature-branch deploys).
 name: Deploy dashboard

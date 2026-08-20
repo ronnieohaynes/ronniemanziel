@@ -3,86 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Bada Bing — Live Draft HQ</title>
+  <title>Bada Bing — Team Intel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=intel2" />
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
+    <header class="topbar">
       <div class="brand">
-        <h1>Bada Bing HQ</h1>
-        <p id="subtitle">Sleeper dynasty · slot 7</p>
+        <span class="gm">Bada Bing <em>Intel</em></span>
+        <span id="seasonLabel">2026 dynasty</span>
       </div>
       <div class="actions">
-        <button class="btn ghost" id="autoBtn" type="button">Auto: on</button>
+        <a class="link" id="sleeperLink" href="#" target="_blank" rel="noopener">Open in Sleeper</a>
         <button class="btn" id="refreshBtn" type="button">Refresh</button>
       </div>
     </header>
 
-    <div id="clock" class="clock waiting">
-      <h2 id="clockTitle">Loading draft…</h2>
-      <div class="small" id="clockSub"></div>
-    </div>
+    <nav class="team-nav" id="teamNav" aria-label="Select a franchise"></nav>
+    <p class="loadnote" id="loadNote">Loading league data from Sleeper…</p>
 
-    <div id="advice" class="clock waiting"></div>
-
-    <div class="meta" id="meta"></div>
-
-    <div class="grid main">
-      <section class="card">
-        <h3>My roster</h3>
-        <div id="roster"></div>
-        <div class="status-line" id="starterLine"></div>
-      </section>
-
-      <section class="card">
-        <h3>Next pick queue</h3>
-        <div id="queue"></div>
-      </section>
-    </div>
-
-    <div class="grid main" style="margin-top:14px">
-      <section class="card">
-        <h3>Roster holes</h3>
-        <div class="holes" id="holes"></div>
-        <div class="small" style="margin-top:10px" id="needQb"></div>
-      </section>
-      <section class="card">
-        <h3>Skip / crowded (if still on the board)</h3>
-        <div id="flags"></div>
-      </section>
-    </div>
-
-    <section class="card" style="margin-top:14px">
-      <h3>Best remaining</h3>
-      <div class="tabs" id="tabs">
-        <button class="tab on" data-pos="RB" type="button">RB</button>
-        <button class="tab" data-pos="WR" type="button">WR</button>
-        <button class="tab" data-pos="TE" type="button">TE</button>
-        <button class="tab" data-pos="QB" type="button">QB</button>
+    <div id="teamView" hidden>
+      <div class="hero" id="hero">
+        <div class="hero-logo" id="heroLogo"></div>
+        <div class="hero-id">
+          <p class="eyebrow" id="heroEyebrow">Franchise</p>
+          <h1 id="heroName"></h1>
+          <p class="manager">GM: <strong id="heroManager"></strong></p>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><p class="label">Record</p><p class="value" id="statRecord">—</p></div>
+          <div class="hstat"><p class="label">Roster</p><p class="value" id="statRoster">—</p></div>
+          <div class="hstat"><p class="label">PF</p><p class="value" id="statPf">—</p></div>
+        </div>
+        <div class="hero-tiers" id="heroTiers" aria-label="Age / value buckets"></div>
       </div>
-      <div class="list" id="board"></div>
-    </section>
 
-    <div class="grid main" style="margin-top:14px">
-      <section class="card">
-        <h3>Recent picks</h3>
-        <div class="recent" id="recent"></div>
-      </section>
-      <section class="card">
-        <h3>How we draft</h3>
-        <ol class="rules" id="rules"></ol>
-        <p class="small"><a id="sleeperLink" href="#" target="_blank" rel="noopener">Open in Sleeper</a></p>
-      </section>
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Dynasty Value</h2>
+          <span class="tag" id="rosterTag">ADP · age · injury</span>
+        </div>
+        <div class="panel-body" id="rosterBody"><p class="pending">Loading roster…</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Depth Chart</h2>
+          <span class="tag" id="depthTag">Projected starters</span>
+        </div>
+        <div class="panel-body" id="depthBody"><p class="pending">Building depth chart…</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Draft Picks</h2>
+          <span class="tag" id="picksTag">Future assets</span>
+        </div>
+        <div class="panel-body" id="picksBody"><p class="pending">Loading owned picks…</p></div>
+      </div>
+
+      <div class="intel-grid">
+        <div class="panel">
+          <div class="panel-head"><h2>Team Status</h2><span class="tag" id="statusTag"></span></div>
+          <div class="panel-body"><ul class="obs" id="obsList"></ul></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Trade Intel</h2><span class="tag">Season transactions</span></div>
+          <div class="panel-body" id="tradeBody"><p class="pending">Loading trades…</p></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>League Rules</h2><span class="tag">Standing context</span></div>
+        <div class="panel-body"><ol class="rules" id="rulesList"></ol></div>
+      </div>
     </div>
 
     <p class="status-line" id="status"></p>
   </div>
-  <script src="adp.js?v=adp28"></script>
-  <script src="strategy.js?v=adp28"></script>
-  <script src="app.js?v=adp28"></script>
+
+  <script src="adp.js?v=intel2"></script>
+  <script src="strategy.js?v=intel2"></script>
+  <script src="app.js?v=intel2"></script>
 </body>
 </html>

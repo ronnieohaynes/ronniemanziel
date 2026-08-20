@@ -3,34 +3,40 @@
 Manager: **Ronnie** (Sleeper: `oreokidronaldo`)
 Season: **2026**
 
-Home base for managing my fantasy football teams — draft strategy, league
-settings, live picks, and notes. Built to be readable on the go (phone via
-[cursor.com/agents](https://cursor.com/agents) → pick `ronniemanziel`).
+Home base for managing fantasy football teams. The live site is a **Patio Boys–style Team Intel** dashboard for Bada Bing dynasty.
 
 ## Leagues
 
 | League | Platform | Type | Status | File |
 |---|---|---|---|---|
-| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | **Sutton in; next 127 Pollard. Marks crowded.** | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
+| Bada Bing | Sleeper | Dynasty, 1QB, full PPR | Startup draft complete · in season | [leagues/sleeper-bada-bing.md](leagues/sleeper-bada-bing.md) |
 | Why So Serious | ESPN | Keeper (2027+); **2026 full redraft** | Draft complete | [leagues/espn-keeper.md](leagues/espn-keeper.md) |
 
 ## Quick links
-- **[Live draft dashboard](https://ronnieohaynes.github.io/ronniemanziel/)** — refresh pulls latest Sleeper picks
+- **[Team Intel dashboard](https://ronnieohaynes.github.io/ronniemanziel/)** — live Sleeper rosters, depth, picks, trades
 - [Dynasty draft board / BPA notes](draft-board.md)
 - [Sleeper: Bada Bing](leagues/sleeper-bada-bing.md)
 - [ESPN keeper league](leagues/espn-keeper.md)
 
-## Live dashboard
+## Live dashboard (Team Intel)
+
 **Website:** [https://ronnieohaynes.github.io/ronniemanziel/](https://ronnieohaynes.github.io/ronniemanziel/)
 
-Refresh in the browser pulls live Sleeper picks. Auto-refresh is every 20 seconds.
+Modeled after Patio Boys Team Intel. Defaults to **oreokidronaldo**; switch franchises with the team chips.
 
-One-time GitHub setup (if the link 404s):
-1. Open [repo Settings → Pages](https://github.com/ronnieohaynes/ronniemanziel/settings/pages)
-2. **Source:** GitHub Actions
-3. Save, then re-run the **Deploy dashboard** workflow under Actions if needed
+Shows:
+- Hero (record, roster size, age / top-ADP buckets)
+- Dynasty Value roster table (ADP · age · injury notes)
+- Depth chart from Sleeper starters + ADP
+- Future draft picks (2027–2029)
+- Team status + trade intel
+- League rules / soft-avoid notes
 
-Local backup:
+Refresh pulls latest Sleeper data. Player metadata caches in the browser for 12 hours.
+
+Deploy: GitHub Pages via `.github/workflows/pages.yml` on push to `main` (uploads `dashboard/`).
+
+Local:
 
 ```bash
 python3 dashboard/serve.py
@@ -38,15 +44,14 @@ python3 dashboard/serve.py
 
 http://127.0.0.1:8080
 
-Edit `dashboard/strategy.js` to change the pick queue, skip list, and crowded-room flags.
-ADP numbers come from `dashboard/adp.js` (the Sleeper dump). Rebuild with `python3 scripts/generate_sleeper_adp.py`.
+Edit `dashboard/strategy.js` for manager notes and standing rules.
+ADP numbers come from `dashboard/adp.js`. Rebuild with `python3 scripts/generate_sleeper_adp.py`.
 
-## My draft rules of thumb (dynasty, this scoring)
-- **Best player available** for the format, not raw 2026 projected points.
+## Dynasty rules of thumb (Bada Bing scoring)
+- **Best player available** for the format, not raw weekly projections.
 - Prioritize young, high-volume **target earners** (full PPR, 2 FLEX = can start 4 WR).
 - **Wait on QB** — 1QB league with 4-pt pass TDs suppresses QB value.
 - **No TE premium** — don't reach for TE on scoring alone.
-- **No K/DST** starting slots — never draft them.
-- Soft **avoid Raiders** players unless clearly the best available by a wide margin.
-- **Injury:** skip only if it is already called serious **and** the player will miss multiple weeks. Do not skip a clearly good dynasty player for a sore/day-to-day ding.
-- **ADP is a price tag**, not a reason to draft. Role, holes, scoring, age, and injuries make the pick.
+- **No K/DST** starting slots — never roster them.
+- Soft **avoid Raiders** unless clearly BPA by a wide margin.
+- **ADP is a price tag**, not a reason to trade or hold.

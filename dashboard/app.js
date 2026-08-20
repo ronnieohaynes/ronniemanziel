@@ -1,123 +1,36 @@
 const S = window.STRATEGY;
 const API = "https://api.sleeper.app/v1";
-const PLAYER_CACHE_KEY = "bb_players_v1";
+const PLAYER_CACHE_KEY = "bb_intel_players_v1";
 const PLAYER_CACHE_MS = 12 * 60 * 60 * 1000;
-const AUTO_MS = 20000;
+const COLORS = [
+  "#C9963A", "#1D9E75", "#D8553A", "#7F77DD", "#D4537E",
+  "#3A8FC9", "#9B59B6", "#5DBB63", "#E8C34A", "#5EC8FF",
+  "#FF9B4A", "#4EE0A7",
+];
 
-let auto = true;
-let autoTimer = null;
-let remainingPos = "RB";
-let cache = {
-  draft: null,
-  picks: [],
+const state = {
+  league: null,
   users: [],
+  rosters: [],
+  teams: [],
+  teamsByKey: {},
+  selected: null,
   players: {},
+  tradesByRoster: {},
+  tradedPicks: [],
+  draftRounds: 5,
 };
 
 function $(id) { return document.getElementById(id); }
-
-function slotForPick(pickNo, teams) {
-  const round = Math.ceil(pickNo / teams);
-  const idx = ((pickNo - 1) % teams) + 1;
-  return round % 2 === 1 ? idx : teams - idx + 1;
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
-
-function pickFor(slot, round, teams) {
-  return round % 2 === 1
-    ? (round - 1) * teams + slot
-    : (round - 1) * teams + (teams - slot + 1);
-}
-
-function playerName(p) {
-  return (p.full_name || `${p.first_name || ""} ${p.last_name || ""}`).trim();
-}
-
 function norm(s) {
   return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
-}
-
-function findByName(name) {
-  const n = norm(name);
-  for (const p of Object.values(cache.players)) {
-    if (norm(playerName(p)) === n) return p;
-  }
-  return null;
-}
-
-function metaName(m) {
-  return `${m.first_name} ${m.last_name}`.trim();
-}
-
-function flagFor(name) {
-  const n = norm(name);
-  const skip = S.skip.find((x) => norm(x.name) === n);
-  if (skip) return { kind: "skip", text: skip.reason };
-  const crowd = S.crowded.find((x) => norm(x.name) === n);
-  if (crowd) return { kind: "crowd", text: crowd.reason };
-  return null;
-}
-
-function injTag(status) {
-  if (!status || status === "Active") return "";
-  return `<span class="tag inj">${status}</span>`;
-}
-
-function lookupAdp(name) {
-  return globalThis.SLEEPER_ADP ? SLEEPER_ADP.lookup(name) : null;
-}
-
-function adpText(name) {
-  const hit = lookupAdp(name);
-  return hit ? ` · Sleeper ADP ${hit.adp} (#${hit.rank})` : "";
-}
-
-/** ADP vs your pick — price check only, not the reason to draft. */
-function priceCheck(name, pickNo) {
-  const hit = lookupAdp(name);
-  if (!hit || !pickNo) return null;
-  const delta = pickNo - hit.adp;
-  const rounded = Math.abs(Math.round(delta));
-  if (delta <= -8) {
-    return { kind: "reach", text: `ADP ${hit.adp} (#${hit.rank}) — ~${rounded} picks early` };
-  }
-  if (delta >= 8) {
-    return { kind: "value", text: `ADP ${hit.adp} (#${hit.rank}) — ~${rounded} picks of value` };
-  }
-  return { kind: "on-time", text: `ADP ${hit.adp} (#${hit.rank}) — on time` };
-}
-
-function adviceReasons(entry) {
-  if (Array.isArray(entry.reasons) && entry.reasons.length) return entry.reasons;
-  if (entry.note) return [entry.note];
-  return [];
-}
-
-function renderAdviceHtml(advice, pickNo) {
-  const price = priceCheck(advice.take, pickNo);
-  const reasons = adviceReasons(advice);
-  const priceTag = price
-    ? `<span class="tag ${price.kind}">${price.kind}</span> <span class="muted">${price.text}</span>`
-    : "";
-  const list = reasons.length
-    ? `<ul class="advice-why">${reasons.map((r) => `<li>${r}</li>`).join("")}</ul>`
-    : "";
-  const pl = findByName(advice.take);
-  const depthRows = [...(advice.depthCharts || [])];
-  if (pl?.depth_chart_order != null && !depthRows.some((d) => String(d.source).includes("Sleeper"))) {
-    depthRows.unshift({
-      source: "Sleeper (live)",
-      role: `${pl.depth_chart_position || "?"} #${pl.depth_chart_order}`,
-    });
-  }
-  const depthHtml = depthRows.length
-    ? `<div class="advice-dc"><b>Depth charts checked</b><ul>${depthRows.map((d) => `<li><b>${d.source}:</b> ${d.role}</li>`).join("")}</ul></div>`
-    : "";
-  const outlookHtml = advice.outlook
-    ? `<p class="advice-outlook"><b>2026 outlook:</b> ${advice.outlook}</p>`
-    : "";
-  return `<h2>Take ${advice.take}</h2>
-    <div class="small advice-meta">${advice.pos || ""}${advice.slot ? ` · ${advice.slot}` : ""} · pick ${pickNo}${priceTag ? ` · ${priceTag}` : ""}</div>
-    ${depthHtml}${outlookHtml}${list}`;
 }
 
 async function getJSON(url) {
@@ -126,17 +39,45 @@ async function getJSON(url) {
   return res.json();
 }
 
+function lookupAdp(name) {
+  return globalThis.SLEEPER_ADP ? SLEEPER_ADP.lookup(name) : null;
+}
+
+function playerName(p) {
+  if (!p) return "Unknown";
+  return (p.full_name || `${p.first_name || ""} ${p.last_name || ""}`).trim() || "Unknown";
+}
+
+function noteFor(p) {
+  if (!p || !S.notes) return "";
+  const full = playerName(p);
+  return S.notes[full] || S.notes[p.last_name] || "";
+}
+
+function ageBand(age) {
+  const a = Number(age);
+  if (!Number.isFinite(a) || a <= 0) return "unknown";
+  if (a < 25) return "young";
+  if (a <= 29) return "prime";
+  return "veteran";
+}
+
+function injPill(status) {
+  if (!status || status === "Active") return "";
+  return `<span class="tag-pill inj">${escapeHtml(status)}</span>`;
+}
+
 async function loadPlayers() {
   try {
     const raw = localStorage.getItem(PLAYER_CACHE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed.ts && Date.now() - parsed.ts < PLAYER_CACHE_MS && parsed.data) {
-        cache.players = parsed.data;
+        state.players = parsed.data;
         return "cache";
       }
     }
-  } catch (_) { /* ignore quota / parse */ }
+  } catch (_) { /* ignore */ }
 
   const all = await getJSON(`${API}/players/nfl`);
   const slim = {};
@@ -158,397 +99,478 @@ async function loadPlayers() {
       depth_chart_position: p.depth_chart_position,
     };
   }
-  cache.players = slim;
+  state.players = slim;
   try {
     localStorage.setItem(PLAYER_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: slim }));
-  } catch (_) {
-    /* localStorage full — live data still works this session */
-  }
+  } catch (_) { /* quota */ }
   return "network";
 }
 
-function userById(id) {
-  return cache.users.find((u) => u.user_id === id);
-}
-
-function nameForSlot(slot, order) {
-  const uid = Object.keys(order).find((k) => order[k] === slot);
-  const u = uid ? userById(uid) : null;
-  const name = u ? u.display_name : `Slot ${slot}`;
-  return slot === S.slot ? `${name} (you)` : name;
-}
-
-function draftedByName(picks, name) {
-  return picks.find((p) => norm(metaName(p.metadata)) === norm(name));
-}
-
-/** First available queue name. Never returns "wait" — always names a take. */
-function resolveAdvice(picks, pickNo) {
-  const maxReach = S.maxReach ?? 8;
-  const deferred = [];
-  for (const q of S.queue || []) {
-    if (draftedByName(picks, q.name)) continue;
-    const hit = lookupAdp(q.name);
-    const early = hit ? pickNo - hit.adp : 0;
-    const tooSoon = q.afterPick && pickNo < q.afterPick;
-    const tooEarlyAdp = hit && early < -maxReach;
-    if (tooSoon || tooEarlyAdp) {
-      deferred.push({ q, hit, early, onTime: hit ? Math.round(hit.adp) : (q.afterPick || pickNo) });
-      continue;
-    }
+function buildTeams() {
+  const usersById = Object.fromEntries(state.users.map((u) => [u.user_id, u]));
+  const teams = state.rosters.map((r, i) => {
+    const u = usersById[r.owner_id] || {};
+    const meta = u.metadata || {};
+    const manager = u.display_name || `Roster ${r.roster_id}`;
+    const displayName = meta.team_name || manager;
+    const key = norm(manager) || `roster${r.roster_id}`;
+    const wins = r.settings?.wins || 0;
+    const losses = r.settings?.losses || 0;
+    const ties = r.settings?.ties || 0;
+    const pf = r.settings?.fpts || 0;
+    const players = (r.players || []).map(String);
+    const starters = (r.starters || []).map(String).filter((id) => id && id !== "0");
+    const taxi = (r.taxi || []).map(String);
+    const reserve = (r.reserve || []).map(String);
     return {
-      take: q.name,
-      pos: q.pos,
-      slot: q.slot,
-      note: q.note,
-      reasons: q.reasons,
-      depthCharts: q.depthCharts,
-      outlook: q.outlook,
+      key,
+      color: COLORS[i % COLORS.length],
+      abbrev: displayName.slice(0, 2).toUpperCase(),
+      displayName,
+      manager,
+      ownerId: r.owner_id,
+      rosterId: r.roster_id,
+      isMine: r.owner_id === S.userId || norm(manager) === norm(S.defaultTeam),
+      wins, losses, ties,
+      record: ties ? `${wins}-${losses}-${ties}` : `${wins}-${losses}`,
+      pf,
+      players,
+      starters,
+      taxi,
+      reserve,
+      rosterSize: players.length,
     };
-  }
-
-  // Preference still on the board but gated — take them anyway if this is a late pick
-  // and they're the best named option left (better than a blank "don't reach" banner).
-  if (deferred.length) {
-    deferred.sort((a, b) => a.onTime - b.onTime);
-    const best = deferred[0];
-    const mild = best.early >= -25;
-    if (mild || pickNo >= 250) {
-      const reasons = [
-        ...(best.q.reasons || []),
-        best.early < -maxReach
-          ? `Slightly early vs ADP ${best.hit?.adp} — take now so you don't miss him.`
-          : `On-time window is ~${best.onTime}; still the best named target left.`,
-      ];
-      return {
-        take: best.q.name,
-        pos: best.q.pos,
-        slot: best.q.slot,
-        note: best.q.note,
-        reasons,
-        depthCharts: best.q.depthCharts,
-        outlook: best.q.outlook,
-      };
-    }
-  }
-
-  // Last resort: best available WR/RB by ADP who isn't skipped.
-  const bpa = bestAvailableSkill(picks, pickNo, maxReach);
-  if (bpa) return bpa;
-  return null;
-}
-
-function isSkippedName(name) {
-  const n = norm(name);
-  return [...(S.skip || []), ...(S.crowded || [])].some((x) => norm(x.name) === n);
-}
-
-/** On-time WR/RB still on the board — must be ranked (search_rank + ADP). */
-function bestAvailableSkill(picks, pickNo, maxReach) {
-  if (!globalThis.SLEEPER_ADP?.rows) return null;
-  const taken = new Set(picks.map((p) => norm(metaName(p.metadata))));
-  let best = null;
-  for (const row of SLEEPER_ADP.rows) {
-    if (taken.has(norm(row.name)) || isSkippedName(row.name)) continue;
-    if (row.rank > 350) continue; // not meaningfully ranked
-    const delta = pickNo - row.adp;
-    if (delta < -maxReach) continue;
-    const pl = findByName(row.name);
-    if (!pl || !["WR", "RB"].includes(pl.position) || !pl.team) continue;
-    if (S.softAvoidTeams?.includes(pl.team)) continue;
-    const sr = pl.search_rank;
-    if (sr != null && sr > 350) continue; // Sleeper doesn't rank them either
-    best = { row, pl, delta };
-    break;
-  }
-  if (!best) return null;
-  const taxi = best.pl.years_exp === 0;
-  return {
-    take: best.row.name,
-    pos: best.pl.position,
-    slot: taxi ? "taxi" : "bench",
-    outlook: `Best ranked ${best.pl.position} left (ADP #${best.row.rank} · ${best.row.adp}).`,
-    reasons: [
-      `BPA among ranked skill players: ${best.pl.team} ${best.pl.position}${best.pl.depth_chart_order != null ? ` #${best.pl.depth_chart_order}` : ""}.`,
-      `Sleeper search ~#${best.pl.search_rank ?? "?"} · ADP #${best.row.rank}.`,
-      taxi ? "Rookie — taxi-eligible." : "Bench depth.",
-    ],
-    depthCharts: best.pl.depth_chart_order != null
-      ? [{ source: "Sleeper (live)", role: `${best.pl.depth_chart_position || "?"} #${best.pl.depth_chart_order}` }]
-      : [],
-  };
-}
-
-function render() {
-  const draft = cache.draft;
-  const picks = cache.picks;
-  const teams = draft.settings.teams;
-  const rounds = draft.settings.rounds;
-  const total = teams * rounds;
-  const nextNo = picks.length + 1;
-  const nextSlot = nextNo <= total ? slotForPick(nextNo, teams) : null;
-  const order = draft.draft_order || {};
-  const mine = picks.filter((p) => p.draft_slot === S.slot);
-  const taken = new Set(picks.map((p) => p.player_id));
-
-  $("subtitle").textContent = `${draft.metadata?.name || "Bada Bing"} · ${draft.status} · slot ${S.slot}`;
-  $("sleeperLink").href = S.sleeperLeague;
-
-  const myNext = [];
-  for (let r = 1; r <= rounds; r++) {
-    const n = pickFor(S.slot, r, teams);
-    if (n > picks.length) myNext.push(n);
-    if (myNext.length >= 4) break;
-  }
-
-  const advice = resolveAdvice(picks, myNext[0] || nextNo);
-  const adviceEl = $("advice");
-  if (advice && advice.take) {
-    const pickNo = myNext[0] || nextNo;
-    adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
-    adviceEl.innerHTML = renderAdviceHtml(advice, pickNo);
-  } else {
-    const pickNo = myNext[0] || nextNo;
-    adviceEl.className = nextSlot === S.slot ? "clock on-me" : "clock waiting";
-    adviceEl.innerHTML = `<h2>Queue empty</h2>
-      <div class="small advice-meta">pick ${pickNo} · everyone on the queue is drafted</div>
-      <ul class="advice-why"><li>Check <b>Best remaining</b> below for taxi rookies (exp 0).</li><li>Update <code>strategy.js</code> if the board changed.</li></ul>`;
-  }
-
-  const clock = $("clock");
-  if (nextSlot == null) {
-    clock.className = "clock waiting";
-    $("clockTitle").textContent = "Draft complete";
-    $("clockSub").textContent = `${picks.length} / ${total} picks`;
-  } else if (nextSlot === S.slot) {
-    clock.className = "clock on-me";
-    $("clockTitle").textContent = `You're on the clock — pick ${nextNo}`;
-    $("clockSub").textContent = `Round ${Math.ceil(nextNo / teams)} · queue is below`;
-    if (navigator.vibrate) navigator.vibrate(80);
-  } else {
-    clock.className = "clock waiting";
-    const until = myNext[0] ? myNext[0] - nextNo : 0;
-    $("clockTitle").textContent = `On the clock: ${nameForSlot(nextSlot, order)}`;
-    $("clockSub").textContent = `Pick ${nextNo} · you're up in ${until} pick${until === 1 ? "" : "s"} (${myNext[0] ? "#" + myNext[0] : "—"})`;
-  }
-
-  $("meta").innerHTML = [
-    chip(`Pick ${Math.min(nextNo, total)} / ${total}`),
-    chip(`Round ${Math.min(Math.ceil(nextNo / teams), rounds)}`),
-    chip(`Timer ${Math.round((draft.settings.pick_timer || 0) / 3600)}h`),
-    chip(draft.status, draft.status === "drafting" ? "gold" : ""),
-    myNext.length ? chip(`Your next: ${myNext.map((n) => "#" + n).join(" · ")}`, "gold") : "",
-  ].join("");
-
-  $("roster").innerHTML = mine.length
-    ? mine.map((p) => {
-        const m = p.metadata;
-        const name = metaName(m);
-        const note = S.notes[m.last_name] || S.notes[name] || "";
-        return playerRow(m.position, name, m.team, `#${p.pick_no} · ${m.years_exp || "?"} yr`, m.injury_status, note);
-      }).join("")
-    : `<div class="empty">No picks yet.</div>`;
-
-  const starters = projectStarters(mine);
-  $("starterLine").textContent = starters
-    ? `Likely 9: ${starters}`
-    : "Need a full starting nine (QB, 2RB, 2WR, TE, 2 FLEX).";
-
-  const liveQueue = (S.queue || []).filter((q) => !draftedByName(picks, q.name));
-  $("queue").innerHTML = liveQueue.length
-    ? liveQueue.map((q, i) => {
-    const pl = findByName(q.name);
-    const inj = pl?.injury_status;
-    let status = `<span class="tag avail">available</span>`;
-    if (inj) status += injTag(inj);
-    return `<div class="queue-item">
-      <div class="row"><b>${i + 1}. ${q.name}</b>${status}</div>
-      <div class="sub">${q.pos}${q.slot ? ` · ${q.slot}` : ""}${adpText(q.name)}</div>
-      ${q.outlook ? `<div class="sub outlook">${q.outlook}</div>` : ""}
-      <ul class="queue-why">${adviceReasons(q).map((r) => `<li>${r}</li>`).join("")}</ul>
-    </div>`;
-  }).join("")
-    : `<div class="empty">Queue is empty — everyone on it is off the board.</div>`;
-
-  const counts = countPos(mine);
-  $("holes").innerHTML = [
-    hole("QB", counts.QB, 1, counts.QB < 1),
-    hole("RB", counts.RB, 3, counts.RB < 3, counts.RB < 2),
-    hole("WR", counts.WR, 3, counts.WR < 3, counts.WR < 2),
-    hole("TE", counts.TE, 1, counts.TE < 1),
-  ].join("");
-
-  const bySlot = {};
-  for (const p of picks) {
-    (bySlot[p.draft_slot] ||= []).push(p);
-  }
-  const needQb = [];
-  for (let s = 1; s <= teams; s++) {
-    const qbs = (bySlot[s] || []).filter((p) => p.metadata.position === "QB");
-    if (!qbs.length) {
-      const upcoming = [];
-      for (let r = 1; r <= rounds && upcoming.length < 2; r++) {
-        const n = pickFor(s, r, teams);
-        if (n > picks.length) upcoming.push(n);
-      }
-      needQb.push(`${nameForSlot(s, order)} (next #${upcoming.join(", #")})`);
-    }
-  }
-  $("needQb").textContent = needQb.length
-    ? `Still no QB: ${needQb.join(" · ")}`
-    : "Every team has a QB1.";
-
-  const flagRows = [...S.skip, ...S.crowded]
-    .filter((x) => !draftedByName(picks, x.name))
-    .map((x) => {
-    const kind = S.skip.some((s) => s.name === x.name) ? "skip" : "crowd";
-    return `<div class="player"><div class="pos">—</div><div><div class="name">${x.name} <span class="tag ${kind}">${kind}</span></div><div class="sub">${x.reason}</div></div><div class="right">still up</div></div>`;
   });
-  $("flags").innerHTML = flagRows.join("") || `<div class="empty">No skip/crowded names left on the board.</div>`;
 
-  renderBoard(taken, order);
-  $("recent").innerHTML = picks.slice(-12).reverse().map((p) => {
-    const m = p.metadata;
-    return `<div><span>#${p.pick_no}</span><span class="pos ${m.position}">${m.position}</span><span>${metaName(m)}</span><span>${nameForSlot(p.draft_slot, order)}</span></div>`;
-  }).join("") || `<div class="empty">No picks yet.</div>`;
+  teams.sort((a, b) => {
+    if (a.isMine !== b.isMine) return a.isMine ? -1 : 1;
+    if (b.wins !== a.wins) return b.wins - a.wins;
+    return b.pf - a.pf;
+  });
 
-  $("rules").innerHTML = S.rules.map((r) => `<li>${r}</li>`).join("");
-  const adpN = globalThis.SLEEPER_ADP ? SLEEPER_ADP.rows.length : 0;
-  $("status").textContent = `Updated ${new Date().toLocaleTimeString()} · ${Object.keys(cache.players).length} skill players cached · ${adpN} Sleeper ADP names · auto-refresh ${auto ? "on" : "off"}`;
-}
-
-function chip(text, cls) {
-  return `<span class="chip ${cls || ""}">${text}</span>`;
-}
-
-function hole(label, have, want, warn, crit) {
-  const cls = crit ? "crit" : warn ? "warn" : "";
-  return `<div class="hole ${cls}"><b>${have}</b>${label} <span class="sub">want ${want}+</span></div>`;
-}
-
-function playerRow(pos, name, team, sub, inj, extra) {
-  const flag = flagFor(name);
-  const teamTag = S.softAvoidTeams.includes(team) ? `<span class="tag raid">Raiders</span>` : "";
-  const crowd = flag?.kind === "crowd" ? `<span class="tag crowd">crowded</span>` : "";
-  const skip = flag?.kind === "skip" ? `<span class="tag skip">skip</span>` : "";
-  const adp = adpText(name);
-  const note = extra ? ` · ${extra}` : (flag ? ` · ${flag.text}` : "");
-  return `<div class="player">
-    <div class="pos ${pos}">${pos}</div>
-    <div>
-      <div class="name">${name} ${injTag(inj)}${skip}${crowd}${teamTag}</div>
-      <div class="sub">${team || "FA"}${adp}${note}</div>
-    </div>
-    <div class="right">${sub}</div>
-  </div>`;
-}
-
-function countPos(mine) {
-  const c = { QB: 0, RB: 0, WR: 0, TE: 0 };
-  for (const p of mine) {
-    const pos = p.metadata.position;
-    if (c[pos] != null) c[pos] += 1;
+  state.teams = teams;
+  state.teamsByKey = Object.fromEntries(teams.map((t) => [t.key, t]));
+  if (!state.selected || !state.teamsByKey[state.selected]) {
+    const mine = teams.find((t) => t.isMine);
+    state.selected = mine ? mine.key : teams[0]?.key;
   }
-  return c;
 }
 
-function projectStarters(mine) {
+function playerOf(pid) {
+  return state.players[String(pid)] || null;
+}
+
+function enrich(pid) {
+  const p = playerOf(pid);
+  const name = playerName(p) || `Player ${pid}`;
+  const adp = lookupAdp(name);
+  return {
+    pid: String(pid),
+    p,
+    name,
+    pos: p?.position || "—",
+    team: p?.team || "FA",
+    age: p?.age,
+    exp: p?.years_exp,
+    inj: p?.injury_status,
+    adp,
+    note: noteFor(p),
+    band: ageBand(p?.age),
+  };
+}
+
+function projectDepth(team) {
   const used = new Set();
-  const take = (pos, n) => {
-    const out = [];
-    for (const p of mine) {
-      if (out.length >= n) break;
-      if (used.has(p.player_id)) continue;
-      if (p.metadata.position === pos) {
-        used.add(p.player_id);
-        out.push(lastName(p));
+  const slots = ["QB", "RB", "RB", "WR", "WR", "TE", "FLEX", "FLEX"];
+  const pool = team.players.map(enrich);
+  const byPos = { QB: [], RB: [], WR: [], TE: [] };
+  for (const e of pool) {
+    if (byPos[e.pos]) byPos[e.pos].push(e);
+  }
+  const rank = (e) => {
+    const adp = e.adp?.adp ?? 9999;
+    const sr = e.p?.search_rank ?? 9999;
+    return adp * 10 + sr;
+  };
+  for (const pos of Object.keys(byPos)) byPos[pos].sort((a, b) => rank(a) - rank(b));
+
+  // Prefer Sleeper starters when present and still on roster
+  const starterSet = new Set(team.starters);
+  const rows = [];
+  const takeBest = (pos) => {
+    const list = byPos[pos] || [];
+    const preferred = list.find((e) => starterSet.has(e.pid) && !used.has(e.pid));
+    const pick = preferred || list.find((e) => !used.has(e.pid));
+    if (!pick) return null;
+    used.add(pick.pid);
+    return pick;
+  };
+
+  for (const slot of slots) {
+    let pick = null;
+    if (slot === "FLEX") {
+      const flexPool = [...(byPos.RB || []), ...(byPos.WR || []), ...(byPos.TE || [])]
+        .filter((e) => !used.has(e.pid))
+        .sort((a, b) => rank(a) - rank(b));
+      const preferred = flexPool.find((e) => starterSet.has(e.pid));
+      pick = preferred || flexPool[0] || null;
+      if (pick) used.add(pick.pid);
+    } else {
+      pick = takeBest(slot);
+    }
+    rows.push({ slot, player: pick });
+  }
+
+  const bench = pool
+    .filter((e) => !used.has(e.pid))
+    .sort((a, b) => rank(a) - rank(b));
+
+  return { starters: rows, bench };
+}
+
+function renderNav() {
+  const nav = $("teamNav");
+  nav.innerHTML = "";
+  for (const t of state.teams) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "team-chip"
+      + (t.key === state.selected ? " active" : "")
+      + (t.isMine ? " mine" : "");
+    btn.style.setProperty("--chip-color", t.color);
+    btn.innerHTML = `<span class="dot" style="background:${t.color}"></span>${escapeHtml(t.displayName)}`;
+    btn.addEventListener("click", () => {
+      state.selected = t.key;
+      renderNav();
+      renderTeam();
+    });
+    nav.appendChild(btn);
+  }
+}
+
+function renderHero(team) {
+  document.documentElement.style.setProperty("--team", team.color);
+  $("hero").style.setProperty("--team", team.color);
+  $("heroLogo").textContent = team.abbrev;
+  $("heroEyebrow").textContent = team.isMine ? "Your franchise" : "Franchise";
+  $("heroName").textContent = team.displayName;
+  $("heroManager").textContent = team.manager;
+  $("statRecord").textContent = team.record;
+  $("statRoster").textContent = String(team.rosterSize);
+  $("statPf").textContent = team.pf ? team.pf.toFixed(0) : "0";
+
+  const enriched = team.players.map(enrich);
+  const young = enriched.filter((e) => e.band === "young").length;
+  const prime = enriched.filter((e) => e.band === "prime").length;
+  const vet = enriched.filter((e) => e.band === "veteran").length;
+  const topAdp = enriched.filter((e) => e.adp && e.adp.rank <= 50).length;
+  $("heroTiers").innerHTML = [
+    tier("Young", young, "<25"),
+    tier("Prime", prime, "25–29"),
+    tier("Vet", vet, "30+"),
+    tier("Top-50 ADP", topAdp, "startup"),
+  ].join("");
+}
+
+function tier(label, n, tip) {
+  return `<span class="hero-tier" title="${escapeHtml(tip)}"><span class="n">${n}</span> ${escapeHtml(label)}</span>`;
+}
+
+function playerCell(e, extra = "") {
+  if (!e) return `<span class="empty">—</span>`;
+  const soft = S.softAvoidTeams?.includes(e.team)
+    ? `<span class="tag-pill ir">Raiders</span>` : "";
+  const note = e.note ? `<span class="tag-pill note">note</span>` : "";
+  return `<div class="name">${escapeHtml(e.name)}${injPill(e.inj)}${soft}${note}${extra}</div>
+    <div class="sub">${escapeHtml(e.team)} · ${e.age ?? "?"} yrs · ${e.exp ?? "?"} exp${e.note ? ` · ${escapeHtml(e.note)}` : ""}</div>`;
+}
+
+function renderDepth(team) {
+  const { starters, bench } = projectDepth(team);
+  const taxiSet = new Set(team.taxi);
+  const irSet = new Set(team.reserve);
+
+  const starterRows = starters.map(({ slot, player: e }) => {
+    const adp = e?.adp ? `#${e.adp.rank}` : "—";
+    return `<tr>
+      <td class="pos ${slot}">${slot}</td>
+      <td>${playerCell(e)}</td>
+      <td class="num">${adp}</td>
+    </tr>`;
+  }).join("");
+
+  const benchRows = bench.map((e) => {
+    let extra = "";
+    if (taxiSet.has(e.pid)) extra = `<span class="tag-pill taxi">taxi</span>`;
+    if (irSet.has(e.pid)) extra = `<span class="tag-pill ir">IR</span>`;
+    const adp = e.adp ? `#${e.adp.rank}` : "—";
+    return `<tr>
+      <td class="pos ${e.pos}">${e.pos}</td>
+      <td>${playerCell(e, extra)}</td>
+      <td class="num">${adp}</td>
+    </tr>`;
+  }).join("");
+
+  $("depthTag").textContent = `${starters.filter((s) => s.player).length}/8 starters · ${bench.length} bench/taxi/IR`;
+  $("depthBody").innerHTML = `
+    <table class="depth">
+      <thead><tr><th>Slot</th><th>Player</th><th class="num">ADP</th></tr></thead>
+      <tbody>${starterRows}</tbody>
+    </table>
+    <p class="pending" style="margin:14px 0 8px">Bench / Taxi / IR</p>
+    <table class="depth">
+      <thead><tr><th>Pos</th><th>Player</th><th class="num">ADP</th></tr></thead>
+      <tbody>${benchRows || `<tr><td colspan="3" class="empty">No bench players.</td></tr>`}</tbody>
+    </table>`;
+}
+
+function renderRoster(team) {
+  const rows = team.players.map(enrich)
+    .sort((a, b) => {
+      const order = { QB: 0, RB: 1, WR: 2, TE: 3 };
+      const d = (order[a.pos] ?? 9) - (order[b.pos] ?? 9);
+      if (d) return d;
+      return (a.adp?.adp ?? 9999) - (b.adp?.adp ?? 9999);
+    });
+
+  const taxiSet = new Set(team.taxi);
+  const irSet = new Set(team.reserve);
+  const starterSet = new Set(team.starters);
+
+  $("rosterTag").textContent = `${rows.length} players`;
+  $("rosterBody").innerHTML = `
+    <table class="roster">
+      <thead><tr><th>Pos</th><th>Player</th><th class="num">Age</th><th class="num">ADP</th></tr></thead>
+      <tbody>
+        ${rows.map((e) => {
+          let badges = "";
+          if (starterSet.has(e.pid)) badges += `<span class="tag-pill note">start</span>`;
+          if (taxiSet.has(e.pid)) badges += `<span class="tag-pill taxi">taxi</span>`;
+          if (irSet.has(e.pid)) badges += `<span class="tag-pill ir">IR</span>`;
+          return `<tr>
+            <td class="pos ${e.pos}">${e.pos}</td>
+            <td>${playerCell(e, badges)}</td>
+            <td class="num">${e.age ?? "—"}</td>
+            <td class="num">${e.adp ? `#${e.adp.rank}` : "—"}</td>
+          </tr>`;
+        }).join("")}
+      </tbody>
+    </table>`;
+}
+
+function renderStatus(team) {
+  const enriched = team.players.map(enrich);
+  const items = [];
+  const n = state.teams.length;
+  const anyGames = state.teams.some((t) => t.wins + t.losses + t.ties > 0);
+  if (anyGames) {
+    items.push(`Record <strong>${escapeHtml(team.record)}</strong> · <span class="hl">${team.pf.toFixed(1)} PF</span>.`);
+  } else {
+    items.push(`Season not underway yet — every team is <strong>0-0</strong>. Startup draft is complete.`);
+  }
+
+  const counts = { QB: 0, RB: 0, WR: 0, TE: 0 };
+  for (const e of enriched) if (counts[e.pos] != null) counts[e.pos] += 1;
+  items.push(`Roster shape: <span class="hl">${counts.QB} QB · ${counts.RB} RB · ${counts.WR} WR · ${counts.TE} TE</span> (${team.rosterSize} total).`);
+
+  const young = enriched.filter((e) => e.band === "young").length;
+  items.push(`Age profile: <span class="hl">${young}</span> under 25 · ${enriched.filter((e) => e.band === "prime").length} prime · ${enriched.filter((e) => e.band === "veteran").length} vet.`);
+
+  const injured = enriched.filter((e) => e.inj && e.inj !== "Active");
+  if (injured.length) {
+    items.push(`Injury flags: ${injured.map((e) => `<strong>${escapeHtml(e.name)}</strong> (${escapeHtml(e.inj)})`).join(" · ")}.`);
+  } else {
+    items.push("No active injury designations on the roster.");
+  }
+
+  const taxiN = team.taxi.length;
+  const irN = team.reserve.length;
+  items.push(`Stash slots: <span class="hl">${taxiN}/3 taxi</span> · <span class="hl">${irN}/4 IR</span>${taxiN === 0 ? " — taxi still empty (rookies only)." : "."}`);
+
+  if (team.isMine) {
+    items.push("Build read: <span class=\"hl\">WR fortress</span>, thin top-end RB (Breece + Kyren carry). Prefer RB upgrades via trade over TE3/QB3.");
+  }
+
+  $("statusTag").textContent = `${counts.RB} RB · ${counts.WR} WR`;
+  $("obsList").innerHTML = items.map((x) => `<li>${x}</li>`).join("");
+}
+
+function renderTrades(team) {
+  const list = state.tradesByRoster[team.rosterId] || [];
+  if (!list.length) {
+    $("tradeBody").innerHTML = `<p class="empty">No completed trades yet this season.</p>`;
+    return;
+  }
+  $("tradeBody").innerHTML = list.slice(0, 12).map((t) => `
+    <div class="trade">
+      <div class="when">${escapeHtml(t.date)}</div>
+      <div class="vs">vs ${escapeHtml(t.other)}</div>
+      <div class="got">Got: ${escapeHtml(t.got.join(", ") || "—")}</div>
+      <div class="sent">Sent: ${escapeHtml(t.sent.join(", ") || "—")}</div>
+    </div>`).join("");
+}
+
+function futureSeasons() {
+  const base = Number(state.league?.season) || new Date().getFullYear();
+  // Startup draft for `base` is done — show the next three rookie drafts.
+  return [base + 1, base + 2, base + 3].map(String);
+}
+
+function ownerOfPick(season, round, originalRosterId) {
+  const hit = state.tradedPicks.find(
+    (p) => String(p.season) === String(season)
+      && Number(p.round) === Number(round)
+      && Number(p.roster_id) === Number(originalRosterId)
+  );
+  return hit ? Number(hit.owner_id) : Number(originalRosterId);
+}
+
+function renderPicks(team) {
+  const seasons = futureSeasons();
+  const rounds = state.draftRounds || 5;
+  const nameByRid = Object.fromEntries(state.teams.map((t) => [t.rosterId, t.displayName]));
+  const owned = [];
+
+  for (const season of seasons) {
+    const seasonPicks = [];
+    for (let round = 1; round <= rounds; round++) {
+      for (const t of state.teams) {
+        const owner = ownerOfPick(season, round, t.rosterId);
+        if (owner !== Number(team.rosterId)) continue;
+        const via = Number(t.rosterId) === Number(team.rosterId)
+          ? "own"
+          : `via ${nameByRid[t.rosterId] || `Team ${t.rosterId}`}`;
+        seasonPicks.push({ round, via, original: t.rosterId });
       }
     }
-    return out;
-  };
-  const qb = take("QB", 1);
-  const rb = take("RB", 2);
-  const wr = take("WR", 2);
-  const te = take("TE", 1);
-  const flex = [];
-  for (const p of mine) {
-    if (flex.length >= 2) break;
-    if (used.has(p.player_id)) continue;
-    if (["RB", "WR", "TE"].includes(p.metadata.position)) {
-      used.add(p.player_id);
-      flex.push(lastName(p));
+    seasonPicks.sort((a, b) => a.round - b.round || a.original - b.original);
+    owned.push({ season, picks: seasonPicks });
+  }
+
+  const total = owned.reduce((n, s) => n + s.picks.length, 0);
+  $("picksTag").textContent = `${total} picks · R1–R${rounds}`;
+  $("picksBody").innerHTML = `
+    <div class="picks-grid">
+      ${owned.map(({ season, picks }) => `
+        <div class="pick-season">
+          <h3>${escapeHtml(season)}</h3>
+          <ul class="pick-list">
+            ${picks.length
+              ? picks.map((p) => `
+                  <li>
+                    <span class="rnd">Round ${p.round}</span>
+                    <span class="via">${escapeHtml(p.via)}</span>
+                  </li>`).join("")
+              : `<li><span class="via">No picks owned</span></li>`}
+          </ul>
+        </div>`).join("")}
+    </div>`;
+}
+
+function renderRules() {
+  $("rulesList").innerHTML = (S.rules || []).map((r) => `<li>${escapeHtml(r)}</li>`).join("");
+}
+
+function renderTeam() {
+  const team = state.teamsByKey[state.selected];
+  if (!team) return;
+  $("teamView").hidden = false;
+  renderHero(team);
+  renderRoster(team);
+  renderDepth(team);
+  renderPicks(team);
+  renderStatus(team);
+  renderTrades(team);
+  renderRules();
+}
+
+async function loadTrades() {
+  const rosterToName = {};
+  for (const t of state.teams) rosterToName[t.rosterId] = t.displayName;
+
+  const weeks = Array.from({ length: 18 }, (_, i) => i + 1);
+  const seen = new Set();
+  const byRoster = {};
+
+  const weekData = await Promise.all(weeks.map((w) =>
+    getJSON(`${API}/league/${S.leagueId}/transactions/${w}`).catch(() => [])
+  ));
+
+  for (const txns of weekData) {
+    if (!Array.isArray(txns)) continue;
+    for (const tx of txns) {
+      if (tx.type !== "trade" || tx.status !== "complete") continue;
+      if (seen.has(tx.transaction_id)) continue;
+      seen.add(tx.transaction_id);
+      const rosters = tx.roster_ids || [];
+      if (rosters.length < 2) continue;
+
+      for (const rid of rosters) {
+        const otherRid = rosters.find((r) => String(r) !== String(rid));
+        const got = [];
+        const sent = [];
+        for (const [pid, ownerRid] of Object.entries(tx.adds || {})) {
+          const name = playerName(playerOf(pid));
+          if (String(ownerRid) === String(rid)) got.push(name);
+          else sent.push(name);
+        }
+        for (const pk of tx.draft_picks || []) {
+          const label = `R${pk.round} '${String(pk.season).slice(-2)}`;
+          if (String(pk.owner_id) === String(rid)) got.push(label);
+          else sent.push(label);
+        }
+        if (!got.length && !sent.length) continue;
+        (byRoster[rid] ||= []).push({
+          ts: tx.status_updated,
+          date: new Date(tx.status_updated).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+          other: rosterToName[otherRid] || "Unknown",
+          got, sent,
+        });
+      }
     }
   }
-  if (qb.length + rb.length + wr.length + te.length + flex.length < 5) return "";
-  return `QB ${qb[0] || "—"} · RB ${rb.join("/")} · WR ${wr.join("/")} · TE ${te[0] || "—"} · FLEX ${flex.join("/")}`;
+
+  for (const list of Object.values(byRoster)) list.sort((a, b) => b.ts - a.ts);
+  state.tradesByRoster = byRoster;
 }
 
-function lastName(p) { return p.metadata.last_name; }
-
-function renderBoard(taken, order) {
-  const rows = Object.values(cache.players)
-    .filter((p) => p.position === remainingPos && p.team && !taken.has(p.player_id))
-    .sort((a, b) => {
-      const aa = lookupAdp(playerName(a));
-      const ba = lookupAdp(playerName(b));
-      const ar = aa ? aa.adp : 9999;
-      const br = ba ? ba.adp : 9999;
-      return ar - br || (a.search_rank || 9999) - (b.search_rank || 9999) || playerName(a).localeCompare(playerName(b));
-    })
-    .slice(0, 40)
-    .map((p) => {
-      const name = playerName(p);
-      const hit = lookupAdp(name);
-      const dc = p.depth_chart_order != null ? `RB/WR rank ${p.depth_chart_order}` : "";
-      const sub = `${p.age || "?"} yrs old · ${p.years_exp ?? "?"} exp${p.depth_chart_order ? ` · #${p.depth_chart_order} ${p.depth_chart_position || ""}` : ""}`;
-      const right = hit ? `ADP ${hit.adp}` : (dc || "FA/depth");
-      return playerRow(p.position, name, p.team, right, p.injury_status, sub);
-    });
-  $("board").innerHTML = rows.join("") || `<div class="empty">Player list still loading…</div>`;
-}
-
-async function refresh({ players = false } = {}) {
+async function refresh() {
   $("refreshBtn").disabled = true;
-  $("status").textContent = "Refreshing…";
+  $("loadNote").hidden = false;
+  $("loadNote").className = "loadnote";
+  $("loadNote").textContent = "Loading league data from Sleeper…";
   try {
-    const [draft, picks, users] = await Promise.all([
-      getJSON(`${API}/draft/${S.draftId}`),
-      getJSON(`${API}/draft/${S.draftId}/picks`),
+    const [league, users, rosters, tradedPicks] = await Promise.all([
+      getJSON(`${API}/league/${S.leagueId}`),
       getJSON(`${API}/league/${S.leagueId}/users`),
+      getJSON(`${API}/league/${S.leagueId}/rosters`),
+      getJSON(`${API}/league/${S.leagueId}/traded_picks`).catch(() => []),
     ]);
-    cache.draft = draft;
-    cache.picks = picks;
-    cache.users = users;
-    if (players || !Object.keys(cache.players).length) {
-      await loadPlayers();
-    }
-    render();
+    state.league = league;
+    state.users = users;
+    state.rosters = rosters;
+    state.tradedPicks = Array.isArray(tradedPicks) ? tradedPicks : [];
+    state.draftRounds = Number(league.settings?.draft_rounds) || 5;
+    $("seasonLabel").textContent = `${league.season} · ${league.status}`;
+    $("sleeperLink").href = S.sleeperLeague;
+
+    await loadPlayers();
+    buildTeams();
+    await loadTrades();
+    renderNav();
+    renderTeam();
+
+    $("loadNote").hidden = true;
+    const adpN = globalThis.SLEEPER_ADP ? SLEEPER_ADP.rows.length : 0;
+    $("status").textContent = `Updated ${new Date().toLocaleTimeString()} · ${Object.keys(state.players).length} skill players · ${adpN} ADP names · ${state.teams.length} teams`;
   } catch (err) {
-    $("clock").className = "clock waiting";
-    $("clockTitle").textContent = "Could not reach Sleeper";
-    $("clockSub").textContent = String(err.message || err);
-    $("status").textContent = `Error: ${err.message || err}`;
+    $("loadNote").className = "loadnote error";
+    $("loadNote").textContent = `Could not load Sleeper: ${err.message || err}`;
+    $("status").textContent = String(err.message || err);
   } finally {
     $("refreshBtn").disabled = false;
   }
 }
 
-function setAuto(on) {
-  auto = on;
-  $("autoBtn").textContent = `Auto: ${auto ? "on" : "off"}`;
-  if (autoTimer) clearInterval(autoTimer);
-  if (auto) autoTimer = setInterval(() => refresh(), AUTO_MS);
-}
-
-$("refreshBtn").addEventListener("click", () => refresh({ players: false }));
-$("autoBtn").addEventListener("click", () => setAuto(!auto));
-$("tabs").addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-pos]");
-  if (!btn) return;
-  remainingPos = btn.dataset.pos;
-  for (const t of $("tabs").querySelectorAll(".tab")) t.classList.toggle("on", t === btn);
-  if (cache.draft) render();
-});
-
-setAuto(true);
-refresh({ players: true });
+$("refreshBtn").addEventListener("click", () => refresh());
+refresh();
