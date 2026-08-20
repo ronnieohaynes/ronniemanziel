@@ -93,13 +93,6 @@ function adviceReasons(entry) {
 }
 
 function renderAdviceHtml(advice, pickNo) {
-  if (advice.wait) {
-    const list = adviceReasons(advice);
-    return `<h2>Don't reach for ${advice.take}</h2>
-      <div class="small advice-meta">pick ${pickNo} · ${advice.take} is for pick ~${advice.untilPick || "?"}</div>
-      <ul class="advice-why">${list.map((r) => `<li>${r}</li>`).join("")}</ul>
-      <p class="advice-outlook"><b>Now:</b> take best on-time WR/RB from Best remaining below.</p>`;
-  }
   const price = priceCheck(advice.take, pickNo);
   const reasons = adviceReasons(advice);
   const priceTag = price
@@ -189,44 +182,97 @@ function draftedByName(picks, name) {
   return picks.find((p) => norm(metaName(p.metadata)) === norm(name));
 }
 
-/** First available queue name — skips reaches and not-yet picks. */
+/** First available queue name. Never returns "wait" — always names a take. */
 function resolveAdvice(picks, pickNo) {
   const maxReach = S.maxReach ?? 8;
-  let nextTimed = null;
+  const deferred = [];
   for (const q of S.queue || []) {
     if (draftedByName(picks, q.name)) continue;
-    if (q.afterPick && pickNo < q.afterPick) {
-      if (!nextTimed || q.afterPick < nextTimed.afterPick) nextTimed = q;
+    const hit = lookupAdp(q.name);
+    const early = hit ? pickNo - hit.adp : 0;
+    const tooSoon = q.afterPick && pickNo < q.afterPick;
+    const tooEarlyAdp = hit && early < -maxReach;
+    if (tooSoon || tooEarlyAdp) {
+      deferred.push({ q, hit, early, onTime: hit ? Math.round(hit.adp) : (q.afterPick || pickNo) });
       continue;
     }
-    const hit = lookupAdp(q.name);
-    if (hit && pickNo - hit.adp < -maxReach) continue;
-      return {
-        take: q.name,
-        pos: q.pos,
-        slot: q.slot,
-        note: q.note,
-        reasons: q.reasons,
-        depthCharts: q.depthCharts,
-        outlook: q.outlook,
-      };
-  }
-  if (nextTimed) {
-    const adpHit = lookupAdp(nextTimed.name);
-    const onTime = adpHit ? Math.round(adpHit.adp) : nextTimed.afterPick + maxReach;
-    const kind = nextTimed.slot === "taxi" ? "taxi" : "bench";
     return {
-      wait: true,
-      take: nextTimed.name,
-      pos: nextTimed.pos,
-      untilPick: onTime,
-      reasons: [
-        `${nextTimed.name} (${kind}) is on-time near pick ${onTime} — reaching now wastes value.`,
-        "Use this pick for best **bench** value on the board (WR/RB on-time or value).",
-      ],
+      take: q.name,
+      pos: q.pos,
+      slot: q.slot,
+      note: q.note,
+      reasons: q.reasons,
+      depthCharts: q.depthCharts,
+      outlook: q.outlook,
     };
   }
+
+  // Preference still on the board but gated — take them anyway if this is a late pick
+  // and they're the best named option left (better than a blank "don't reach" banner).
+  if (deferred.length) {
+    deferred.sort((a, b) => a.onTime - b.onTime);
+    const best = deferred[0];
+    const mild = best.early >= -25;
+    if (mild || pickNo >= 250) {
+      const reasons = [
+        ...(best.q.reasons || []),
+        best.early < -maxReach
+          ? `Slightly early vs ADP ${best.hit?.adp} — take now so you don't miss him.`
+          : `On-time window is ~${best.onTime}; still the best named target left.`,
+      ];
+      return {
+        take: best.q.name,
+        pos: best.q.pos,
+        slot: best.q.slot,
+        note: best.q.note,
+        reasons,
+        depthCharts: best.q.depthCharts,
+        outlook: best.q.outlook,
+      };
+    }
+  }
+
+  // Last resort: best available WR/RB by ADP who isn't skipped.
+  const bpa = bestAvailableSkill(picks, pickNo, maxReach);
+  if (bpa) return bpa;
   return null;
+}
+
+function isSkippedName(name) {
+  const n = norm(name);
+  return [...(S.skip || []), ...(S.crowded || [])].some((x) => norm(x.name) === n);
+}
+
+/** On-time WR/RB still on the board (not in skip list). */
+function bestAvailableSkill(picks, pickNo, maxReach) {
+  if (!globalThis.SLEEPER_ADP?.rows) return null;
+  const taken = new Set(picks.map((p) => norm(metaName(p.metadata))));
+  let best = null;
+  for (const row of SLEEPER_ADP.rows) {
+    if (taken.has(norm(row.name)) || isSkippedName(row.name)) continue;
+    const delta = pickNo - row.adp;
+    if (delta < -maxReach) continue; // still too early
+    const pl = findByName(row.name);
+    if (!pl || !["WR", "RB"].includes(pl.position) || !pl.team) continue;
+    if (S.softAvoidTeams?.includes(pl.team)) continue;
+    best = { row, pl, delta };
+    break; // rows are ADP-sorted
+  }
+  if (!best) return null;
+  const taxi = best.pl.years_exp === 0;
+  return {
+    take: best.row.name,
+    pos: best.pl.position,
+    slot: taxi ? "taxi" : "bench",
+    outlook: `Best on-time ${best.pl.position} left on the board (ADP ${best.row.adp}).`,
+    reasons: [
+      `Queue was empty/gated — taking BPA: ${best.pl.team} ${best.pl.position}${best.pl.depth_chart_order != null ? ` #${best.pl.depth_chart_order}` : ""}.`,
+      taxi ? "Rookie — taxi-eligible." : "Bench depth.",
+    ],
+    depthCharts: best.pl.depth_chart_order != null
+      ? [{ source: "Sleeper (live)", role: `${best.pl.depth_chart_position || "?"} #${best.pl.depth_chart_order}` }]
+      : [],
+  };
 }
 
 function render() {
