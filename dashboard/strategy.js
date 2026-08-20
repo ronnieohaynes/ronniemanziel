@@ -6,67 +6,35 @@ window.STRATEGY = {
   slot: 7,
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
-  maxReach: 8,
+  maxReach: 10,
 
   rules: [
-    "Roster: 9 starters + **12 bench** + **3 taxi** (rookies only) + 4 IR — bench is the priority late.",
-    "No reach: stay within ~8 picks of ADP unless a clear starter role.",
-    "Taxi: you only need **1–2** rookie stashes (picks ~234, ~247), not every remaining pick.",
-    "Bench targets: RB/WR who can actually flex in injury weeks — not TE3/QB3.",
+    "Roster: 9 starters + **12 bench** + **3 taxi** (rookies only) + 4 IR — bench first.",
+    "No reach: stay within ~10 picks of ADP unless a clear starter role.",
+    "Taxi: 1–2 rookies late (247+). Do not fill every pick with taxi.",
+    "Skip Aiyuk: Reserve/Left Squad, locker removed, not paid — not a 2026 stash.",
   ],
 
-  advice: { pick: 186 },
+  advice: { pick: 210 },
 
-  /** slot: "bench" | "taxi". afterPick = earliest pick to recommend. */
   queue: [
     {
-      name: "Jauan Jennings",
+      name: "Elic Ayomanor",
       pos: "WR",
       slot: "bench",
-      afterPick: 178,
+      afterPick: 209,
       depthCharts: [
-        { source: "Sleeper", role: "MIN SWR #3 behind JJ / Addison" },
-        { source: "Team", role: "Veteran WR3 — same offense as Jefferson" },
+        { source: "Titans chart", role: "WR4 behind Tate / Robinson / Ridley; ahead of Dike as backup LWR" },
+        { source: "Sleeper", role: "LWR #4 TEN" },
+        { source: "CBS / camp", role: "Competing with Dike for leftover targets — not a locked WR3" },
       ],
       outlook:
-        "Age 29, 1-year deal. Partial JJ stack; Addison is still ahead if JJ misses time. Real bench WR, not taxi.",
+        "Year-2 Titan. Thin 2026 target share, but a real rostered WR with a named backup job — better than Aiyuk (left squad) or Dike (returner). Borderline on-time at 210 (ADP ~220).",
       reasons: [
-        "ADP ~171 — **value** at pick 186, not a reach.",
-        "Bench WR depth behind your starters; can flex in full PPR if injuries hit.",
-        "Veteran — goes on **bench**, not taxi.",
-      ],
-    },
-    {
-      name: "Kimani Vidal",
-      pos: "RB",
-      slot: "bench",
-      afterPick: 191,
-      depthCharts: [
-        { source: "Sleeper", role: "LAC RB #3" },
-        { source: "Role", role: "Behind Hampton — change-of-pace / injury fill-in" },
-      ],
-      outlook:
-        "Second-year back in LAC. Bench RB6 on your roster — injury insurance behind Breece/Kyren/Pacheco, not a starter.",
-      reasons: [
-        "On-time at pick **199** — fills a **bench RB** slot with a real NFL role.",
-        "You roster five RBs but this is on-time value, not a reach.",
-        "Bench, not taxi (year 2).",
-      ],
-    },
-    {
-      name: "Brandon Aiyuk",
-      pos: "WR",
-      slot: "bench",
-      afterPick: 202,
-      depthCharts: [
-        { source: "Sleeper", role: "SF WR #5" },
-        { source: "Outlook", role: "Talent stash — injury history; bench lottery, not 2026 lock" },
-      ],
-      outlook:
-        "When healthy, starter-level talent. Bench WR lottery at pick 210 — on-time ADP, not taxi.",
-      reasons: [
-        "On-time at pick **210** — name-value bench stash in full PPR.",
-        "Not a taxi candidate (veteran). Skip if you hate injury risk.",
+        "Pick **210** — ~10 picks early, the last on-time-ish **bench WR** left. Not a taxi dart.",
+        "Aiyuk is off the board for us: Reserve/Left Squad, locker gone, 2026 money voided. Do not draft him.",
+        "Skip Chimere Dike — returner first, WR5. This league does not score returns.",
+        "If you would rather wait 13 picks for a named RB2, Jaydon Blue is next (DAL, pick **223**).",
       ],
     },
     {
@@ -75,27 +43,16 @@ window.STRATEGY = {
       slot: "bench",
       afterPick: 215,
       depthCharts: [
+        { source: "Cowboys unofficial chart", role: "RB2 behind Javonte Williams (not an OR)" },
+        { source: "CBS", role: "Listed #2; camp battle with Phil Mafah still live" },
         { source: "Sleeper", role: "DAL RB #3" },
       ],
-      outlook: "Year-2 Dallas back — bench RB depth at pick 223 on-time.",
+      outlook:
+        "Year-2 Dallas back. Unofficial RB2 behind Javonte — real bench RB for injury weeks. On-time at pick 223 (ADP ~230).",
       reasons: [
-        "On-time at pick **223** — another **bench RB** for injury weeks.",
-        "Not taxi (exp 1). Take Vidal/Aiyuk first if still on the board.",
-      ],
-    },
-    {
-      name: "Adam Randall",
-      pos: "RB",
-      slot: "taxi",
-      afterPick: 226,
-      depthCharts: [
-        { source: "Sleeper", role: "BAL RB #3" },
-      ],
-      outlook: "Rookie — **taxi slot #1 only** if you want one. On-time at pick 234. Skip if you'd rather another bench body.",
-      reasons: [
-        "Optional taxi dart #1 — you have **3 taxi total**, not 3 per round.",
-        "On-time at **234**; do not reach earlier.",
-        "If you skip taxis entirely, take Malik Washington or Ollie Gordon here instead (bench).",
+        "On-time at pick **223** — your next **bench RB** after Benson.",
+        "Do not take at 210 (~20 picks early).",
+        "Mafah is still competing; role is named #2 on the unofficial chart, not a 3-way OR.",
       ],
     },
     {
@@ -104,12 +61,11 @@ window.STRATEGY = {
       slot: "bench",
       afterPick: 226,
       depthCharts: [
-        { source: "Sleeper", role: "MIA WR #1 on chart" },
+        { source: "Sleeper", role: "MIA WR listed high on chart" },
       ],
-      outlook: "Bench WR — on-time at 234 if you pass on Randall or already have enough taxis.",
+      outlook: "Bench WR at pick 234 on-time. Skip if you already filled WR bench.",
       reasons: [
-        "Bench alternative at pick **234** instead of a taxi dart.",
-        "Real roster spot on a depth chart, not a stash-only rookie.",
+        "On-time at **234** — bench, not taxi.",
       ],
     },
     {
@@ -120,29 +76,32 @@ window.STRATEGY = {
       depthCharts: [
         { source: "Sleeper", role: "LAC WR #4" },
       ],
-      outlook: "Optional taxi dart #2 at pick 247 — only if you want a second rookie taxi.",
+      outlook: "Optional taxi dart #1 at pick 247 — only if you want a rookie taxi.",
       reasons: [
-        "Second taxi only if you took Randall and still have an open taxi slot.",
-        "Otherwise skip — use 247 for bench (Kyle Williams, Sean Tucker, etc.).",
+        "First taxi only if you still want one. Otherwise take bench at 247.",
       ],
     },
   ],
 
   skip: [
+    { name: "Brandon Aiyuk", reason: "Reserve/Left Squad — locker removed, 2026 guarantees voided, not paid. Skip." },
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
     { name: "Chris Brazzell", reason: "Out 2026 (torn LCL)" },
+    { name: "Chimere Dike", reason: "TEN returner / WR5 — no return scoring here" },
+    { name: "Tyreek Hill", reason: "No team listed — not a 2026 bench lock" },
     { name: "Travis Kelce", reason: "TE3 + age 36" },
-    { name: "Mason Taylor", reason: "TE3 — Pitts and Kincaid start" },
+    { name: "Mason Taylor", reason: "TE3" },
     { name: "C.J. Stroud", reason: "QB3" },
     { name: "Carson Beck", reason: "QB dart" },
     { name: "Hunter Henry", reason: "TE3" },
     { name: "Gunnar Helm", reason: "TE3" },
-    { name: "Kyler Murray", reason: "QB3 — Mahomes and Purdy rostered" },
+    { name: "Kyler Murray", reason: "QB3" },
     { name: "Adonai Mitchell", reason: "Disputed WR2/3 + poor outlook" },
     { name: "Kayshon Boutte", reason: "NE WR roster bubble" },
     { name: "Troy Franklin", reason: "DEN WR4–5 — you roster Sutton" },
-    { name: "Brian Robinson", reason: "ATL RB2 behind Bijan — crowded" },
-    { name: "James Conner", reason: "Age 29+ win-now RB — bench phase prefers youth" },
+    { name: "Brian Robinson", reason: "Behind Bijan" },
+    { name: "James Conner", reason: "ARI crowded; you already roster Benson" },
+    { name: "Trey Benson", reason: "ARI: Love OR Allgeier OR Conner OR Benson — already yours" },
   ],
 
   crowded: [
@@ -153,7 +112,7 @@ window.STRATEGY = {
     { name: "Kenny Gainwell", reason: "Behind Bucky Irving" },
     { name: "Woody Marks", reason: "HOU: Montgomery OR Marks" },
     { name: "Jalen McMillan", reason: "TB WR3 behind Godwin/Egbuka" },
-    { name: "Brenen Thompson", reason: "LAC WR4 — taxi only, not bench starter" },
+    { name: "Trey Benson", reason: "ARI 4-way backfield" },
   ],
 
   softAvoidTeams: ["LV"],
@@ -164,6 +123,7 @@ window.STRATEGY = {
     "Braelon Allen": "Jets RB2. Breece handcuff.",
     "Dylan Sampson": "CLE RB2 behind Judkins.",
     "Isiah Pacheco": "DET RB2 behind Gibbs.",
-    "Justin Jefferson": "MIN WR1.",
+    "Trey Benson": "ARI committee — bench dart, not a locked RB2.",
+    "Jauan Jennings": "MIN WR3. Partial JJ stack.",
   },
 };
