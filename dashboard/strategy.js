@@ -19,8 +19,8 @@ window.STRATEGY = {
   cutBias: {
     "Devaughn Vele": 45,
     "Ryan Flournoy": 35,
-    "Elic Ayomanor": 32,
-    "Rashod Bateman": 5,
+    "Elic Ayomanor": 40,
+    "Rashod Bateman": 0,
     "Jauan Jennings": -18,
     "Khalil Shakir": -12,
     "Isiah Pacheco": -20,
