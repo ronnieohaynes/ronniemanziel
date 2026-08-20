@@ -6,81 +6,69 @@ window.STRATEGY = {
   slot: 7,
   sleeperLeague: "https://sleeper.com/leagues/1394078108436418560",
 
-  maxReach: 20,
+  maxReach: 40,
 
   rules: [
-    "Banner always names who to TAKE — never only who to avoid.",
-    "2 QB / 2 TE is enough in 1QB, no TE premium.",
-    "Last picks: preference (Bateman) then taxi/IR dart.",
+    "Banner always names who to TAKE — ranked players only (Sleeper search + ADP).",
+    "No unranked UDFAs as the primary recommendation.",
+    "2 QB / 2 TE is enough. Last pick = best ranked skill left.",
   ],
 
-  advice: { pick: 258 },
+  advice: { pick: 271 },
 
+  /** Prefer players with real ADP rank + Sleeper search rank. */
   queue: [
     {
-      name: "Rashod Bateman",
+      name: "Audric Estime",
+      pos: "RB",
+      slot: "bench",
+      afterPick: 230,
+      depthCharts: [
+        { source: "Sleeper", role: "NO RB #5 — depth, but ranked ADP #219" },
+        { source: "Rank", role: "Sleeper search ~#190 — real dynasty name, not UDFA fluff" },
+      ],
+      outlook:
+        "Age 22, year 3. Best remaining ranked RB. Saints depth chart is crowded, but he's the highest-ranked skill player left on the board.",
+      reasons: [
+        "**Take Audric Estime at pick 271.**",
+        "ADP **#219** / search **~#190** — actually ranked, unlike Tau-Tolliver-type UDFAs.",
+        "Young RB with path if New Orleans' backfield thins out.",
+        "Last pick of the draft — take the best ranked name left.",
+      ],
+    },
+    {
+      name: "Brashard Smith",
+      pos: "RB",
+      slot: "bench",
+      afterPick: 250,
+      depthCharts: [
+        { source: "Sleeper", role: "KC RB #4" },
+        { source: "Rank", role: "Sleeper search ~#182" },
+      ],
+      outlook: "Year-2 Chiefs back — ranked backup if Estime is gone.",
+      reasons: [
+        "Next ranked RB if Estime is drafted.",
+      ],
+    },
+    {
+      name: "Darnell Mooney",
       pos: "WR",
       slot: "bench",
       afterPick: 250,
       depthCharts: [
-        { source: "Ravens chart", role: "WR2 opposite Zay Flowers" },
-        { source: "Camp", role: "Lane / Walker pushing — bounce-back not locked" },
-        { source: "Sleeper", role: "BAL LWR #2" },
+        { source: "Sleeper", role: "NYG WR #3" },
+        { source: "Rank", role: "ADP #304 · search ~#194" },
       ],
-      outlook:
-        "Your bounce-back bet. Charted WR2, age 26. Shedeur is gone — take Bateman now at 258 so he doesn't walk at 259–270.",
+      outlook: "Giants WR3 — ranked veteran bench if you prefer WR over RB depth.",
       reasons: [
-        "**Take Bateman at pick 258.**",
-        "ADP ~277 — a bit early, but only two picks left and you want him.",
-        "Named BAL WR2; Lane/Walker are the risk, not a blank role.",
-        "Bench WR — not taxi (veteran).",
-      ],
-    },
-    {
-      name: "Xavier Legette",
-      pos: "WR",
-      slot: "bench",
-      afterPick: 260,
-      depthCharts: [
-        { source: "Sleeper", role: "CAR RWR #3" },
-        { source: "Outlook", role: "WR3 behind McMillan/Coker with Brazzell out" },
-      ],
-      outlook:
-        "Panthers WR3 path with Brazzell on IR. On-time near pick 271 (ADP ~277).",
-      reasons: [
-        "Pick **271** if Bateman is gone — young bench WR with a clearer 2026 path.",
-      ],
-    },
-    {
-      name: "Elijah Tau-Tolliver",
-      pos: "RB",
-      slot: "taxi",
-      afterPick: 260,
-      depthCharts: [
-        { source: "Sleeper", role: "BAL RB — undrafted rookie" },
-      ],
-      outlook: "Optional taxi dart at 271 if you want a rookie stash instead of Legette.",
-      reasons: [
-        "Taxi-eligible rookie — only if you prefer taxi over Legette.",
-      ],
-    },
-    {
-      name: "Chris Brazzell",
-      pos: "WR",
-      slot: "bench",
-      afterPick: 265,
-      depthCharts: [
-        { source: "Panthers", role: "Out 2026 — torn LCL, IR" },
-      ],
-      outlook: "IR lottery for 2027 only. Take last if nothing else appeals.",
-      reasons: [
-        "Goes on **IR**, not taxi. Zero 2026 value — 2027 stash only.",
+        "Ranked WR alternative to Estime/Smith.",
       ],
     },
   ],
 
   skip: [
-    { name: "Brandon Aiyuk", reason: "Reserve/Left Squad — not paid" },
+    { name: "Elijah Tau-Tolliver", reason: "Unranked UDFA — not a primary take" },
+    { name: "Brandon Aiyuk", reason: "Reserve/Left Squad" },
     { name: "Tyreek Hill", reason: "Unsigned FA, multi-ligament knee" },
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
     { name: "Chimere Dike", reason: "Returner / WR5" },
@@ -88,15 +76,17 @@ window.STRATEGY = {
     { name: "Mason Taylor", reason: "TE3" },
     { name: "C.J. Stroud", reason: "QB3" },
     { name: "Hunter Henry", reason: "TE3" },
-    { name: "Cade Otton", reason: "TE3 — Pitts and Kincaid start" },
+    { name: "Cade Otton", reason: "TE3" },
     { name: "Pat Freiermuth", reason: "TE3" },
+    { name: "David Njoku", reason: "TE3" },
+    { name: "Theo Johnson", reason: "TE3" },
     { name: "Adonai Mitchell", reason: "Disputed role + poor outlook" },
     { name: "Kayshon Boutte", reason: "NE WR bubble" },
-    { name: "Troy Franklin", reason: "DEN WR4–5 — you roster Sutton" },
+    { name: "Troy Franklin", reason: "DEN — you roster Sutton" },
     { name: "Brian Robinson", reason: "Behind Bijan" },
     { name: "James Conner", reason: "You roster Benson" },
     { name: "Jack Bech", reason: "Raiders soft-avoid" },
-    { name: "Calvin Ridley", reason: "Age 31 — wrong phase vs Bateman/Legette" },
+    { name: "Calvin Ridley", reason: "Age 31 — prefer younger ranked skill" },
   ],
 
   crowded: [
@@ -105,6 +95,7 @@ window.STRATEGY = {
     { name: "Trey Benson", reason: "ARI 4-way backfield" },
     { name: "Jaylen Wright", reason: "MIA: Wright OR Gordon behind Achane" },
     { name: "Rashod Bateman", reason: "BAL: Flowers, Bateman, Lane, Walker" },
+    { name: "Audric Estime", reason: "NO crowded backfield — ranked stash, not a starter" },
   ],
 
   softAvoidTeams: ["LV"],
@@ -118,6 +109,7 @@ window.STRATEGY = {
     "Jaydon Blue": "DAL RB2 behind Javonte.",
     "Jaylen Wright": "MIA RB2 behind Achane.",
     "Ryan Flournoy": "DAL WR3.",
+    "Rashod Bateman": "BAL WR2 bounce-back bet.",
     "Trey Benson": "ARI committee.",
     "Jauan Jennings": "MIN WR3.",
     "Elic Ayomanor": "TEN WR4 bench.",

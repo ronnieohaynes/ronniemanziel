@@ -243,20 +243,23 @@ function isSkippedName(name) {
   return [...(S.skip || []), ...(S.crowded || [])].some((x) => norm(x.name) === n);
 }
 
-/** On-time WR/RB still on the board (not in skip list). */
+/** On-time WR/RB still on the board — must be ranked (search_rank + ADP). */
 function bestAvailableSkill(picks, pickNo, maxReach) {
   if (!globalThis.SLEEPER_ADP?.rows) return null;
   const taken = new Set(picks.map((p) => norm(metaName(p.metadata))));
   let best = null;
   for (const row of SLEEPER_ADP.rows) {
     if (taken.has(norm(row.name)) || isSkippedName(row.name)) continue;
+    if (row.rank > 350) continue; // not meaningfully ranked
     const delta = pickNo - row.adp;
-    if (delta < -maxReach) continue; // still too early
+    if (delta < -maxReach) continue;
     const pl = findByName(row.name);
     if (!pl || !["WR", "RB"].includes(pl.position) || !pl.team) continue;
     if (S.softAvoidTeams?.includes(pl.team)) continue;
+    const sr = pl.search_rank;
+    if (sr != null && sr > 350) continue; // Sleeper doesn't rank them either
     best = { row, pl, delta };
-    break; // rows are ADP-sorted
+    break;
   }
   if (!best) return null;
   const taxi = best.pl.years_exp === 0;
@@ -264,9 +267,10 @@ function bestAvailableSkill(picks, pickNo, maxReach) {
     take: best.row.name,
     pos: best.pl.position,
     slot: taxi ? "taxi" : "bench",
-    outlook: `Best on-time ${best.pl.position} left on the board (ADP ${best.row.adp}).`,
+    outlook: `Best ranked ${best.pl.position} left (ADP #${best.row.rank} · ${best.row.adp}).`,
     reasons: [
-      `Queue was empty/gated — taking BPA: ${best.pl.team} ${best.pl.position}${best.pl.depth_chart_order != null ? ` #${best.pl.depth_chart_order}` : ""}.`,
+      `BPA among ranked skill players: ${best.pl.team} ${best.pl.position}${best.pl.depth_chart_order != null ? ` #${best.pl.depth_chart_order}` : ""}.`,
+      `Sleeper search ~#${best.pl.search_rank ?? "?"} · ADP #${best.row.rank}.`,
       taxi ? "Rookie — taxi-eligible." : "Bench depth.",
     ],
     depthCharts: best.pl.depth_chart_order != null
