@@ -9,56 +9,60 @@ window.STRATEGY = {
   maxReach: 10,
 
   rules: [
-    "Bench RB/WR with roles first. No 3rd TE. QB3 only if on-time and you really want him.",
+    "Always name a take for the current pick when someone on-time is available.",
+    "Bench RB/WR with roles first. Shedeur/Bateman only near ADP (~271).",
     "No reach: stay within ~10 picks of ADP.",
-    "Shedeur / Bateman are end-of-draft preference picks — take at ADP (~271), not earlier.",
-    "Taxi: optional 1 dart if a clean rookie falls on time.",
+    "Taxi optional — one dart max if a clean rookie falls late.",
   ],
 
-  advice: { pick: 223 },
+  advice: { pick: 234 },
 
   queue: [
     {
-      name: "Jaydon Blue",
+      name: "Jaylen Wright",
       pos: "RB",
       slot: "bench",
-      afterPick: 215,
+      afterPick: 229,
       depthCharts: [
-        { source: "Cowboys unofficial chart", role: "RB2 behind Javonte Williams" },
-        { source: "CBS", role: "Listed #2; Mafah still competing" },
-        { source: "Sleeper", role: "DAL RB #3" },
+        { source: "Dolphins unofficial chart", role: "RB2 behind Achane (ahead of Ollie Gordon)" },
+        { source: "CBS / camp", role: "Leading RB2 battle — Gordon still competing after preseason" },
+        { source: "Sleeper", role: "MIA RB #2" },
       ],
       outlook:
-        "Year-2 Dallas back. Best remaining bench piece — injury fill-in behind Breece/Kyren. On-time at 223 (ADP ~230).",
+        "Year-2 Miami back. Named RB2 on the chart behind Achane — real bench RB for injury weeks. On-time at pick 234 (ADP ~240).",
       reasons: [
-        "Pick **223** priority — named RB2 role, not a taxi dart.",
-        "Do not skip Blue for Shedeur/Bateman here (~50 picks early on those).",
+        "Pick **234** — take him. On-time, fills your thin RB room after Blue.",
+        "Better than waiting for Shedeur/Bateman (~37 picks early on those).",
+        "Gordon is pushing; role isn't locked forever, but chart says #2 now.",
       ],
     },
     {
-      name: "Malik Washington",
+      name: "Ryan Flournoy",
       pos: "WR",
       slot: "bench",
       afterPick: 226,
       depthCharts: [
-        { source: "Sleeper", role: "MIA WR charted high" },
+        { source: "Cowboys reports", role: "WR3 behind Lamb / Pickens" },
+        { source: "Sleeper", role: "DAL WR #3" },
       ],
-      outlook: "Bench WR at pick 234 on-time if Blue is gone.",
+      outlook:
+        "Year-3 Cowboy. Solid bench WR if Wright is gone. On-time at 234 (ADP ~236).",
       reasons: [
-        "On-time at **234** — fill bench before preference picks.",
+        "Backup at **234** if Wright is drafted.",
+        "Named WR3 role — not a taxi dart.",
       ],
     },
     {
-      name: "Brenen Thompson",
-      pos: "WR",
-      slot: "taxi",
-      afterPick: 239,
+      name: "Sean Tucker",
+      pos: "RB",
+      slot: "bench",
+      afterPick: 237,
       depthCharts: [
-        { source: "Sleeper", role: "LAC WR #4" },
+        { source: "Sleeper", role: "TB RB #3" },
       ],
-      outlook: "Optional taxi at ~247. Skip if you want to save picks for Shedeur/Bateman.",
+      outlook: "Bucs RB depth — on-time at pick 247 if Wright/Flournoy are gone.",
       reasons: [
-        "Only if you still want a rookie taxi. Preference picks wait until 271.",
+        "Pick **247** bench RB if still available.",
       ],
     },
     {
@@ -67,17 +71,14 @@ window.STRATEGY = {
       slot: "bench",
       afterPick: 261,
       depthCharts: [
-        { source: "Browns unofficial chart", role: "Watson OR Sanders — co-listed starters" },
-        { source: "Monken", role: "Each starts a preseason game; Week 1 decision TBD" },
+        { source: "Browns unofficial chart", role: "Watson OR Sanders" },
         { source: "Sleeper", role: "CLE QB #2" },
       ],
       outlook:
-        "Year-2 Browns QB in an open competition with Watson. Upside if he wins the job; bench QB3 in 1QB if he loses. Take only on-time (~271).",
+        "Preference pick — open QB competition. Take at pick **271** only (ADP ~271).",
       reasons: [
-        "You already like him — fine as a **last-pick dart**, not pick 223.",
-        "ADP ~271 — on-time at pick **271**. Reaching earlier wastes a bench RB/WR slot.",
-        "1QB format: Mahomes + Purdy start. Shedeur is lottery upside only.",
-        "You already roster Sampson (CLE) — soft Browns stack if Shedeur wins.",
+        "Your dart if still up at **271**. Do not take at 234/247/258.",
+        "1QB: Mahomes + Purdy start; this is lottery upside.",
       ],
     },
     {
@@ -86,42 +87,41 @@ window.STRATEGY = {
       slot: "bench",
       afterPick: 266,
       depthCharts: [
-        { source: "Ravens unofficial chart", role: "Starter opposite Zay Flowers" },
-        { source: "Camp", role: "Lane / Walker pushing him — bounce-back not locked" },
+        { source: "Ravens chart", role: "WR2 opposite Flowers; Lane/Walker pushing" },
         { source: "Sleeper", role: "BAL LWR #2" },
       ],
-      outlook:
-        "Age 26, year 6. Charted WR2 but Lane/Walker are loud in camp. Bounce-back thesis is real if healthy; volume not guaranteed. ADP ~277 — take at 271 if Shedeur is gone or you prefer WR.",
+      outlook: "Bounce-back preference — take at **271** if Shedeur is gone or you prefer WR.",
       reasons: [
-        "Your bounce-back bet — on-time at pick **271**, not earlier.",
-        "Named WR2 on the chart (unlike Mitchell). Competition from Lane is the risk.",
-        "If both Shedeur and Bateman are up at 271, take the one you believe in more.",
+        "On-time near **271**. Named WR2 with real competition risk.",
       ],
     },
   ],
 
   skip: [
-    { name: "Brandon Aiyuk", reason: "Reserve/Left Squad — locker removed, not paid" },
+    { name: "Brandon Aiyuk", reason: "Reserve/Left Squad — not paid" },
+    { name: "Tyreek Hill", reason: "Unsigned FA, multi-ligament knee — no 2026 role" },
     { name: "Ricky Pearsall", reason: "Out 2026 (PCL)" },
-    { name: "Chris Brazzell", reason: "Out 2026 (torn LCL)" },
-    { name: "Chimere Dike", reason: "Returner / WR5 — no return scoring" },
+    { name: "Chris Brazzell", reason: "Out 2026 (torn LCL) — IR dart only at the very end" },
+    { name: "Chimere Dike", reason: "Returner / WR5" },
     { name: "Travis Kelce", reason: "TE3" },
     { name: "Mason Taylor", reason: "TE3" },
-    { name: "C.J. Stroud", reason: "QB3 — take Shedeur later if you want QB upside" },
+    { name: "C.J. Stroud", reason: "QB3" },
     { name: "Hunter Henry", reason: "TE3" },
     { name: "Adonai Mitchell", reason: "Disputed role + poor outlook" },
     { name: "Kayshon Boutte", reason: "NE WR bubble" },
     { name: "Troy Franklin", reason: "DEN WR4–5 — you roster Sutton" },
     { name: "Brian Robinson", reason: "Behind Bijan" },
-    { name: "James Conner", reason: "You roster Benson — same ARI room" },
+    { name: "James Conner", reason: "You roster Benson" },
+    { name: "Jack Bech", reason: "Raiders soft-avoid" },
   ],
 
   crowded: [
     { name: "Oronde Gadsden", reason: "LAC TE committee" },
     { name: "Travis Hunter", reason: "Offense share unknown" },
     { name: "Trey Benson", reason: "ARI 4-way backfield" },
-    { name: "Rashod Bateman", reason: "BAL: Flowers, Bateman, Lane, Walker — WR2 not locked" },
-    { name: "Shedeur Sanders", reason: "CLE: Watson OR Sanders — job not named yet" },
+    { name: "Jaylen Wright", reason: "MIA: Achane clear #1; Wright OR Gordon for #2" },
+    { name: "Rashod Bateman", reason: "BAL: Flowers, Bateman, Lane, Walker" },
+    { name: "Shedeur Sanders", reason: "CLE: Watson OR Sanders" },
   ],
 
   softAvoidTeams: ["LV"],
@@ -132,8 +132,9 @@ window.STRATEGY = {
     "Braelon Allen": "Jets RB2. Breece handcuff.",
     "Dylan Sampson": "CLE RB2 behind Judkins.",
     "Isiah Pacheco": "DET RB2 behind Gibbs.",
+    "Jaydon Blue": "DAL RB2 behind Javonte.",
     "Trey Benson": "ARI committee.",
-    "Jauan Jennings": "MIN WR3. Partial JJ stack.",
+    "Jauan Jennings": "MIN WR3.",
     "Elic Ayomanor": "TEN WR4 bench.",
   },
 };

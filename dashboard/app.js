@@ -95,9 +95,10 @@ function adviceReasons(entry) {
 function renderAdviceHtml(advice, pickNo) {
   if (advice.wait) {
     const list = adviceReasons(advice);
-    return `<h2>Wait — don't reach</h2>
-      <div class="small advice-meta">pick ${pickNo} · next queued: ${advice.take} (${advice.pos || ""})</div>
-      <ul class="advice-why">${list.map((r) => `<li>${r}</li>`).join("")}</ul>`;
+    return `<h2>Don't reach for ${advice.take}</h2>
+      <div class="small advice-meta">pick ${pickNo} · ${advice.take} is for pick ~${advice.untilPick || "?"}</div>
+      <ul class="advice-why">${list.map((r) => `<li>${r}</li>`).join("")}</ul>
+      <p class="advice-outlook"><b>Now:</b> take best on-time WR/RB from Best remaining below.</p>`;
   }
   const price = priceCheck(advice.take, pickNo);
   const reasons = adviceReasons(advice);
