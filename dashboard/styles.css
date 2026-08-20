@@ -412,3 +412,90 @@ td.num {
   color: var(--ink-dim);
 }
 .empty { color: var(--ink-dim); font-size: 13px; }
+
+.moves-banner {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 13px;
+}
+.moves-banner.over {
+  border-color: color-mix(in srgb, var(--coral) 55%, var(--hairline));
+  background: color-mix(in srgb, var(--coral) 12%, transparent);
+}
+.moves-banner .hl { color: var(--gold); font-weight: 600; }
+.moves-cols {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .moves-cols { grid-template-columns: repeat(3, 1fr); }
+}
+.moves-col h3 {
+  margin: 0 0 8px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.moves-col h3 .n {
+  color: var(--gold);
+  margin-left: 6px;
+  font-size: 13px;
+}
+.moves-col .hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+.mv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mv-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--hairline) 55%, transparent);
+}
+.mv-list li:last-child { border-bottom: none; }
+.mv-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.mv-name { font-weight: 600; font-size: 13px; }
+.mv-rank {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.mv-meta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+.mv-why {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--ink);
+}
+.mv-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.mv-tag.cut { background: color-mix(in srgb, var(--coral) 18%, transparent); color: var(--coral); }
+.mv-tag.ir { background: color-mix(in srgb, var(--ink-dim) 22%, transparent); color: var(--ink-dim); }
+.mv-tag.taxi { background: color-mix(in srgb, var(--gold) 16%, transparent); color: var(--gold); }
+.mv-tag.add { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.mv-tag.need { background: color-mix(in srgb, var(--wr) 18%, transparent); color: var(--wr); }

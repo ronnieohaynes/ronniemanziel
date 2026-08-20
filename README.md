@@ -29,6 +29,7 @@ Shows:
 - Dynasty Value roster table (ADP · age · injury notes)
 - Depth chart from Sleeper starters + ADP
 - Future draft picks (2027–2029)
+- **Roster Moves** — who to cut when over, IR/taxi parking, waiver-wire adds
 - Team status + trade intel
 - League rules / soft-avoid notes
 
